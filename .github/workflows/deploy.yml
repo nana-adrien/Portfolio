@@ -1,64 +1,26 @@
-name: Deploy Kotlin WASM
-
+name: Deploy to GitHub Pages
 on:
   push:
-    branches:
-      - master
-
-permissions:
-  contents: write
+    branches: [ master ] # Se lance quand vous poussez sur master
 
 jobs:
-
-  setup:
-    name: Setup environment
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Install JDK
         uses: actions/setup-java@v4
         with:
-          distribution: temurin
-          java-version: 17
-          cache: gradle
+          java-version: '17'
+          distribution: 'temurin'
 
-  build:
-    name: Build WASM project
-    runs-on: ubuntu-latest
-    needs: setup
+      - name: Build with Gradle
+        run: chmod +x gradlew ; ./gradlew wasmJsBrowserDistribution
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Make gradlew executable
-        run: chmod +x gradlew
-
-      - name: Build project
-        run: ./gradlew wasmJsBrowserDistribution
-
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: wasm-build
-          path: composeApp/build/dist/wasmJs/productionExecutable
-
-  deploy:
-    name: Deploy to GitHub Pages
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-      - name: Download build artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: wasm-build
-
-      - name: Deploy website
+      - name: Deploy to GH Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages
-          folder: productionExecutable
+          folder: composeApp/build/dist/wasmJs/productionExecutable # Le dossier à isoler
+          branch: gh-pages # La branche de destination
