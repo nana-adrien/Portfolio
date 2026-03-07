@@ -22,5 +22,5 @@ jobs:
       - name: Deploy to GH Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: build/dist/wasmJs/productionExecutable # Le dossier à isoler
+          folder: composeApp/build/dist/wasmJs/productionExecutable # Le dossier à isoler
           branch: gh-pages # La branche de destination
