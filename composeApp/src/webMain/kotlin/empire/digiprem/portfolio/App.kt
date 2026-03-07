@@ -3,6 +3,7 @@ package empire.digiprem.portfolio
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,23 +14,39 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
+import androidx.compose.ui.layout.ContentScale
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.skia.Surface
 
 import portfolionanaadrien.composeapp.generated.resources.Res
+import portfolionanaadrien.composeapp.generated.resources.capture
 import portfolionanaadrien.composeapp.generated.resources.compose_multiplatform
 
 @Composable
 fun App() {
     MaterialTheme {
         var showContent by remember { mutableStateOf(false) }
+
         Column(
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.secondary)
                 .safeContentPadding()
-                .fillMaxSize(),
+                .fillMaxSize()
+                ,
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Button(onClick = { showContent = !showContent }) {
+            Box(
+                modifier = Modifier.fillMaxSize()
+                    .paint(
+                        painterResource(Res.drawable.capture),
+                        contentScale = ContentScale.Crop
+                    ),
+
+            )
+
+
+            /*Button(onClick = { showContent = !showContent }) {
                 Text("Click a gains!")
             }
             AnimatedVisibility(showContent) {
@@ -41,7 +58,7 @@ fun App() {
                     Image(painterResource(Res.drawable.compose_multiplatform), null)
                     Text("Compose: $greeting")
                 }
-            }
+            }*/
         }
     }
 }
