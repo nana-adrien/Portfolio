@@ -1,7 +1,7 @@
 name: Deploy to GitHub Pages
 on:
   push:
-    branches: [ main ] # Se lance quand vous poussez sur main
+    branches: [ master ] # Se lance quand vous poussez sur master
 
 jobs:
   build-and-deploy:
