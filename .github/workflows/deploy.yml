@@ -31,5 +31,5 @@ jobs:
       - uses: actions/checkout@v4
       - uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: composeApp/build/dist/wasmJs/productionExecutable
-          branch: gh-pages
+          folder: composeApp/build/dist/wasmJs/productionExecutable # Le dossier à isoler
+          branch: gh-pages # La branche de destination
