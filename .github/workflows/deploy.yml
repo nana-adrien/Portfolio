@@ -3,7 +3,7 @@ name: Deploy Kotlin WASM
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   setup:
