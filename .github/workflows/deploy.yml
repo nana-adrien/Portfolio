@@ -17,7 +17,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Gradle
-        run: ./gradlew wasmJsBrowserDistribution
+        run: chmod +x gradlew | ./gradlew wasmJsBrowserDistribution
 
       - name: Deploy to GH Pages
         uses: JamesIves/github-pages-deploy-action@v4
