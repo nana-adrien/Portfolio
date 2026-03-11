@@ -1,0 +1,36 @@
+package empire.digiprem.portfolio.sections
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import empire.digiprem.portfolio.design_system.layout.SectionLayout
+
+@Composable
+fun AboutMeSections(
+    modifier: Modifier = Modifier,
+) {
+    SectionLayout(
+        title = "About Me",
+        modifier = modifier
+    ){
+        Row(
+            modifier = Modifier.height(400.dp).fillMaxWidth()
+        ){
+            Column(modifier = Modifier.weight(0.4f).background(color = Color.Blue)) {
+
+            }
+            Column(modifier = Modifier.weight(0.6f).padding(vertical = 25.dp).background(color = Color.LightGray)) {
+
+            }
+        }
+
+    }
+}
