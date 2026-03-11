@@ -32,6 +32,8 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RenderEffect
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.key.Key.Companion.P
+import androidx.compose.ui.platform.PlatformContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextDecoration
@@ -47,6 +49,9 @@ data class MenuItem(
 )
 @Composable
 expect fun BlurComponent()
+
+@Composable
+expect fun PlatformText()
 @Composable
 fun Header(
     modifier: Modifier = Modifier,
@@ -73,31 +78,34 @@ fun Header(
                     horizontalArrangement = Arrangement.spacedBy(5.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
+                    //PlatformText()
                     menuItems.forEachIndexed { index, item ->
-                        Text(
-                            modifier = Modifier
-                                .clip(RoundedCornerShape(4.dp))
-                                .hoverable(interactionSource = MutableInteractionSource(), enabled = false)
-                                .clickable {
-                                    selectMenuItem(item)
-                                }.padding(5.dp),
-                            text = item.title,
-                            style = MaterialTheme
-                                .typography
-                                .labelSmall
-                                .let {
-                                    it.copy(
-                                        fontWeight = FontWeight.SemiBold,
-                                        color = if (selectedMenu?.id == item.id) {
-                                            MaterialTheme.colorScheme.primary
-                                        } else it.color,
-                                        textDecoration = if (selectedMenu?.id == item.id) {
-                                            TextDecoration.Underline
-                                        } else it.textDecoration,
+                     // PlatformText {
+                          Text(
+                              modifier = Modifier
+                                  .clip(RoundedCornerShape(4.dp))
+                                  .hoverable(interactionSource = MutableInteractionSource(), enabled = false)
+                                  .clickable {
+                                      selectMenuItem(item)
+                                  }.padding(5.dp),
+                              text = item.title,
+                              style = MaterialTheme
+                                  .typography
+                                  .labelSmall
+                                  .let {
+                                      it.copy(
+                                          fontWeight = FontWeight.SemiBold,
+                                          color = if (selectedMenu?.id == item.id) {
+                                              MaterialTheme.colorScheme.primary
+                                          } else it.color,
+                                          textDecoration = if (selectedMenu?.id == item.id) {
+                                              TextDecoration.Underline
+                                          } else it.textDecoration,
 
-                                        )
-                                },
-                        )
+                                          )
+                                  },
+                          )
+                     // }
                     }
                     IconButton(
                         onClick = { },

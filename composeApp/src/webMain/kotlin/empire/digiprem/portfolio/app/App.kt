@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Facebook
@@ -41,6 +42,7 @@ import empire.digiprem.portfolio.app.components.SocialMedia
 import empire.digiprem.portfolio.app.components.SocialMediaLink
 import empire.digiprem.portfolio.design_system.PortfolioLogo
 import empire.digiprem.portfolio.design_system.WebPageScaffold
+import empire.digiprem.portfolio.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.sections.AboutMeSections
 import empire.digiprem.portfolio.sections.ContactSection
 import empire.digiprem.portfolio.sections.HomeSections
@@ -56,111 +58,117 @@ import portfolionanaadrien.composeapp.generated.resources.plan_de_travail_de_k_n
 
 @Composable
 fun App() {
-    PortfolioTheme(
-        darkTheme = false
-    ) {
-        var showContent by remember { mutableStateOf(false) }
-        val scrollState = rememberScrollState()
-        var selectedMenu by remember { mutableStateOf<MenuItem?>(null) }
-        WebPageScaffold(
-            modifier = Modifier.background(MaterialTheme.colorScheme.background)
-                .safeContentPadding()
-                .fillMaxSize()
-                .verticalScroll(scrollState),
-            header = {
-                Header(
-                    modifier = Modifier
-                        .height(50.dp)
-                        .fillMaxWidth()
-                        .background(Color.White.copy(alpha = 0.2f))
-                        ,
-                    logo = { PortfolioLogo() },
-                    selectedMenu = selectedMenu,
-                    menuItems = listOf(
-                        MenuItem(
-                            id = 1L,
-                            title = "Home",
-                            link = ""
-                        ),
-                        MenuItem(
-                            id = 2L,
-                            title = "About Me",
-                            link = ""
-                        ),
-                        MenuItem(
-                            id = 3L,
-                            title = "Projects",
-                            link = ""
-                        ),
-                        MenuItem(
-                            id = 4L,
-                            title = "Experiences",
-                            link = ""
-                        ),
-                        MenuItem(
-                            id = 5L,
-                            title = "Contact",
-                            link = ""
-                        ),
-                    )
-                ) {
-                    selectedMenu = it
-                }
-                HorizontalDivider(color = Color.LightGray.copy(alpha = 0.3f))
-            },
-            footer = {
-                Surface(
-                    modifier = Modifier
-                        .height(60.dp)
-                        .fillMaxWidth()
-                ) {
+    val isMobileDevice= currentDeviceConfigure().isMobileDevice()
 
-                }
-            },
-            socialMedia = {
-                SocialMediaLink(
-                    modifier = Modifier,
-                    socialMedias = listOf(
-                        SocialMedia(
-                            icon = Icons.Default.Whatsapp,
-                            link = "WhatsApp",
-                        ),
-                        SocialMedia(
-                            icon = Icons.Default.Facebook,
-                            link = "Facebook",
-                        ),
-                        SocialMedia(
-                            icon = Icons.Default.LinkedCamera,
-                            link = "Facebook",
-                        ),
-                    )
-                )
-            }
+    SelectionContainer {
 
-        ) {
-            HomeSections(modifier = Modifier.heightIn(min = 500.dp).fillMaxWidth().padding(vertical = 20.dp))
-            AboutMeSections(
-                modifier = Modifier.heightIn(min = 500.dp).fillMaxWidth().padding(vertical = 20.dp),
-            )
-            TechStackSection(modifier = Modifier.heightIn(min = 500.dp).fillMaxWidth().padding(vertical = 20.dp))
-            MyProjectSection(modifier = Modifier.heightIn(min = 500.dp).fillMaxWidth().padding(vertical = 20.dp))
-            MyExperiencesSection(modifier = Modifier.heightIn(min = 500.dp).fillMaxWidth().padding(vertical = 20.dp))
-            ContactSection(modifier = Modifier.heightIn(min = 500.dp).fillMaxWidth().padding(vertical = 20.dp))
-
-        }
-        /*    Column(
-                modifier = Modifier
-                    .background(MaterialTheme.colorScheme.secondary)
+        PortfolioTheme(
+            darkTheme = false
+        )
+        {
+            var showContent by remember { mutableStateOf(false) }
+            val scrollState = rememberScrollState()
+            var selectedMenu by remember { mutableStateOf<MenuItem?>(null) }
+            WebPageScaffold(
+                modifier = Modifier.background(MaterialTheme.colorScheme.background)
                     .safeContentPadding()
                     .fillMaxSize()
-                    .verticalScroll(scrollState)
-                    ,
-                horizontalAlignment = Alignment.CenterHorizontally,
-            )
-            {
+                    .verticalScroll(scrollState),
+                header = {
+                    Header(
+                        modifier = Modifier
+                            .height(50.dp)
+                            .fillMaxWidth()
+                            .background(Color.White.copy(alpha = 0.2f)),
+                        logo = { PortfolioLogo() },
+                        selectedMenu = selectedMenu,
+                        menuItems = listOf(
+                            MenuItem(
+                                id = 1L,
+                                title = "Home",
+                                link = ""
+                            ),
+                            MenuItem(
+                                id = 2L,
+                                title = "About Me",
+                                link = ""
+                            ),
+                            MenuItem(
+                                id = 3L,
+                                title = "Projects",
+                                link = ""
+                            ),
+                            MenuItem(
+                                id = 4L,
+                                title = "Experiences",
+                                link = ""
+                            ),
+                            MenuItem(
+                                id = 5L,
+                                title = "Contact",
+                                link = ""
+                            ),
+                        )
+                    ) {
+                        selectedMenu = it
+                    }
+                    HorizontalDivider(color = Color.LightGray.copy(alpha = 0.3f))
+                },
+                footer = {
+                    Surface(
+                        modifier = Modifier
+                            .height(60.dp)
+                            .fillMaxWidth()
+                    ) {
+
+                    }
+                },
+                socialMedia = {
+                    SocialMediaLink(
+                        modifier = Modifier,
+                        socialMedias = listOf(
+                            SocialMedia(
+                                icon = Icons.Default.Whatsapp,
+                                link = "WhatsApp",
+                            ),
+                            SocialMedia(
+                                icon = Icons.Default.Facebook,
+                                link = "Facebook",
+                            ),
+                            SocialMedia(
+                                icon = Icons.Default.LinkedCamera,
+                                link = "Facebook",
+                            ),
+                        )
+                    )
+                }
+
+            ) {
+                HomeSections(modifier = Modifier.height(if (isMobileDevice) 600.dp else  800.dp).fillMaxWidth())
+                AboutMeSections(
+                    modifier = Modifier.heightIn(min = 500.dp).fillMaxWidth().padding(vertical = 20.dp),
+                )
+                TechStackSection(modifier = Modifier.heightIn(min = 500.dp).fillMaxWidth().padding(vertical = 20.dp))
+                MyProjectSection(modifier = Modifier.heightIn(min = 500.dp).fillMaxWidth().padding(vertical = 20.dp))
+                MyExperiencesSection(
+                    modifier = Modifier.heightIn(min = 500.dp).fillMaxWidth().padding(vertical = 20.dp)
+                )
+                ContactSection(modifier = Modifier.heightIn(min = 500.dp).fillMaxWidth().padding(vertical = 20.dp))
+
+            }
+            /*    Column(
+                    modifier = Modifier
+                        .background(MaterialTheme.colorScheme.secondary)
+                        .safeContentPadding()
+                        .fillMaxSize()
+                        .verticalScroll(scrollState)
+                        ,
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                )
+                {
 
 
-                *//*Button(onClick = { showContent = !showContent }) {
+                    *//*Button(onClick = { showContent = !showContent }) {
                 Text("Click a gains!")
             }
             AnimatedVisibility(showContent) {
@@ -174,5 +182,7 @@ fun App() {
                 }
             }*//*
         }*/
+        }
+
     }
 }

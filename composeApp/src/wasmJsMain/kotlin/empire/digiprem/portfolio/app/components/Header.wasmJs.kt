@@ -7,3 +7,8 @@ import androidx.compose.runtime.Composable
 actual fun BlurComponent() {
 
 }
+
+@Composable
+actual fun PlatformText() {
+    //P { Text("Hello world ") }
+}

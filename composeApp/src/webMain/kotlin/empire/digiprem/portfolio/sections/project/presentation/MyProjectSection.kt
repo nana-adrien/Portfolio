@@ -63,6 +63,7 @@ import androidx.compose.ui.unit.times
 import empire.digiprem.portfolio.design_system.PortfolioButton
 import empire.digiprem.portfolio.design_system.PortfolioTabBar
 import empire.digiprem.portfolio.design_system.PortfolioTabItem
+import empire.digiprem.portfolio.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.design_system.layout.SectionLayout
 import empire.digiprem.portfolio.sections.tech_stack.TechStackItem
 import empire.digiprem.portfolio.theme.extended
@@ -104,14 +105,15 @@ private fun ProjectItem(
     description: String,
     modifier: Modifier = Modifier,
 ) {
+    val isMobileDevice= currentDeviceConfigure().isMobileDevice()
     var enabledLinkBox by remember { mutableStateOf(false) }
     val interactionSource = remember { MutableInteractionSource() }
     val enabledLinkBox2 by interactionSource.collectIsHoveredAsState()
 
     Column(
         modifier = modifier
-            .widthIn(min = 200.dp,max = 250.dp)
-            .height(270.dp)
+            .widthIn(min =if (isMobileDevice) 100.dp else  200.dp,max = if (isMobileDevice) 150.dp else  250.dp)
+            .height( if (isMobileDevice) 200.dp else 270.dp)
             .clip(RoundedCornerShape(8.dp))
             .border(1.dp, Color.LightGray.copy(alpha = 0.3f), RoundedCornerShape(8.dp))
             .background(Color.White)
@@ -120,7 +122,7 @@ private fun ProjectItem(
     ) {
         Box(
             modifier = Modifier
-                .fillMaxHeight(0.7f)
+                .fillMaxHeight(if (isMobileDevice) 0.6f else   0.7f)
                 .fillMaxWidth()
                 .hoverable(
                     interactionSource = interactionSource,
@@ -150,10 +152,10 @@ private fun ProjectItem(
                         repeat(3){
                             Box(
                                 modifier = Modifier
-                                    .size(40.dp)
+                                    .size(if (isMobileDevice) 30.dp else  40.dp)
                                     .clip(RoundedCornerShape(4.dp))
                                     .background(Color.White)
-                                    .padding(10.dp),
+                                    .padding(if (isMobileDevice) 5.dp else 10.dp),
                                 contentAlignment = Alignment.Center
                             ) {
                                 Icon(
@@ -173,16 +175,16 @@ private fun ProjectItem(
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = title,
-            style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Bold),
+            style = MaterialTheme.typography.labelLarge.let{it.copy(fontWeight = FontWeight.Bold,fontSize = if (isMobileDevice)11.sp else  it.fontSize)},
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,
         )
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = description,
-            style = MaterialTheme.typography.bodySmall.copy(fontSize = 11.sp),
+            style = MaterialTheme.typography.bodySmall.copy(fontSize = if (isMobileDevice) 9.sp else  11.sp),
             color = MaterialTheme.colorScheme.onBackground.copy(0.5f),
-            maxLines = 3,
+            maxLines = 2,
         )
 
     }
@@ -193,6 +195,7 @@ private fun ProjectItem(
 fun MyProjectSection(
     modifier: Modifier = Modifier,
 ) {
+    val isMobileDevice= currentDeviceConfigure().isMobileDevice()
     var selectPortfolioTabItems by remember { mutableStateOf(selectedItems.first()) }
     var projectItems by rememberSaveable { mutableStateOf(10) }
     LaunchedEffect(selectPortfolioTabItems) {
@@ -233,8 +236,8 @@ fun MyProjectSection(
         }*/
         FlowRow(
             modifier = Modifier.wrapContentSize().animateContentSize(),
-            verticalArrangement = Arrangement.spacedBy(20.dp),
-            horizontalArrangement = Arrangement.spacedBy(20.dp),
+            verticalArrangement = Arrangement.spacedBy( if (isMobileDevice) 10.dp else 20.dp),
+            horizontalArrangement = Arrangement.spacedBy( if (isMobileDevice) 10.dp else 20.dp),
         ){
             repeat(projectItems) {
                 ProjectItem(
