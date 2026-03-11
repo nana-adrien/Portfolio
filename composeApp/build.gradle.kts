@@ -20,6 +20,10 @@ kotlin {
     }
     
     sourceSets {
+        jsMain.dependencies {
+            implementation(compose.html.core)
+        }
+
         commonMain.dependencies {
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
@@ -29,6 +33,7 @@ kotlin {
             implementation(libs.compose.ui)
             implementation(libs.navigation.compose)
             implementation(libs.compose.components.resources)
+            implementation(libs.material3.adaptive )
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)

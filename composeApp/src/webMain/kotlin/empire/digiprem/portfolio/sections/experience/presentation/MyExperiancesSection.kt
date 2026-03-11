@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.dp
 import empire.digiprem.portfolio.design_system.PortfolioButton
 import empire.digiprem.portfolio.design_system.PortfolioTabBar
 import empire.digiprem.portfolio.design_system.PortfolioTabItem
+import empire.digiprem.portfolio.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.design_system.layout.SectionLayout
 import empire.digiprem.portfolio.theme.labelXSmall
 
@@ -148,7 +149,9 @@ private fun ExperienceStepITem(
     id: Int,
     content: @Composable () -> Unit
 ) {
-    val isMobileDevice by remember { mutableStateOf(true) }
+    val isMobileDevice=currentDeviceConfigure().isMobileDevice()
+
+  //  val isMobileDevice by remember { mutableStateOf(true) }
     val density = LocalDensity.current
     var boxHeight by remember { mutableStateOf<Dp>(150.dp) }
     Box(

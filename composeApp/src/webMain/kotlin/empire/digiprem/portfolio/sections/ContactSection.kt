@@ -29,6 +29,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -36,19 +37,22 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import empire.digiprem.portfolio.design_system.PortfolioButton
+import empire.digiprem.portfolio.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.design_system.layout.SectionLayout
 
 @Composable
 fun ContactSection(
     modifier: Modifier = Modifier,
 ) {
+    val isMobileDevice=currentDeviceConfigure().isMobileDevice()
+
     SectionLayout(
         title = "Contact Me",
         modifier = modifier,
     ) {
         Spacer(modifier = Modifier.height(10.dp))
         FlowRow(
-         modifier = Modifier.width(700.dp)
+         modifier = Modifier.width(if (isMobileDevice) 400.dp else 800.dp)
                 .clip(RoundedCornerShape(8.dp))
                 .background(
                     brush = Brush.horizontalGradient(
@@ -63,7 +67,7 @@ fun ContactSection(
             horizontalArrangement = Arrangement.spacedBy(20.dp, Alignment.CenterHorizontally)
         ) {
             Column(
-                modifier = Modifier.width(400.dp).padding(bottom = 20.dp),
+                modifier = Modifier.width(400.dp).padding(bottom = 20.dp).align(Alignment.CenterVertically),
                 verticalArrangement = Arrangement.spacedBy(7.dp, alignment = Alignment.CenterVertically),
             ) {
                 Text(
@@ -72,7 +76,7 @@ fun ContactSection(
                 )
                 Text(
                     text = "My inbox is always open! \uD83D\uDC8C Whether you've got a burning question or want to drop a friendly \"hello\", I'm all ears!\uD83D\uDC42 Let's chat! \uD83C\uDF89",
-                    style = MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.bodySmall,
                 )
             }
             Column(

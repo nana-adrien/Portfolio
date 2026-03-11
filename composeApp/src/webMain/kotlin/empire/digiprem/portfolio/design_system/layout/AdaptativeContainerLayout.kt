@@ -7,14 +7,16 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import empire.digiprem.portfolio.design_system.currentDeviceConfigure
 
 @Composable
 fun AdaptativeContainerLayout(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {
+    val deviceConfiguration=currentDeviceConfigure()
     Box(
-        modifier = modifier.fillMaxWidth(0.8f).padding(horizontal = 16.dp),
+        modifier = modifier.fillMaxWidth( if (deviceConfiguration.isMobileDevice())1f else 0.8f)/*.padding(horizontal = 16.dp)*/,
         content = {
             content()
         }
