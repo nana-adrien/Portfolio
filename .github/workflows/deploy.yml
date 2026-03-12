@@ -17,10 +17,10 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Gradle
-        run: chmod +x gradlew ; ./gradlew kotlinWasmUpgradeYarnLock; ./gradlew wasmJsBrowserDistribution
+        run: chmod +x gradlew ; ./gradlew kotlinWasmUpgradeYarnLock; ./gradlew wasmJsBrowserDistributionAndCopyToProduction
 
       - name: Deploy to GH Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: composeApp/build/dist/wasmJs/productionExecutable # Le dossier à isoler
+          folder: composeApp/production/portfolio/ # Le dossier à isoler
           branch: gh-pages # La branche de destination

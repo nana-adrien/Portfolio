@@ -17,6 +17,7 @@ kotlin {
     wasmJs {
         browser()
         binaries.executable()
+
     }
     
     sourceSets {
@@ -46,5 +47,10 @@ kotlin {
         }
     }
 }
+tasks.register<Copy>("wasmJsBrowserDistributionAndCopyToProduction") {
 
+    dependsOn("wasmJsBrowserDistribution")
+    from("$buildDir/dist/wasmJs/productionExecutable/")
+    into("$projectDir/production/portfolio/")
+}
 
