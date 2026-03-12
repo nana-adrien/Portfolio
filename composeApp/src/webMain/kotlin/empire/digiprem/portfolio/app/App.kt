@@ -1,21 +1,14 @@
 package empire.digiprem.portfolio.app
 
-import androidx.compose.foundation.Image
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -26,15 +19,9 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.BlurredEdgeTreatment
-import androidx.compose.ui.draw.blur
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.CornerRadius
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import empire.digiprem.portfolio.app.components.Header
 import empire.digiprem.portfolio.app.components.MenuItem
@@ -48,13 +35,8 @@ import empire.digiprem.portfolio.sections.ContactSection
 import empire.digiprem.portfolio.sections.HomeSections
 import empire.digiprem.portfolio.sections.experience.presentation.MyExperiencesSection
 import empire.digiprem.portfolio.sections.project.presentation.MyProjectSection
-import empire.digiprem.portfolio.sections.project.presentation.components.ExperienceItem
 import empire.digiprem.portfolio.sections.tech_stack.TechStackSection
 import empire.digiprem.portfolio.theme.PortfolioTheme
-import org.jetbrains.compose.resources.painterResource
-
-import portfolionanaadrien.composeapp.generated.resources.Res
-import portfolionanaadrien.composeapp.generated.resources.plan_de_travail_de_k_n_a
 
 @Composable
 fun App() {
@@ -66,9 +48,20 @@ fun App() {
             darkTheme = false
         )
         {
+            val density = LocalDensity.current
             var showContent by remember { mutableStateOf(false) }
             val scrollState = rememberScrollState()
             var selectedMenu by remember { mutableStateOf<MenuItem?>(null) }
+            val animateHeaderContainerColor by animateColorAsState(
+                targetValue =  with(density) {
+                    if (scrollState.value.toDp() < 750.dp) Color.Transparent else Color.White.copy(
+                        alpha = 0.5f
+                    )
+                }
+            )
+            val animateContentColor by animateColorAsState(
+                targetValue =with(density) { if (scrollState.value.toDp() <750.dp) Color.White else   Color.Black}
+            )
             WebPageScaffold(
                 modifier = Modifier.background(MaterialTheme.colorScheme.background)
                     .safeContentPadding()
@@ -79,8 +72,11 @@ fun App() {
                         modifier = Modifier
                             .height(50.dp)
                             .fillMaxWidth()
-                            .background(Color.White.copy(alpha = 0.2f)),
-                        logo = { PortfolioLogo() },
+                            .padding(horizontal = if (isMobileDevice) 16.dp else 0.dp)
+                          .background( animateHeaderContainerColor)
+                        ,
+                        animateContentColor=animateContentColor,
+                        logo = { PortfolioLogo(color=animateContentColor) },
                         selectedMenu = selectedMenu,
                         menuItems = listOf(
                             MenuItem(
@@ -144,7 +140,7 @@ fun App() {
                 }
 
             ) {
-                HomeSections(modifier = Modifier.height(if (isMobileDevice) 600.dp else  800.dp).fillMaxWidth())
+                HomeSections(modifier = Modifier.height(800.dp).fillMaxWidth().padding(bottom = 30.dp))
                 AboutMeSections(
                     modifier = Modifier.heightIn(min = 500.dp).fillMaxWidth().padding(vertical = 20.dp),
                 )

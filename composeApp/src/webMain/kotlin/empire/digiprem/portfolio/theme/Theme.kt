@@ -156,9 +156,9 @@ val DarkExtendedColors = ExtendedColors(
     cakeMint = ChirpCakeDarkMint,
 )
 val LightColorScheme = lightColorScheme(
-    primary = ChirpBrand500,
+    primary = ChirpBase950,
     onPrimary = ChirpBrand1000,
-    primaryContainer = ChirpBrand100,
+    primaryContainer = ChirpBase400,
     onPrimaryContainer = ChirpBrand900,
 
     secondary = ChirpBase700,
@@ -188,9 +188,9 @@ val LightColorScheme = lightColorScheme(
 
     )
 val DarkColorScheme = darkColorScheme(
-    primary = ChirpBrand500,
+    primary = ChirpBase950,
     onPrimary = ChirpBrand1000,
-    primaryContainer = ChirpBrand900,
+    primaryContainer = ChirpBase400,
     onPrimaryContainer = ChirpBrand500,
 
     secondary = ChirpBase400,
