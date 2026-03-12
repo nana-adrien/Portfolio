@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
+import empire.digiprem.portfolio.app.components.Footer
 import empire.digiprem.portfolio.app.components.Header
 import empire.digiprem.portfolio.app.components.MenuItem
 import empire.digiprem.portfolio.app.components.SocialMedia
@@ -67,6 +68,7 @@ fun App() {
                     .safeContentPadding()
                     .fillMaxSize()
                     .verticalScroll(scrollState),
+                scrollState = scrollState,
                 header = {
                     Header(
                         modifier = Modifier
@@ -111,13 +113,13 @@ fun App() {
                     HorizontalDivider(color = Color.LightGray.copy(alpha = 0.3f))
                 },
                 footer = {
-                    Surface(
+                    Footer(
                         modifier = Modifier
-                            .height(60.dp)
+                            .heightIn(min=60.dp)
                             .fillMaxWidth()
-                    ) {
-
-                    }
+                            .background(Color.White)
+                            .padding(horizontal = if (!isMobileDevice) 16.dp else 5.dp, vertical = 10.dp)
+                    )
                 },
                 socialMedia = {
                     SocialMediaLink(

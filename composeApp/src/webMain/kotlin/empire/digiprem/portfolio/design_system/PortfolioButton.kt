@@ -43,7 +43,7 @@ fun PortfolioButton(
         colors = ButtonDefaults.buttonColors(
             containerColor = if (type == ButtonType.PRIMARY) {
                 MaterialTheme.colorScheme.primary
-            } else Color.White,
+            } else MaterialTheme.colorScheme.background,
             contentColor = if (type == ButtonType.PRIMARY) {
                 Color.White
             } else MaterialTheme.colorScheme.primary,
