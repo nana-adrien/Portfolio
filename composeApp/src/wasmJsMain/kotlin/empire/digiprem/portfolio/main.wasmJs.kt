@@ -11,6 +11,7 @@ import androidx.navigation.bindToBrowserNavigation
 import androidx.navigation.toRoute
 import empire.digiprem.portfolio.app.App
 import empire.digiprem.portfolio.app.NavigationGraph
+import empire.digiprem.portfolio.app.Section
 import kotlinx.browser.document
 import kotlinx.browser.window
 import kotlinx.serialization.builtins.serializer
@@ -33,11 +34,16 @@ actual fun PlatformComposeViewport(
 @OptIn(ExperimentalBrowserHistoryApi::class)
 actual suspend fun onNavHostReady(navController: NavController) {
 
-    val initRoute = window.location.hash.substringAfter('#', "")
+    val initRoute = window.location.hash.takeIf { it.isNotEmpty() }
+        ?: window.location.pathname.substringAfter("/", "")
     when {
-        initRoute.startsWith("home") -> {
+        initRoute.isEmpty() || initRoute == "/" || initRoute.startsWith("home") -> {
             val section = initRoute.substringAfter("?section=")
-            navController.navigate(NavigationGraph.HomeScreen(section))
+            val normalSection= Section.entries.firstOrNull{it.name==section}?.name?:Section.home.name
+            navController.navigate(NavigationGraph.HomeScreen(normalSection))
+        }
+        else -> {
+            navController.navigate(NavigationGraph.Error404)
         }
     }
 
@@ -54,7 +60,7 @@ actual suspend fun onNavHostReady(navController: NavController) {
                 val section= entry.toRoute<NavigationGraph.HomeScreen>().section
                 "#home?section=$section"
             }
-            else -> ""
+            else -> "#not-found"
         }
     }
 }

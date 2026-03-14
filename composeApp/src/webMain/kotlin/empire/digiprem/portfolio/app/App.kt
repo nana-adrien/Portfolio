@@ -7,7 +7,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,40 +14,27 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.selection.SelectionContainer
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.Facebook
-import androidx.compose.material.icons.filled.Light
 import androidx.compose.material.icons.filled.LightMode
 import androidx.compose.material.icons.filled.LinkedCamera
-import androidx.compose.material.icons.filled.Navigation
 import androidx.compose.material.icons.filled.Whatsapp
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.onPlaced
-import androidx.compose.ui.layout.positionInWindow
 import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.fastJoinToString
 import androidx.navigation.NavController
-import androidx.navigation.Navigator
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -62,6 +48,7 @@ import empire.digiprem.portfolio.design_system.PortfolioIconButton
 import empire.digiprem.portfolio.design_system.PortfolioLogo
 import empire.digiprem.portfolio.design_system.WebPageScaffold
 import empire.digiprem.portfolio.design_system.currentDeviceConfigure
+import empire.digiprem.portfolio.pages.Error404Page
 import empire.digiprem.portfolio.sections.AboutMeSections
 import empire.digiprem.portfolio.sections.ContactSection
 import empire.digiprem.portfolio.sections.HomeSections
@@ -71,11 +58,7 @@ import empire.digiprem.portfolio.sections.openLink
 import empire.digiprem.portfolio.sections.project.presentation.MyProjectSection
 import empire.digiprem.portfolio.sections.tech_stack.TechStackSection
 import empire.digiprem.portfolio.theme.PortfolioTheme
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun App(
@@ -117,6 +100,12 @@ fun Navigator(
                 onDarkThemeChanged = onDarkThemeChanged,
             )
         }
+        composable<NavigationGraph.Error404> {
+            Error404Page(
+                enabledDarkTheme = enabledDarkTheme,
+                onDarkThemeChanged = onDarkThemeChanged,
+            )
+        }
     }
 
     LaunchedEffect(navController) {
@@ -128,6 +117,10 @@ sealed interface NavigationGraph {
     @Serializable
     //@SerialName("/")
     data class HomeScreen(val section: String = Section.home.name) : NavigationGraph
+
+    @Serializable
+    data object Error404 : NavigationGraph
+
 }
 
 
@@ -167,15 +160,10 @@ private fun HomePage(
     onDarkThemeChanged: () -> Unit,
 ) {
     var currentSection by rememberSaveable { mutableStateOf(targetId) }
-    var value by rememberSaveable { mutableStateOf(0) }
-    var value2: String by rememberSaveable { mutableStateOf("") }
-    var sectionRefs by remember { mutableStateOf<MutableMap<Section, MutableState<IntOffset>>>(mutableMapOf()) }
 
     val isMobileDevice = currentDeviceConfigure().isMobileDevice()
     val density = LocalDensity.current
-    var showContent by remember { mutableStateOf(false) }
     val scrollState = rememberLazyListState()
-    val scope = rememberCoroutineScope()
     val menuItems = Section.entries.mapIndexed { index, section ->
         MenuItem(
             id = section.name,
@@ -322,29 +310,29 @@ private fun HomePage(
             }
         }
     }
-    LaunchedEffect(scrollState) {
-        snapshotFlow { scrollState.layoutInfo }
-            .collect { layout ->
-                val viewportCenter =
-                    (layout.viewportStartOffset + layout.viewportEndOffset) / 2
-                val currentItem =
-                    layout.visibleItemsInfo.minByOrNull { item ->
+    LaunchedEffect(scrollState.isScrollInProgress) {
+        if (scrollState.isScrollInProgress) {
+            snapshotFlow { scrollState.layoutInfo }
+                .collect { layout ->
+                    val viewportCenter =
+                        (layout.viewportStartOffset + layout.viewportEndOffset) / 2
+                    val currentItem =
+                        layout.visibleItemsInfo.minByOrNull { item ->
 
-                        val itemCenter =
-                            item.offset + item.size / 2
+                            val itemCenter =
+                                item.offset + item.size / 2
 
-                        kotlin.math.abs(itemCenter - viewportCenter)
+                            kotlin.math.abs(itemCenter - viewportCenter)
+                        }
+
+                    currentItem?.let {
+                        val index = it.index
+                        selectedMenu = menuItems[index]
+                     openLink(selectedMenu.link)
                     }
-
-                currentItem?.let {
-
-                    val index = it.index
-
-                    selectedMenu = menuItems[index]
-
-                    openLink(selectedMenu.link)
                 }
-            }
+        }
+
     }
     LaunchedEffect(currentSection) {
         when {

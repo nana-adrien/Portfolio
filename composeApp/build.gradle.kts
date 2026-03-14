@@ -1,3 +1,4 @@
+import org.gradle.internal.impldep.org.apache.commons.lang.StringUtils.overlay
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
@@ -16,7 +17,21 @@ kotlin {
     
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-        browser()
+        browser{
+            commonWebpackConfig {
+                cssSupport{
+                    enabled=true
+                }
+                devServer=devServer?.apply {
+
+                }
+               /* devServer = devServer?.apply {
+                    hot = false          // Désactive HMR qui casse le WASM
+                    liveReload = true
+                    overlay = true       // Affiche les erreurs directement dans le navigateur
+                }*/
+            }
+        }
         binaries.executable()
 
     }
