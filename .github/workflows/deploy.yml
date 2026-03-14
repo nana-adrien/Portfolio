@@ -24,3 +24,4 @@ jobs:
         with:
           folder: composeApp/production/portfolio/ # Le dossier à isoler
           branch: gh-pages # La branche de destination
+          target-folder: composeApp/production/portfolio/
