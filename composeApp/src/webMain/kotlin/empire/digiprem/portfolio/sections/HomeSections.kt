@@ -338,3 +338,4 @@ enum class OpenLinkTarget(val target: String) {
     SAME_ONGLET("_self")
 }
 expect fun openLink(url: String,openLinkTarget: OpenLinkTarget=OpenLinkTarget.SAME_ONGLET)
+expect fun getBaseUrl(): String

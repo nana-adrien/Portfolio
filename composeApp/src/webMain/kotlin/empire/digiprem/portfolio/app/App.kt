@@ -66,6 +66,7 @@ import empire.digiprem.portfolio.sections.AboutMeSections
 import empire.digiprem.portfolio.sections.ContactSection
 import empire.digiprem.portfolio.sections.HomeSections
 import empire.digiprem.portfolio.sections.experience.presentation.MyExperiencesSection
+import empire.digiprem.portfolio.sections.getBaseUrl
 import empire.digiprem.portfolio.sections.openLink
 import empire.digiprem.portfolio.sections.project.presentation.MyProjectSection
 import empire.digiprem.portfolio.sections.tech_stack.TechStackSection
@@ -179,7 +180,7 @@ private fun HomePage(
         MenuItem(
             id = section.name,
             title = section.name.split('_').fastJoinToString(" ").replaceFirstChar { it.uppercase() },
-            link = "http://localhost:8080/#home?section=$section",
+            link = getBaseUrl()+"#home?section=$section",
         )
     }
     var selectedMenu by remember { mutableStateOf(menuItems.first { it.id == currentSection }) }
