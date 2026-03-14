@@ -8,6 +8,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.Font
 import portfolionanaadrien.composeapp.generated.resources.Res
+import portfolionanaadrien.composeapp.generated.resources.allkin_Regular
+import portfolionanaadrien.composeapp.generated.resources.notoEmoji_bold
+import portfolionanaadrien.composeapp.generated.resources.notoEmoji_light
+import portfolionanaadrien.composeapp.generated.resources.notoEmoji_medium
+import portfolionanaadrien.composeapp.generated.resources.notoEmoji_regular
+import portfolionanaadrien.composeapp.generated.resources.notoEmoji_semibold
+import portfolionanaadrien.composeapp.generated.resources.noto_color_emoji_regular
 import portfolionanaadrien.composeapp.generated.resources.plusjakartasans_bold
 import portfolionanaadrien.composeapp.generated.resources.plusjakartasans_light
 import portfolionanaadrien.composeapp.generated.resources.plusjakartasans_medium
@@ -20,8 +27,16 @@ val PlusJakartaSans @Composable get() = FontFamily(
          resource= Res.font.plusjakartasans_bold,
          weight = FontWeight.Bold
      ),
+     Font(
+         resource= Res.font.noto_color_emoji_regular,
+         weight = FontWeight.Bold
+     ),
     Font(
          resource= Res.font.plusjakartasans_semibold,
+         weight = FontWeight.SemiBold
+     ),
+    Font(
+         resource= Res.font.noto_color_emoji_regular,
          weight = FontWeight.SemiBold
      ),
     Font(
@@ -29,11 +44,31 @@ val PlusJakartaSans @Composable get() = FontFamily(
          weight = FontWeight.Light
      ),
     Font(
+         resource= Res.font.noto_color_emoji_regular,
+         weight = FontWeight.Light
+     ),
+    Font(
          resource= Res.font.plusjakartasans_medium,
          weight = FontWeight.Medium
      ),
     Font(
+         resource= Res.font.noto_color_emoji_regular,
+         weight = FontWeight.Medium
+     ),
+    Font(
          resource= Res.font.plusjakartasans_regular,
+         weight = FontWeight.Normal
+     ),
+    Font(
+         resource= Res.font.noto_color_emoji_regular,
+         weight = FontWeight.Normal
+     ),
+    Font(
+         resource= Res.font.noto_color_emoji_regular,
+         weight = FontWeight.Normal
+     ),
+    Font(
+         resource= Res.font.noto_color_emoji_regular,
          weight = FontWeight.Normal
      ),
 )

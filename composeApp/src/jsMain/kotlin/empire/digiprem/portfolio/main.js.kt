@@ -14,8 +14,6 @@ import empire.digiprem.portfolio.app.App
 import empire.digiprem.portfolio.app.NavigationGraph
 import kotlinx.browser.document
 import kotlinx.browser.window
-import kotlinx.serialization.builtins.serializer
-import org.w3c.dom.PopStateEvent
 
 
 @OptIn(ExperimentalComposeUiApi::class)

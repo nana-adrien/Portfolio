@@ -1,13 +1,36 @@
+/*
+Source - https://stackoverflow.com/a/69556701
+Posted by Myndex
+Retrieved 2026-03-14, License - CC BY-SA 4.0
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols+2&text=%F0%9F%8D%BD&display=swap');
+
+
 html, body {
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    font-family:
-            "Plus Jakarta Sans",
-            "Noto Color Emoji",
-            "Apple Color Emoji",
-            "Segoe UI Emoji",
-            sans-serif;
+    overflow: hidden;/*
+Source - https://stackoverflow.com/a/68964456
+Posted by loops
+Retrieved 2026-03-14, License - CC BY-SA 4.0
+*/
+
+    font-family: "Roboto", "-apple-system", "Helvetica Neue", Helvetica, Arial, "Noto Emoji", sans-serif;
+
+}
+/*
+Source - https://stackoverflow.com/a/69556701
+Posted by Myndex
+Retrieved 2026-03-14, License - CC BY-SA 4.0
+*/
+
+* {
+    font-family: "Roboto", "Apple Color Emoji", 'Noto Sans Symbols 2', Helvetica, Arial, sans-serif;
+}
+#root {
+    height: 100vh;
+    width: 100vw;
 }

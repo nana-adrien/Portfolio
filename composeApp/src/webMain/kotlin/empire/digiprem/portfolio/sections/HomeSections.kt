@@ -1,5 +1,6 @@
 package empire.digiprem.portfolio.sections
 
+import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.animateFloatAsState
@@ -22,6 +23,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Facebook
 import androidx.compose.material.icons.filled.KeyboardArrowUp
@@ -42,6 +44,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontFamily
@@ -55,6 +58,7 @@ import empire.digiprem.portfolio.design_system.PortfolioButton
 import empire.digiprem.portfolio.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.design_system.layout.AdaptativeContainerLayout
 import empire.digiprem.portfolio.design_system.layout.SectionLayout
+import empire.digiprem.portfolio.theme.PlusJakartaSans
 import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.skia.paragraph.TextStyle
@@ -154,6 +158,7 @@ fun HomeSections(
                 }
                 Box(
                     modifier = Modifier
+                        .padding(start = 50.dp)
                         .graphicsLayer {
                             translationY = animatedFloat
                         }
@@ -170,7 +175,7 @@ fun HomeSections(
                     )
                 }
                 Box(
-                    modifier = Modifier.padding(end = 150.dp, top = 20.dp).size(if (isMobileDevice) 35.dp else 40.dp)
+                    modifier = Modifier.padding(end = 70.dp, top = 20.dp).size(if (isMobileDevice) 35.dp else 40.dp)
                         .align(Alignment.BottomEnd)
                         .clip(CircleShape).background(MaterialTheme.colorScheme.surface).padding( 3.dp)
                 ){
@@ -182,11 +187,11 @@ fun HomeSections(
                     )
                 }
                 Box(
-                    modifier = Modifier.width(300.dp).height(100.dp).clip(CircleShape)
-                        .padding( 3.dp)
+                    modifier = Modifier.padding(end = 50.dp).width(350.dp).height(150.dp).clip(RoundedCornerShape(120.dp))
+
                 ) {
                     AsyncImage(
-                        modifier = Modifier.fillMaxSize().shadow(elevation = 10.dp, CircleShape),
+                        modifier = Modifier.fillMaxSize().shadow(elevation = 10.dp, CircleShape).background(MaterialTheme.colorScheme.background),
                         model = Res.getUri("drawable/logo.png"),// painterResource(Res.drawable.plan_de_travail_de_k_n_a),
                         contentDescription = null,
                         contentScale = ContentScale.Inside
@@ -217,6 +222,27 @@ fun HomeSections(
                         verticalArrangement = Arrangement.spacedBy(15.dp, Alignment.CenterVertically),
                     )
                     {
+                        val infiniteTransition = rememberInfiniteTransition()
+
+// On anime l'angle de rotation de -10 à 30 degrés
+                        val rotation by infiniteTransition.animateFloat(
+                            initialValue = -10f,
+                            targetValue = 30f,
+                            animationSpec = infiniteRepeatable(
+                                animation = tween(600, easing = LinearEasing),
+                                repeatMode = RepeatMode.Reverse
+                            )
+                        )
+
+                        Text(
+                            text = "👋",
+                            modifier = Modifier.graphicsLayer {
+                                rotationZ = rotation
+                                // On fixe le point de pivot en bas à droite pour simuler le poignet
+                                transformOrigin = TransformOrigin(1f, 1f)
+                            },
+                            fontFamily = PlusJakartaSans // Votre config avec NotoEmoji
+                        )
                         Text(
                             "👋 Hé",
                             style = MaterialTheme.typography.labelMedium, color = Color.White,
