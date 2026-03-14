@@ -139,10 +139,12 @@ fun Error404Page(
             Box(
                 modifier = Modifier
                     .padding(32.dp)
-                    .fillParentMaxSize(),
+                    .fillParentMaxSize(0.85f),
                 contentAlignment = Alignment.Center
             ) {
-                SectionLayout {
+                SectionLayout(
+                    modifier = Modifier.fillMaxSize()
+                ) {
                     Column(
                         modifier = Modifier.fillMaxSize(),
                         horizontalAlignment = Alignment.CenterHorizontally,

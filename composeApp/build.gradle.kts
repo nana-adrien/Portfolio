@@ -22,9 +22,7 @@ kotlin {
                 cssSupport{
                     enabled=true
                 }
-                devServer=devServer?.apply {
 
-                }
                /* devServer = devServer?.apply {
                     hot = false          // Désactive HMR qui casse le WASM
                     liveReload = true

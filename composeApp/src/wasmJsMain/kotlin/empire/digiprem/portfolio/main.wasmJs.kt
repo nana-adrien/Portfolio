@@ -36,8 +36,9 @@ actual suspend fun onNavHostReady(navController: NavController) {
 
     val initRoute = window.location.hash.takeIf { it.isNotEmpty() }
         ?: window.location.pathname.substringAfter("/", "")
+    print(initRoute)
     when {
-        initRoute.isEmpty() || initRoute == "/" || initRoute.startsWith("home") -> {
+        initRoute.isEmpty() /*|| initRoute == "/"*/ || initRoute.startsWith("#home") -> {
             val section = initRoute.substringAfter("?section=")
             val normalSection= Section.entries.firstOrNull{it.name==section}?.name?:Section.home.name
             navController.navigate(NavigationGraph.HomeScreen(normalSection))
