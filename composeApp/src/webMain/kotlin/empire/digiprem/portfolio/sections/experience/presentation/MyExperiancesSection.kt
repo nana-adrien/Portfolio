@@ -38,6 +38,7 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import empire.digiprem.portfolio.design_system.PortfolioButton
 import empire.digiprem.portfolio.design_system.PortfolioTabBar
@@ -104,10 +105,12 @@ fun ExperienceITem(
                             Text(
                                 text = "Zeal College Of Engineering And Research | SPPU",
                                 style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
+                                color = MaterialTheme.colorScheme.onBackground,
                             )
                             Text(
                                 text = "B.E. Information Technology | 2020 - 2024",
                                 style = MaterialTheme.typography.labelXSmall.copy(fontWeight = FontWeight.SemiBold),
+                                color = MaterialTheme.colorScheme.onBackground,
                             )
                             Text(
                                 text = """
@@ -115,7 +118,7 @@ fun ExperienceITem(
                               * Worked on web application development using HTML, CSS, and JavaScript, designing a database system using SQL 
                               * Familiar with software development methodologies and project management practices, including Agile and Waterfall methodologies.  
                             """.trimIndent(),
-                                style = MaterialTheme.typography.labelXSmall.copy(color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f)),
+                                style = MaterialTheme.typography.labelXSmall.copy(color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)),
                                 textAlign = TextAlign.Justify,
                             )
                         }
@@ -129,11 +132,14 @@ fun ExperienceITem(
                             Text(
                                 text = "Zeal College Of Engineering And Research | SPPU",
                                 style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.Bold),
+                                color = MaterialTheme.colorScheme.onBackground,
                             )
                             Text(
                                 text = "B.E. Information Technology | 2020 - 2024",
                                 style = MaterialTheme.typography.labelXSmall.copy(fontWeight = FontWeight.SemiBold),
-                            )
+                                color = MaterialTheme.colorScheme.onBackground,
+
+                                )
                         }
                     }
                 }
@@ -174,7 +180,7 @@ private fun ExperienceStepITem(
                     .padding(start = if (isMobileDevice) 50.dp else 20.dp, end = if (isMobileDevice) 0.dp else 20.dp)
                     .clip(RoundedCornerShape(8.dp))
                     .shadow(elevation = 10.dp, shape = RoundedCornerShape(8.dp))
-                    .background(Color.White)
+                    .background(MaterialTheme.colorScheme.background)
                     .padding(15.dp),
             content = { content() }
         )
@@ -187,7 +193,7 @@ private fun ExperienceStepITem(
                 modifier = Modifier
                     .size(40.dp)
                     .clip(CircleShape)
-                    .background(Color.White)
+                    .background(MaterialTheme.colorScheme.background)
                     .padding(5.dp)
                     .clip(CircleShape)
                     .background(MaterialTheme.colorScheme.primaryContainer)

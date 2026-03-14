@@ -17,6 +17,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.rememberScrollbarAdapter
 import androidx.compose.foundation.scrollableArea
@@ -34,17 +37,22 @@ fun WebPageScaffold(
     header: @Composable ColumnScope.() -> Unit,
     footer: @Composable (() -> Unit)?=null,
     socialMedia: @Composable (() -> Unit)?=null,
-    scrollState: ScrollState,
+    scrollState: LazyListState,
     modifier: Modifier= Modifier,
-    content: @Composable () -> Unit,
+    content:  LazyListScope.() -> Unit,
 ) {
 
         Box(
             modifier = Modifier.fillMaxSize(),
         ){
-            Column(modifier = Modifier.fillMaxSize().then(modifier)) {
+            LazyColumn(
+                modifier = Modifier.fillMaxSize().then(modifier),
+                state=scrollState
+           ) {
                 content()
-                footer?.invoke()
+                item {
+                    footer?.invoke()
+                }
             }
             Column(modifier = Modifier.fillMaxWidth().align(Alignment.TopCenter)) {
                 header()
@@ -59,6 +67,7 @@ fun WebPageScaffold(
                 modifier = Modifier.fillMaxHeight().align(Alignment.TopEnd).background(Color.Transparent),
                 adapter = rememberScrollbarAdapter(scrollState),
                 style = LocalScrollbarStyle.current.copy(
+                    minimalHeight = 100.dp,
                     unhoverColor = MaterialTheme.colorScheme.primaryContainer,
                     hoverColor =MaterialTheme.colorScheme.primary,
                     hoverDurationMillis = 200

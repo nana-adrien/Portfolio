@@ -52,7 +52,7 @@ val ChirpBase500  = Color(0xFFFFB266)        // Orange moyen (variant)
 val ChirpBase400  = Color(0xFFFFD9B3)        // Orange clair
 val ChirpBase200  = Color(0xFFFFE5CC)        // Très clair
 val ChirpBase150  = Color(0xFFFFF2E6)        // Presque pastel
-val ChirpBase100  = Color(0xFFFFF9F2)        // Fond très clair
+val ChirpBase100  = Color(0xFFCECECE)        // Fond très clair
 
 // ==========================
 // Alpha / overlays / accents

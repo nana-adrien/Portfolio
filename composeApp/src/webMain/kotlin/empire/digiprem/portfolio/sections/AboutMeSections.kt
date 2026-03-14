@@ -2,6 +2,7 @@ package empire.digiprem.portfolio.sections
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,8 +32,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
 import androidx.compose.ui.unit.min
@@ -63,7 +67,7 @@ fun AboutMeSections(
             .widthIn(max = if (isMobileDevice) 350.dp  else 280.dp )
             .heightIn(max=350.dp)
             .clip(RoundedCornerShape(8.dp))
-            .background(Color.White).padding(10.dp)
+            .background(MaterialTheme.colorScheme.background).padding(10.dp)
         ) {
             Box(Modifier.fillMaxWidth().fillMaxHeight().padding(bottom = 30.dp).clip(RoundedCornerShape(8.dp)).background(Color.Gray)) {
                 Image(
@@ -85,7 +89,7 @@ fun AboutMeSections(
         Column(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(30.dp)
+            verticalArrangement = Arrangement.spacedBy(30.dp, Alignment.CenterVertically)
         ) {
             if (isMobileDevice) {
                 BoxContent()
@@ -104,10 +108,11 @@ fun AboutMeSections(
                         text = "Nana Adrien",
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onBackground,
                     )
                     Box(
                         modifier = Modifier.wrapContentSize().clip(RoundedCornerShape(4.dp))
-                            .background(MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f))
+                            .border(width = 1.dp,color= MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f),shape = RoundedCornerShape(4.dp))
                             .padding(horizontal = 10.dp, vertical = 5.dp), contentAlignment = Alignment.Center
                     ) {
                         Text(
@@ -123,9 +128,9 @@ fun AboutMeSections(
                         text = """
                             Ahoy there! 🎉 I'm a seasoned Full-Stack developer based in Pune, India, proudly waving my Information Technology undergrad cape from SPPU! 🎓 I've delved into web development since my freshman days. 💻 My focus lies in crafting websites and applications that seamlessly blend functionality. Oh, and did I mention my love for building full-stack clones and side projects?💡It's kind of my thing! 🚀
                         """.trimIndent(),
-                        style = MaterialTheme.typography.labelSmall,
+                        style = MaterialTheme.typography.labelSmall.copy( fontFamily = FontFamily.Serif),
                         textAlign = TextAlign.Justify,
-                        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f),
+                        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
                     )
                     Spacer(Modifier.height(10.dp))
                     FlowRow(

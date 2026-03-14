@@ -17,6 +17,8 @@ import androidx.compose.ui.autofill.contentType
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.PointerIcon
+import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.dp
 
 data class PortfolioTabItem(
@@ -32,18 +34,19 @@ fun PortfolioTabBar(
 ){
 
     FlowRow(
-        modifier = Modifier.clip(RoundedCornerShape(4.dp)).background(Color.White).padding(5.dp),
+        modifier = Modifier.clip(RoundedCornerShape(4.dp)).background(MaterialTheme.colorScheme.background).padding(5.dp),
         verticalArrangement = Arrangement.spacedBy(5.dp),
         horizontalArrangement = Arrangement.spacedBy(20.dp)
     ){
         tabItems.forEach { item ->
             Box(
                 modifier = Modifier
+                    .pointerHoverIcon(PointerIcon.Hand)
                     .clip(RoundedCornerShape(4.dp))
                     .background(
                         if (selectedPortfolioTabItem.id == item.id) {
                             MaterialTheme.colorScheme.primary
-                        } else Color.White
+                        } else MaterialTheme.colorScheme.background
                     )
                     .clickable(
                         onClick = { onSelectItem(item) }
@@ -59,7 +62,8 @@ fun PortfolioTabBar(
                             if (selectedPortfolioTabItem.id == item.id) {
                                 it.copy(color = Color.White)
                             } else{
-                                it
+                                it.copy(color =  MaterialTheme.colorScheme.onBackground)
+
                             }
                         }
 

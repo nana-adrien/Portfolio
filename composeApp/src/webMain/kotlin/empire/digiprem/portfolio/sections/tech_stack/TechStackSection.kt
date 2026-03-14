@@ -39,6 +39,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import empire.digiprem.portfolio.design_system.PortfolioTabBar
 import empire.digiprem.portfolio.design_system.PortfolioTabItem
@@ -83,7 +84,7 @@ internal fun TechStackItem(
                             red = Random.nextInt(),
                             green = Random.nextInt(),
                             blue = Random.nextInt()
-                        ).copy(alpha = 0.2f)
+                        ).copy(alpha = 0.3f)
                 )
                 .padding(10.dp)
         ) {
@@ -92,6 +93,7 @@ internal fun TechStackItem(
         Text(
             text = name,
             style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.SemiBold),
+            color = MaterialTheme.colorScheme.onSurface,
         )
     }
 

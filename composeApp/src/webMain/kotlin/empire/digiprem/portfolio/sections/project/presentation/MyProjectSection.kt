@@ -2,6 +2,17 @@ package empire.digiprem.portfolio.sections.project.presentation
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.EaseIn
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateDp
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.updateTransition
 import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -16,6 +27,7 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsHoveredAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -25,6 +37,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -57,6 +70,7 @@ import androidx.compose.ui.input.pointer.onPointerEvent
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.times
@@ -112,17 +126,17 @@ private fun ProjectItem(
 
     Column(
         modifier = modifier
-            .widthIn(min =if (isMobileDevice) 100.dp else  200.dp,max = if (isMobileDevice) 150.dp else  250.dp)
-            .height( if (isMobileDevice) 200.dp else 270.dp)
+            .widthIn(min =if (isMobileDevice) 300.dp else  200.dp,max = if (isMobileDevice) 350.dp else  250.dp)
+            .height( if (isMobileDevice) 270.dp else 270.dp)
             .clip(RoundedCornerShape(8.dp))
-            .border(1.dp, Color.LightGray.copy(alpha = 0.3f), RoundedCornerShape(8.dp))
-            .background(Color.White)
+            .border(1.dp, MaterialTheme.colorScheme.background.copy(alpha = 0.3f), RoundedCornerShape(8.dp))
+            .background(MaterialTheme.colorScheme.background)
             .padding(15.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp),
     ) {
         Box(
             modifier = Modifier
-                .fillMaxHeight(if (isMobileDevice) 0.6f else   0.7f)
+                .fillMaxHeight(0.7f)
                 .fillMaxWidth()
                 .hoverable(
                     interactionSource = interactionSource,
@@ -152,10 +166,10 @@ private fun ProjectItem(
                         repeat(3){
                             Box(
                                 modifier = Modifier
-                                    .size(if (isMobileDevice) 30.dp else  40.dp)
+                                    .size(40.dp)
                                     .clip(RoundedCornerShape(4.dp))
                                     .background(Color.White)
-                                    .padding(if (isMobileDevice) 5.dp else 10.dp),
+                                    .padding( 10.dp),
                                 contentAlignment = Alignment.Center
                             ) {
                                 Icon(
@@ -175,15 +189,16 @@ private fun ProjectItem(
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = title,
-            style = MaterialTheme.typography.labelLarge.let{it.copy(fontWeight = FontWeight.Bold,fontSize = if (isMobileDevice)11.sp else  it.fontSize)},
+            style = MaterialTheme.typography.labelLarge.let{it.copy(fontWeight = FontWeight.Bold)},
+            color = MaterialTheme.colorScheme.onBackground,
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,
         )
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = description,
-            style = MaterialTheme.typography.bodySmall.copy(fontSize = if (isMobileDevice) 9.sp else  11.sp),
-            color = MaterialTheme.colorScheme.onBackground.copy(0.5f),
+            style = MaterialTheme.typography.bodySmall.copy(fontSize = 11.sp),
+            color = MaterialTheme.colorScheme.onBackground.copy(0.7f),
             maxLines = 2,
         )
 
@@ -249,10 +264,38 @@ fun MyProjectSection(
 
 
         Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-            PortfolioButton(
-                text = "View All",
-                onClick = {}
-            )
+            BouncingBox2{
+                PortfolioButton(
+                    text = "View All",
+                    onClick = {}
+                )
+            }
+
         }
     }
+}
+@Composable
+fun BouncingBox2(
+    content: @Composable BoxScope.() -> Unit
+) {
+    val infiniteTransition = rememberInfiniteTransition()
+
+    // Animation verticale infinie
+    val offsetY by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 20f, // hauteur du rebond
+        animationSpec = infiniteRepeatable(
+            animation = tween(
+                durationMillis = 700, // temps d’une chute
+                easing = EaseIn // accélération vers le bas
+            ),
+            repeatMode = RepeatMode.Reverse // rebond automatique
+        )
+    )
+
+    Box(
+        modifier = Modifier.wrapContentSize()
+            .offset { IntOffset(0, offsetY.toInt()) } // translation verticale
+
+    ){content()}
 }

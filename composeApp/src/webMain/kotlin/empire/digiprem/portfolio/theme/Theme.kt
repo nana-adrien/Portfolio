@@ -178,7 +178,7 @@ val LightColorScheme = lightColorScheme(
 
     background = ChirpBrand1000,
     onBackground = ChirpBase0,
-    surface = ChirpBase0,
+    surface = ChirpBase100,
     onSurface = ChirpBase1000,
     surfaceVariant = ChirpBase100,
     onSurfaceVariant = ChirpBase900,
@@ -208,10 +208,10 @@ val DarkColorScheme = darkColorScheme(
     errorContainer = ChirpRed600,
     onErrorContainer = ChirpRed200,
 
-    background = ChirpBase1000,
-    onBackground = ChirpBase0,
-    surface = ChirpBase950,
-    onSurface = ChirpBase0,
+    background = ChirpBrand600,
+    onBackground = ChirpBrand100,//,,ChirpBase0,
+    surface = ChirpBase1000,
+    onSurface =ChirpBase100,// ChirpBase0,
     surfaceVariant = ChirpBase900,
     onSurfaceVariant = ChirpBase150,
 

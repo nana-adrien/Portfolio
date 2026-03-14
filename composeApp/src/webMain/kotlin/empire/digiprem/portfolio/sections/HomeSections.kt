@@ -2,6 +2,7 @@ package empire.digiprem.portfolio.sections
 
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
@@ -19,7 +20,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Facebook
+import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -36,12 +42,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.platform.Font
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import coil3.compose.AsyncImage
 import empire.digiprem.portfolio.design_system.PortfolioButton
 import empire.digiprem.portfolio.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.design_system.layout.AdaptativeContainerLayout
@@ -52,6 +61,7 @@ import org.jetbrains.skia.paragraph.TextStyle
 import portfolionanaadrien.composeapp.generated.resources.Res
 import portfolionanaadrien.composeapp.generated.resources.plan_de_travail_de_k_n_a
 
+
 @Composable
 fun HomeSections(
     modifier: Modifier = Modifier,
@@ -61,9 +71,10 @@ fun HomeSections(
     Box(
         modifier = modifier.fillMaxWidth(),
     ) {
-        Image(
+
+        AsyncImage(
             modifier = Modifier.fillMaxSize(),
-            painter = painterResource(Res.drawable.plan_de_travail_de_k_n_a),
+            model = Res.getUri("drawable/plan_de_travail_de_k_n_a.jpeg"),// painterResource(Res.drawable.plan_de_travail_de_k_n_a),
             contentDescription = null,
             contentScale = ContentScale.Crop
         )
@@ -106,37 +117,92 @@ fun HomeSections(
 
         val mutableContent = @Composable {
             Box(
-                modifier = Modifier.width(if (isMobileDevice) 300.dp else 400.dp).fillMaxHeight(if (isMobileDevice) 0.5f else  0.6f),
+                modifier = Modifier.width(if (isMobileDevice) 300.dp else 400.dp)
+                    .fillMaxHeight(if (isMobileDevice) 0.5f else 0.6f),
                 contentAlignment = Alignment.Center
             )
             {
                 Box(
-                    modifier = Modifier.padding(top = 70.dp).size(if (isMobileDevice) 35.dp else  50.dp).clip(CircleShape)
-                        .shadow(elevation = 10.dp, CircleShape).background(Color.White)
-                        .align(Alignment.TopStart)
-                )
-                Box(
-                    modifier = Modifier.size(if (isMobileDevice) 45.dp else 60.dp).clip(CircleShape).background(Color.White)
-                        .align(Alignment.TopEnd)
-                )
-                Box(
-                    modifier = Modifier.size(if (isMobileDevice) 35.dp else 50.dp).clip(CircleShape).background(Color.White)
-                        .align(Alignment.CenterEnd)
-                )
-                Box(
-                    modifier = Modifier.padding(end = 150.dp, top = 20.dp).size(if (isMobileDevice) 35.dp else 40.dp).align(Alignment.BottomEnd)
-                        .clip(CircleShape).background(Color.White)
-                )
-                Box(modifier = Modifier.size(if (isMobileDevice) 150.dp else 200.dp).clip(CircleShape).background(Color.Red)) {
+                    modifier = Modifier.padding(top = 70.dp).size(if (isMobileDevice) 35.dp else 50.dp)
+                        .clip(CircleShape)
+                        .shadow(elevation = 10.dp, CircleShape).background(MaterialTheme.colorScheme.surface)
+                        .align(Alignment.TopStart).padding( 5.dp)
+                ){
+                    Icon(
+                        modifier = Modifier.fillMaxSize(),
+                        imageVector = Icons.Default.Facebook,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurface,
+                    )
+                }
 
+                val animatedFloat by animateFloatAsState(if (isMobileDevice) 100f else 0f)
+                Box(
+                    modifier = Modifier
+                        .graphicsLayer {
+                            translationY = animatedFloat
+                        }
+                        .size(if (isMobileDevice) 45.dp else 60.dp).clip(CircleShape).background(MaterialTheme.colorScheme.surface)
+                        .align(Alignment.TopEnd).padding( 5.dp)
+                ){
+                    Icon(
+                        modifier = Modifier.fillMaxSize(),
+                        imageVector = Icons.Default.Facebook,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurface,
+                    )
+                }
+                Box(
+                    modifier = Modifier
+                        .graphicsLayer {
+                            translationY = animatedFloat
+                        }
+                        .size(if (isMobileDevice) 35.dp else 50.dp)
+                        .clip(CircleShape)
+                        .background(MaterialTheme.colorScheme.surface)
+                        .align(Alignment.CenterEnd).padding( 5.dp)
+                ){
+                    Icon(
+                        modifier = Modifier.fillMaxSize(),
+                        imageVector = Icons.Default.Facebook,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurface,
+                    )
+                }
+                Box(
+                    modifier = Modifier.padding(end = 150.dp, top = 20.dp).size(if (isMobileDevice) 35.dp else 40.dp)
+                        .align(Alignment.BottomEnd)
+                        .clip(CircleShape).background(MaterialTheme.colorScheme.surface).padding( 3.dp)
+                ){
+                    Icon(
+                        modifier = Modifier.fillMaxSize(),
+                        imageVector = Icons.Default.Facebook,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurface,
+                    )
+                }
+                Box(
+                    modifier = Modifier.width(300.dp).height(100.dp).clip(CircleShape)
+                        .padding( 3.dp)
+                ) {
+                    AsyncImage(
+                        modifier = Modifier.fillMaxSize().shadow(elevation = 10.dp, CircleShape),
+                        model = Res.getUri("drawable/logo.png"),// painterResource(Res.drawable.plan_de_travail_de_k_n_a),
+                        contentDescription = null,
+                        contentScale = ContentScale.Inside
+                    )
                 }
             }
         }
 
-        SectionLayout {
-            Column(modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.spacedBy(10.dp,Alignment.CenterVertically),
-                horizontalAlignment = Alignment.CenterHorizontally) {
+        SectionLayout (
+
+        ){
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterVertically),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 if (isMobileDevice) {
                     mutableContent()
                 }
@@ -265,3 +331,10 @@ fun BlinkingCursor(
         color = cursorColor,
     )
 }
+
+
+enum class OpenLinkTarget(val target: String) {
+    NEW_ONGLET("_blank"),
+    SAME_ONGLET("_self")
+}
+expect fun openLink(url: String,openLinkTarget: OpenLinkTarget=OpenLinkTarget.SAME_ONGLET)

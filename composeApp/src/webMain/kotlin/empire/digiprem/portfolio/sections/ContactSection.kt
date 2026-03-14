@@ -35,6 +35,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import empire.digiprem.portfolio.design_system.PortfolioButton
 import empire.digiprem.portfolio.design_system.currentDeviceConfigure
@@ -83,22 +84,25 @@ fun ContactSection(
                 modifier = Modifier.width(300.dp)
                     .height(350.dp)
                     .clip(RoundedCornerShape(8.dp))
-                    .background(Color.White)
+                    .background(MaterialTheme.colorScheme.background)
                     .padding(20.dp),
                 verticalArrangement = Arrangement.spacedBy(7.dp),
             ) {
+                val nameState = remember { TextFieldState("") }
+                val emailState = remember { TextFieldState("") }
+                val messageState = remember { TextFieldState("") }
                 PortfolioTextField(
-                    state = TextFieldState(""),
+                    state = nameState,
                     placeholder = "Name",
                     modifier = Modifier.fillMaxWidth().height(40.dp),
                 )
                 PortfolioTextField(
-                    state = TextFieldState(""),
+                    state =emailState,
                     placeholder = "Email",
                     modifier = Modifier.fillMaxWidth().height(40.dp),
                 )
                 PortfolioTextField(
-                    state = TextFieldState(""),
+                    state = messageState,
                     placeholder = "Message",
                     lineLimits = TextFieldLineLimits.Default,
                     modifier = Modifier.fillMaxWidth().height(100.dp),
@@ -125,34 +129,32 @@ fun PortfolioTextField(
     lineLimits: TextFieldLineLimits = TextFieldLineLimits.SingleLine,
     modifier: Modifier = Modifier,
 ) {
-    val interactionSource = remember { MutableInteractionSource() }
-    val isFocused by interactionSource.collectIsFocusedAsState()
 
     BasicTextField(
         state = state,
         modifier = modifier,
         lineLimits=lineLimits,
-        interactionSource = interactionSource,
+      //  interactionSource = interactionSource,
         enabled = enabled,
         cursorBrush = SolidColor(MaterialTheme.colorScheme.primary),
         keyboardOptions = KeyboardOptions(
             keyboardType=keyboardType
         ),
+        textStyle = MaterialTheme.typography.bodySmall.copy(color = MaterialTheme.colorScheme.onBackground),
         decorator = {
             Box(Modifier.fillMaxWidth().fillMaxHeight()
                 .clip(RoundedCornerShape(8.dp))
-                .background(MaterialTheme.colorScheme.background)
+                .background(MaterialTheme.colorScheme.surface)
                 .padding(8.dp),
                 contentAlignment =if (lineLimits is TextFieldLineLimits.SingleLine )  Alignment.CenterStart else Alignment.TopStart,
             ) {
-                if (placeholder!=null && state.text.isEmpty() && !isFocused) {
+                if (placeholder!=null && state.text.isEmpty()) {
                     Text(
                         text = placeholder,
                         style = MaterialTheme.typography.labelSmall.copy(color = MaterialTheme.colorScheme.onSurface),
                     )
-                } else{
-                    it()
                 }
+                it()
             }
         }
     )
