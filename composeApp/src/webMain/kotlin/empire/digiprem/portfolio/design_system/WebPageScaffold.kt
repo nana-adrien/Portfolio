@@ -37,6 +37,7 @@ fun WebPageScaffold(
     header: @Composable ColumnScope.() -> Unit,
     footer: @Composable (() -> Unit)?=null,
     socialMedia: @Composable (() -> Unit)?=null,
+    floatingButtonButton: @Composable (() -> Unit)?=null,
     scrollState: LazyListState,
     modifier: Modifier= Modifier,
     content:  LazyListScope.() -> Unit,
@@ -58,7 +59,12 @@ fun WebPageScaffold(
                 header()
             }
             socialMedia?.let{
-                Box(modifier = Modifier.wrapContentSize().align(Alignment.BottomStart)) {
+                Box(modifier = Modifier.wrapContentSize().align(Alignment.CenterStart)) {
+                    it.invoke()
+                }
+            }
+            floatingButtonButton?.let{
+                Box(modifier = Modifier.wrapContentSize().align(Alignment.BottomEnd)) {
                     it.invoke()
                 }
             }

@@ -42,6 +42,7 @@ import empire.digiprem.portfolio.app.components.SocialMediaLink
 import empire.digiprem.portfolio.design_system.PortfolioButton
 import empire.digiprem.portfolio.design_system.PortfolioIconButton
 import empire.digiprem.portfolio.design_system.PortfolioLogo
+import empire.digiprem.portfolio.design_system.PortfolioLogoText
 import empire.digiprem.portfolio.design_system.WebPageScaffold
 import empire.digiprem.portfolio.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.design_system.layout.SectionLayout
@@ -86,17 +87,15 @@ fun Error404Page(
                     .background(animateHeaderContainerColor)
                     .padding(horizontal = if (isMobileDevice) 16.dp else 0.dp),
                 animateContentColor = animateContentColor,
-                logo = { PortfolioLogo(color = animateContentColor) },
+                logo = { PortfolioLogoText(
+                    isDarkTheme =enabledDarkTheme ,
+                    color = animateContentColor) },
                 action = {
                     PortfolioIconButton(
+                        model = if (enabledDarkTheme) Icons.Default.DarkMode else Icons.Default.LightMode,
                         onClick = { onDarkThemeChanged() },
-                    ) {
-                        Icon(
-                            imageVector = if (enabledDarkTheme) Icons.Default.DarkMode else Icons.Default.LightMode,
-                            contentDescription = "Light",
-                            tint = animateContentColor
-                        )
-                    }
+                        tint = animateContentColor
+                    )
                 },
                 selectedMenu = null,
                 menuItems = emptyList()

@@ -12,21 +12,22 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowDownward
+import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.ArrowOutward
 import androidx.compose.material.icons.filled.Facebook
-import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
@@ -47,28 +48,27 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.platform.Font
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import empire.digiprem.portfolio.design_system.PortfolioButton
+import empire.digiprem.portfolio.design_system.PortfolioLogo
 import empire.digiprem.portfolio.design_system.currentDeviceConfigure
-import empire.digiprem.portfolio.design_system.layout.AdaptativeContainerLayout
 import empire.digiprem.portfolio.design_system.layout.SectionLayout
 import empire.digiprem.portfolio.theme.PlusJakartaSans
 import kotlinx.coroutines.delay
-import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.skia.paragraph.TextStyle
+import org.jetbrains.compose.resources.vectorResource
 import portfolionanaadrien.composeapp.generated.resources.Res
-import portfolionanaadrien.composeapp.generated.resources.plan_de_travail_de_k_n_a
+import portfolionanaadrien.composeapp.generated.resources.logo_light
+import portfolionanaadrien.composeapp.generated.resources.logo_dark
 
 
 @Composable
 fun HomeSections(
+    isDarkTheme: Boolean,
     modifier: Modifier = Modifier,
+    onAboutButtonClick: () -> Unit,
 ) {
     val isMobileDevice = currentDeviceConfigure().isMobileDevice()
 
@@ -130,8 +130,8 @@ fun HomeSections(
                     modifier = Modifier.padding(top = 70.dp).size(if (isMobileDevice) 35.dp else 50.dp)
                         .clip(CircleShape)
                         .shadow(elevation = 10.dp, CircleShape).background(MaterialTheme.colorScheme.surface)
-                        .align(Alignment.TopStart).padding( 5.dp)
-                ){
+                        .align(Alignment.TopStart).padding(5.dp)
+                ) {
                     Icon(
                         modifier = Modifier.fillMaxSize(),
                         imageVector = Icons.Default.Facebook,
@@ -146,9 +146,10 @@ fun HomeSections(
                         .graphicsLayer {
                             translationY = animatedFloat
                         }
-                        .size(if (isMobileDevice) 45.dp else 60.dp).clip(CircleShape).background(MaterialTheme.colorScheme.surface)
-                        .align(Alignment.TopEnd).padding( 5.dp)
-                ){
+                        .size(if (isMobileDevice) 45.dp else 60.dp).clip(CircleShape)
+                        .background(MaterialTheme.colorScheme.surface)
+                        .align(Alignment.TopEnd).padding(5.dp)
+                ) {
                     Icon(
                         modifier = Modifier.fillMaxSize(),
                         imageVector = Icons.Default.Facebook,
@@ -165,8 +166,8 @@ fun HomeSections(
                         .size(if (isMobileDevice) 35.dp else 50.dp)
                         .clip(CircleShape)
                         .background(MaterialTheme.colorScheme.surface)
-                        .align(Alignment.CenterEnd).padding( 5.dp)
-                ){
+                        .align(Alignment.CenterEnd).padding(5.dp)
+                ) {
                     Icon(
                         modifier = Modifier.fillMaxSize(),
                         imageVector = Icons.Default.Facebook,
@@ -177,8 +178,8 @@ fun HomeSections(
                 Box(
                     modifier = Modifier.padding(end = 70.dp, top = 20.dp).size(if (isMobileDevice) 35.dp else 40.dp)
                         .align(Alignment.BottomEnd)
-                        .clip(CircleShape).background(MaterialTheme.colorScheme.surface).padding( 3.dp)
-                ){
+                        .clip(CircleShape).background(MaterialTheme.colorScheme.surface).padding(3.dp)
+                ) {
                     Icon(
                         modifier = Modifier.fillMaxSize(),
                         imageVector = Icons.Default.Facebook,
@@ -186,17 +187,22 @@ fun HomeSections(
                         tint = MaterialTheme.colorScheme.onSurface,
                     )
                 }
-                Box(
-                    modifier = Modifier.padding(end = 50.dp).width(350.dp).height(150.dp).clip(RoundedCornerShape(120.dp))
+                PortfolioLogo(
+                    isDarkTheme = isDarkTheme,
+                    modifier = Modifier.padding(end = 50.dp).size(250.dp)
+                )
+                /* Box(
+                    modifier = Modifier.padding(end = 50.dp).size(250.dp).clip(CircleShape).shadow(elevation = 10.dp, CircleShape).background(MaterialTheme.colorScheme.surface)
 
                 ) {
-                    AsyncImage(
-                        modifier = Modifier.fillMaxSize().shadow(elevation = 10.dp, CircleShape).background(MaterialTheme.colorScheme.background),
-                        model = Res.getUri("drawable/logo.png"),// painterResource(Res.drawable.plan_de_travail_de_k_n_a),
+                    Image(
+                        modifier = Modifier.fillMaxSize(),
+                      imageVector = if (isDarkTheme) vectorResource(Res.drawable.logo_dark) else  vectorResource(Res.drawable.logo_light) ,
                         contentDescription = null,
                         contentScale = ContentScale.Inside
                     )
                 }
+            }*/
             }
         }
 
@@ -234,19 +240,26 @@ fun HomeSections(
                             )
                         )
 
-                        Text(
-                            text = "👋",
-                            modifier = Modifier.graphicsLayer {
-                                rotationZ = rotation
-                                // On fixe le point de pivot en bas à droite pour simuler le poignet
-                                transformOrigin = TransformOrigin(1f, 1f)
-                            },
-                            fontFamily = PlusJakartaSans // Votre config avec NotoEmoji
-                        )
-                        Text(
-                            "👋 Hé",
-                            style = MaterialTheme.typography.labelMedium, color = Color.White,
-                        )
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(7.dp,),
+                        ){
+                            Text(
+                                text = "👋",
+                                modifier = Modifier.graphicsLayer {
+                                    rotationZ = rotation
+                                    // On fixe le point de pivot en bas à droite pour simuler le poignet
+                                    transformOrigin = TransformOrigin(1f, 1f)
+                                },
+                                fontFamily = PlusJakartaSans // Votre config avec NotoEmoji
+                            )
+                            Text(
+                                "Hé",
+                                style = MaterialTheme.typography.labelMedium, color = Color.White,
+                            )
+                        }
+
+
                         Text(
                             "Je suis Nana Adrien",
                             style = MaterialTheme.typography.headlineLarge.copy(fontWeight = FontWeight.Bold),
@@ -270,8 +283,9 @@ fun HomeSections(
                         )
                         PortfolioButton(
                             text = "sur moi",
+                            model = Icons.Default.KeyboardArrowLeft,
                             onClick = {
-
+                                onAboutButtonClick()
                             }
                         )
                     }

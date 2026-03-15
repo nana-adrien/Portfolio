@@ -1,9 +1,14 @@
 package empire.digiprem.portfolio.app
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
@@ -14,13 +19,16 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowUpward
 import androidx.compose.material.icons.filled.DarkMode
-import androidx.compose.material.icons.filled.Facebook
 import androidx.compose.material.icons.filled.LightMode
 import androidx.compose.material.icons.filled.LinkedCamera
+import androidx.compose.material.icons.filled.Pin
 import androidx.compose.material.icons.filled.Whatsapp
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -46,19 +54,23 @@ import empire.digiprem.portfolio.app.components.SocialMedia
 import empire.digiprem.portfolio.app.components.SocialMediaLink
 import empire.digiprem.portfolio.design_system.PortfolioIconButton
 import empire.digiprem.portfolio.design_system.PortfolioLogo
+import empire.digiprem.portfolio.design_system.PortfolioLogoText
 import empire.digiprem.portfolio.design_system.WebPageScaffold
 import empire.digiprem.portfolio.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.pages.Error404Page
 import empire.digiprem.portfolio.sections.AboutMeSections
 import empire.digiprem.portfolio.sections.ContactSection
 import empire.digiprem.portfolio.sections.HomeSections
+import empire.digiprem.portfolio.sections.OpenLinkTarget
 import empire.digiprem.portfolio.sections.experience.presentation.MyExperiencesSection
 import empire.digiprem.portfolio.sections.getBaseUrl
 import empire.digiprem.portfolio.sections.openLink
 import empire.digiprem.portfolio.sections.project.presentation.MyProjectSection
 import empire.digiprem.portfolio.sections.tech_stack.TechStackSection
 import empire.digiprem.portfolio.theme.PortfolioTheme
+import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
+import portfolionanaadrien.composeapp.generated.resources.Res
 
 @Composable
 fun App(
@@ -78,7 +90,7 @@ fun App(
             }
         }
 
-   }
+    }
 }
 
 @Composable
@@ -96,7 +108,7 @@ fun Navigator(
         composable<NavigationGraph.HomeScreen> {
             HomePage(
                 targetId = it.toRoute<NavigationGraph.HomeScreen>().section,
-                enabledDarkTheme = enabledDarkTheme,
+                isDarkTheme = enabledDarkTheme,
                 onDarkThemeChanged = onDarkThemeChanged,
             )
         }
@@ -156,7 +168,7 @@ fun FadeSlideInOnScroll(
 @Composable
 private fun HomePage(
     targetId: String,
-    enabledDarkTheme: Boolean,
+    isDarkTheme: Boolean,
     onDarkThemeChanged: () -> Unit,
 ) {
     var currentSection by rememberSaveable { mutableStateOf(targetId) }
@@ -168,10 +180,11 @@ private fun HomePage(
         MenuItem(
             id = section.name,
             title = section.name.split('_').fastJoinToString(" ").replaceFirstChar { it.uppercase() },
-            link = getBaseUrl()+"#home?section=$section",
+            link = getBaseUrl() + "#home?section=$section",
         )
     }
     var selectedMenu by remember { mutableStateOf(menuItems.first { it.id == currentSection }) }
+    val scope = rememberCoroutineScope()
     val animateHeaderContainerColor by animateColorAsState(
         targetValue = with(density) {
             if (scrollState.scrollIndicatorState?.scrollOffset?.toDp() ?: 0.dp < 750.dp) Color.Transparent else MaterialTheme.colorScheme.surface.copy(
@@ -192,22 +205,23 @@ private fun HomePage(
         header = {
             Header(
                 modifier = Modifier
-                    .height(50.dp)
+                    .height(55.dp)
                     .fillMaxWidth()
                     .background(animateHeaderContainerColor)
                     .padding(horizontal = if (isMobileDevice) 16.dp else 0.dp),
                 animateContentColor = animateContentColor,
-                logo = { PortfolioLogo(color = animateContentColor) },
+                logo = {
+                    PortfolioLogoText(
+                        isDarkTheme = isDarkTheme,
+                        color = animateContentColor
+                    )
+                },
                 action = {
                     PortfolioIconButton(
+                        model = if (isDarkTheme) Icons.Default.DarkMode else Icons.Default.LightMode,
                         onClick = { onDarkThemeChanged() },
-                    ) {
-                        Icon(
-                            imageVector = if (enabledDarkTheme) Icons.Default.DarkMode else Icons.Default.LightMode,
-                            contentDescription = "Light",
-                            tint = animateContentColor
-                        )
-                    }
+                        tint = animateContentColor
+                    )
                 },
                 selectedMenu = selectedMenu,
                 menuItems = menuItems
@@ -229,33 +243,67 @@ private fun HomePage(
 
         },
         socialMedia = {
-            SocialMediaLink(
-                modifier = Modifier,
-                socialMedias = listOf(
-                    SocialMedia(
-                        icon = Icons.Default.Whatsapp,
-                        link = "WhatsApp",
-                    ),
-                    SocialMedia(
-                        icon = Icons.Default.Facebook,
-                        link = "Facebook",
-                    ),
-                    SocialMedia(
-                        icon = Icons.Default.LinkedCamera,
-                        link = "Facebook",
-                    ),
+            AnimatedVisibility(
+                visible = scrollState.firstVisibleItemIndex > 0,
+                enter = fadeIn() + expandHorizontally(),
+                exit = fadeOut() + shrinkHorizontally(),
+            ) {
+                SocialMediaLink(
+                    modifier = Modifier,
+                    socialMedias = listOf(
+                        SocialMedia(
+                            icon = Icons.Default.Whatsapp,
+                            link = "https://wa.me/237655011738",
+                        ),
+                        SocialMedia(
+                            icon = Icons.Default.Pin,
+                            url = Res.getUri("drawable/github.png"),
+                            link = "https://github.com/nana-adrien",
+                        ),
+                        SocialMedia(
+                            icon = Icons.Default.LinkedCamera,
+                            url = Res.getUri("drawable/linked_in.png"),
+                            link = "https://www.linkedin.com/in/adrien-nana-5b04aa262/",
+                        ),
+                    )
                 )
-            )
+            }
+
+
+        },
+        floatingButtonButton = {
+            AnimatedVisibility(
+                modifier = Modifier.padding(end = 50.dp,bottom = 70.dp),
+                visible = scrollState.firstVisibleItemIndex > 0,
+                enter = fadeIn() + expandHorizontally(),
+                exit = fadeOut() + shrinkHorizontally(),
+            ) {
+                PortfolioIconButton(
+                    modifier = Modifier.size(50.dp),
+                    model = Icons.Default.ArrowUpward,
+                    onClick = {
+                        scope.launch {
+                            scrollState.animateScrollToItem(0)
+                        }
+                    },
+                )
+            }
         }
 
     ) {
         item {
             FadeSlideInOnScroll {
                 HomeSections(
+                    isDarkTheme = isDarkTheme,
                     modifier = Modifier
                         .height(800.dp)
                         .fillMaxWidth()
-                        .padding(bottom = 30.dp)
+                        .padding(bottom = 30.dp),
+                    onAboutButtonClick = {
+                        scope.launch {
+                            scrollState.animateScrollToItem(1)
+                        }
+                    }
                 )
             }
         }
@@ -328,7 +376,7 @@ private fun HomePage(
                     currentItem?.let {
                         val index = it.index
                         selectedMenu = menuItems[index]
-                     openLink(selectedMenu.link)
+                        openLink(selectedMenu.link)
                     }
                 }
         }

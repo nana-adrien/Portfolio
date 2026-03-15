@@ -79,8 +79,6 @@ fun Header(
         modifier = modifier,
         contentAlignment = Alignment.Center,
     ) {
-        // BlurComponent()
-
         AdaptativeContainerLayout(
         ) {
             Row(
@@ -127,16 +125,12 @@ fun Header(
                     action?.invoke(this@Row)
                     AnimatedVisibility(isMobileDevice) {
                         PortfolioIconButton(
+                            model = Icons.Default.Menu,
                             onClick = {
                                 enabledMenu = true
                             },
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.Menu,
-                                contentDescription = "Light",
-                                tint = animateContentColor
-                            )
-                        }
+                            tint = animateContentColor,
+                        )
                     }
                 }
             }
