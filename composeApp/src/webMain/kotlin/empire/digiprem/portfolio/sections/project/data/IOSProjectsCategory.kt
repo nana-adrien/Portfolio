@@ -10,9 +10,9 @@ val iosProjectsCategory =  Category(
     details =  PortfolioTabItem(id = "2", title = "iOS"),
     groups = listOf(
         MyProject(
-            title = "NotyStack iOS",
-            description = "Swift, SwiftUI, Firebase",
-            githubLink = "https://github.com/example/ios1"
+            title = "Barcode Scanner",
+            description = "The project presented here is the result of a SWUIFT UI fundamentals training course; it is the third in a series of four. ",
+            githubLink = "https://github.com/nana-adrien/BarcodeScanner"
         )
     )
 )

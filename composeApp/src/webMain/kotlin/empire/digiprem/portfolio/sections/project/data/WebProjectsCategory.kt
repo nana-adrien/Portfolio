@@ -10,16 +10,11 @@ val webProjectsCategory =  Category(
     details =  PortfolioTabItem(id = "5", title = "web"),
     groups = listOf(
         MyProject(
-            title = "NotyStack Android",
-            description = "Tech Stack: Android, Java, XML, Firebase, MVVM, RoomDB, SQLite",
-            demoLink = "github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme/blob/main/README.md",
-            githubLink = "https://github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme"
+            title = "My Portfolio",
+            description = "A modern developer portfolio built with Kotlin and WebAssembly using Compose Multiplatform.  \n" +
+                    "The project showcases my skills, experience, and projects through a responsive and interactive web application fully written in Kotlin.",
+            image = "https://github.com/nana-adrien/Portfolio/blob/master/composeApp/production/capture/portfolio_preview.png",
+            githubLink = "https://github.com/nana-adrien/Portfolio",
         ),
-        MyProject(
-            title = "Another Android Project",
-            description = "Kotlin, Compose, RoomDB",
-            demoLink = "",
-            githubLink = "https://github.com/example/android2"
-        )
     )
 )

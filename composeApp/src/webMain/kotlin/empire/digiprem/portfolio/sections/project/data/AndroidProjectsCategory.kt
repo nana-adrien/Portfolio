@@ -10,17 +10,11 @@ val androidProjectsCategory = Category(
     details = PortfolioTabItem(id = "1", title = "Android"),
     groups = listOf(
         MyProject(
-            title = "NotyStack Android",
+            title = "Android-Notifications",
+            isPrivate = true,
             description = "Tech Stack: Android, Java, XML, Firebase, MVVM, RoomDB, SQLite",
             demoLink = "github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme/blob/main/README.md",
             githubLink = "https://github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme"
         ),
-        MyProject(
-            isPrivate = true,
-            title = "Another Android Project",
-            description = "Kotlin, Compose, RoomDB",
-            demoLink = "",
-            githubLink = "https://github.com/example/android2"
-        )
     )
 )

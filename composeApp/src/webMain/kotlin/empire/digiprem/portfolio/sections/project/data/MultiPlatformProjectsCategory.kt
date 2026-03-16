@@ -17,8 +17,13 @@ val multiplatformProjectsCategory =  Category(
         ),
         MyProject(
             title = "Chirp",
-            description = "Chirp is a chat application created using Kotlin cross-platform training; it supports several platforms such as (Android and iOS) for mobile and (Windows, Mac OS and Linux) for desktop. ",
+            description = "Chirp is a chat application developed as part of a Kotlin Multiplatform project. It allows users to communicate seamlessly across multiple platforms, including Android and iOS for mobile devices, and Windows, macOS, and Linux for desktop.",
             githubLink = "https://github.com/nana-adrien/Chirp"
+        ),
+        MyProject(
+            title = "Immobi-Market",
+            description = "A project focused on designing and building a platform that connects property owners with people looking for housing. The goal is to simplify property listing, discovery, and communication between owners and potential tenants or buyers.",
+            githubLink = "https://github.com/nana-adrien/Immobi-Market"
         ),
     )
 )

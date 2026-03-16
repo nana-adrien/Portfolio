@@ -49,6 +49,7 @@ import empire.digiprem.portfolio.sections.OpenLinkTarget
 import empire.digiprem.portfolio.sections.openLink
 import empire.digiprem.portfolio.sections.project.data.MyProjectDB.categories
 import empire.digiprem.portfolio.sections.project.presentation.components.ProjectItem
+import portfolionanaadrien.composeapp.generated.resources.Res
 
 
 @Composable
@@ -86,6 +87,7 @@ fun MyProjectSection(
                 ProjectItem(
                     isPrivate = project.isPrivate,
                     title = project.title,
+                    image = project.image?: Res.getUri("drawable/capture.png"),
                     description = project.description,
                     demoLink = project.demoLink,
                     githubLink = project.githubLink,

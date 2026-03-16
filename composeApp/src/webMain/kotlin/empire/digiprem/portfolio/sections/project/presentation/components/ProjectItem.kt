@@ -36,11 +36,14 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil3.compose.AsyncImage
+import empire.digiprem.portfolio.core.design_system.PortfolioIcon
 import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
 import org.jetbrains.compose.resources.painterResource
 import portfolionanaadrien.composeapp.generated.resources.Res
@@ -52,6 +55,7 @@ import portfolionanaadrien.composeapp.generated.resources.capture
     isPrivate: Boolean = false,
     title: String,
     description: String,
+    image: String?,
     demoLink: String? = null,
     githubLink: String? = null,
     previewLink: String? = null,
@@ -64,7 +68,7 @@ import portfolionanaadrien.composeapp.generated.resources.capture
 
     Column(
         modifier = modifier
-            .widthIn(min = if (isMobileDevice) 300.dp else 200.dp, max = if (isMobileDevice) 350.dp else 250.dp)
+            .widthIn(min = if (isMobileDevice) 300.dp else 200.dp, max = if (isMobileDevice) 350.dp else 300.dp)
             .height(if (isMobileDevice) 270.dp else 270.dp)
             .clip(RoundedCornerShape(8.dp))
             .border(1.dp, MaterialTheme.colorScheme.background.copy(alpha = 0.3f), RoundedCornerShape(8.dp))
@@ -82,12 +86,15 @@ import portfolionanaadrien.composeapp.generated.resources.capture
                 )
                 .clip(RoundedCornerShape(8.dp)),
         ) {
-            Image(
-                modifier = Modifier.fillMaxSize(),
-                painter = painterResource(Res.drawable.capture),
-                contentScale = ContentScale.Crop,
-                contentDescription = null,
-            )
+
+            image?.let {
+                AsyncImage(
+                    modifier = Modifier.fillMaxSize(),
+                    model = image,
+                    contentDescription = null,
+                    contentScale = ContentScale.Inside,
+                )
+            }
             this@Column.AnimatedVisibility(
                 visible = enabledLinkBox2,
                 enter = fadeIn() + expandHorizontally(),
@@ -141,7 +148,7 @@ import portfolionanaadrien.composeapp.generated.resources.capture
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = title,
-            style = MaterialTheme.typography.labelLarge.let { it.copy(fontWeight = FontWeight.Bold) },
+            style = MaterialTheme.typography.titleSmall.let { it.copy(fontWeight = FontWeight.Bold) },
             color = MaterialTheme.colorScheme.onBackground,
             overflow = TextOverflow.Ellipsis,
             maxLines = 1,
@@ -149,7 +156,7 @@ import portfolionanaadrien.composeapp.generated.resources.capture
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = description,
-            style = MaterialTheme.typography.bodySmall.copy(fontSize = 11.sp),
+            style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onBackground.copy(0.7f),
             maxLines = 2,
         )
