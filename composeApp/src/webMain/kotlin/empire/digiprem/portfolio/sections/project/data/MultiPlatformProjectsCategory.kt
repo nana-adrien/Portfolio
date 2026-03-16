@@ -2,27 +2,37 @@ package empire.digiprem.portfolio.sections.project.data
 
 import empire.digiprem.portfolio.core.Category
 import empire.digiprem.portfolio.core.design_system.PortfolioTabItem
-import empire.digiprem.portfolio.sections.project.presentation.MyProject
+import empire.digiprem.portfolio.sections.project.domain.MyProject
+import org.jetbrains.compose.resources.getString
+import portfolionanaadrien.composeapp.generated.resources.Res
+import portfolionanaadrien.composeapp.generated.resources.project_ios_barcode_title
+import portfolionanaadrien.composeapp.generated.resources.project_multiplatform_chirp_desc
+import portfolionanaadrien.composeapp.generated.resources.project_multiplatform_chirp_title
+import portfolionanaadrien.composeapp.generated.resources.project_multiplatform_immobi_desc
+import portfolionanaadrien.composeapp.generated.resources.project_multiplatform_immobi_title
+import portfolionanaadrien.composeapp.generated.resources.project_multiplatform_nativeios_desc
+import portfolionanaadrien.composeapp.generated.resources.project_multiplatform_nativeios_title
 
 
-
-val multiplatformProjectsCategory =  Category(
-    details =  PortfolioTabItem(id = "6", title = "Multiplatform"),
+suspend fun multiplatformProjectsCategory() = Category(
+    details = PortfolioTabItem(id = "6", title = "Multiplatform"),
     groups = listOf(
         MyProject(
-            title = "Native os in Compose Multiplatforme",
-            description = "Demonstrates how to embed a native iOS SwuiftUI Button inside a Compose Multiplatform UI using UIKitViewController.",
+            title = getString(Res.string.project_multiplatform_nativeios_title),
+            description = getString(Res.string.project_multiplatform_nativeios_desc),
             previewLink = "https://github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme/tree/main/capture",
             githubLink = "https://github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme"
         ),
+
         MyProject(
-            title = "Chirp",
-            description = "Chirp is a chat application developed as part of a Kotlin Multiplatform project. It allows users to communicate seamlessly across multiple platforms, including Android and iOS for mobile devices, and Windows, macOS, and Linux for desktop.",
+            title = getString(Res.string.project_multiplatform_chirp_title),
+            description = getString(Res.string.project_multiplatform_chirp_desc),
             githubLink = "https://github.com/nana-adrien/Chirp"
         ),
+
         MyProject(
-            title = "Immobi-Market",
-            description = "A project focused on designing and building a platform that connects property owners with people looking for housing. The goal is to simplify property listing, discovery, and communication between owners and potential tenants or buyers.",
+            title = getString(Res.string.project_multiplatform_immobi_title),
+            description = getString(Res.string.project_multiplatform_immobi_desc),
             githubLink = "https://github.com/nana-adrien/Immobi-Market"
         ),
     )

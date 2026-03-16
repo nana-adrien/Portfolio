@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ====================== Android Projects ====================== -->
+
+    <!-- Android - Android-Notifications -->
+    <string name="project_android_notifications_title">Android Notifications</string>
+    <string name="project_android_notifications_desc">Tech Stack: Android, Java, XML, Firebase, MVVM, RoomDB</string>
+
+
+
+    <!-- ====================== iOS Projects ====================== -->
+
+    <!-- iOS - Barcode Scanner -->
+    <string name="project_ios_barcode_title">Barcode Scanner</string>
+    <string name="project_ios_barcode_desc">Training project on SwiftUI fundamentals</string>
+
+
+
+
+    <!-- ====================== Backend Projects ====================== -->
+
+    <!-- Backend - chirp-api -->
+    <string name="project_backend_chirpapi_title">chirp-api</string>
+    <string name="project_backend_chirpapi_desc">Server applications with Spring Boot and KMP</string>
+
+    <!-- Backend - Immobi-Market-api -->
+    <string name="project_backend_immobiapi_title">Immobi-Market-api</string>
+    <string name="project_backend_immobiapi_desc">Cross-platform property management backend</string>
+
+
+
+
+
+    <!-- ====================== Multiplatform Projects ====================== -->
+
+    <!-- Multiplatform - Native iOS in Compose -->
+    <string name="project_multiplatform_nativeios_title">Native iOS in Compose</string>
+    <string name="project_multiplatform_nativeios_desc">Embed native SwiftUI button inside Compose Multiplatform UI</string>
+
+    <!-- Multiplatform - Chirp -->
+    <string name="project_multiplatform_chirp_title">Chirp</string>
+    <string name="project_multiplatform_chirp_desc">Chat app across Android, iOS, Windows, macOS, Linux</string>
+
+    <!-- Multiplatform - Immobi-Market -->
+    <string name="project_multiplatform_immobi_title">Immobi-Market</string>
+    <string name="project_multiplatform_immobi_desc">Platform connecting property owners with tenants</string>
+
+
+
+
+    <!-- ====================== Web Projects ====================== -->
+    <string name="tab_web_title">Web</string>
+
+
+    <!-- Web - My Portfolio -->
+    <string name="project_web_portfolio_title">My Portfolio</string>
+    <string name="project_web_portfolio_desc">Modern portfolio with Kotlin &amp; WebAssembly</string>
+
+</resources>

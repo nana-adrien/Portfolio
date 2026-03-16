@@ -39,7 +39,6 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.onPlaced
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.util.fastJoinToString
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -66,7 +65,14 @@ import empire.digiprem.portfolio.sections.tech_stack.presentation.TechStackSecti
 import empire.digiprem.portfolio.theme.PortfolioTheme
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
+import org.jetbrains.compose.resources.StringResource
 import portfolionanaadrien.composeapp.generated.resources.Res
+import portfolionanaadrien.composeapp.generated.resources.nav_about
+import portfolionanaadrien.composeapp.generated.resources.nav_contact
+import portfolionanaadrien.composeapp.generated.resources.nav_experience
+import portfolionanaadrien.composeapp.generated.resources.nav_home
+import portfolionanaadrien.composeapp.generated.resources.nav_project
+import portfolionanaadrien.composeapp.generated.resources.nav_tech
 
 @Composable
 fun App(
@@ -172,13 +178,14 @@ private fun HomePage(
     val isMobileDevice = currentDeviceConfiguration.isMobileDevice() ||currentDeviceConfiguration.isTabletDevice()
     val density = LocalDensity.current
     val scrollState = rememberLazyListState()
-    val menuItems = Section.entries.mapIndexed { index, section ->
-        MenuItem(
-            id = section.name,
-            title = section.name.split('_').fastJoinToString(" ").replaceFirstChar { it.uppercase() },
-            link = getBaseUrl() + "#home?section=$section",
-        )
-    }
+    val menuItems = Section.entries.map { section ->
+            MenuItem(
+                id = section.name,
+                title =section.title,
+                link = getBaseUrl() + "#home?section=$section",
+            )
+        }
+
     var selectedMenu by remember { mutableStateOf(menuItems.first { it.id == currentSection }) }
     val scope = rememberCoroutineScope()
     val animateHeaderContainerColor by animateColorAsState(
@@ -398,12 +405,13 @@ private fun HomePage(
     }
 }
 
-enum class Section {
-    home,
+enum class Section(val title: StringResource) {
+    home(Res.string.nav_home),
 
-    about,
-    tech_stack,
-    project,
-    experience,
-    contact,
+    about(Res.string.nav_about),
+    tech_stack(Res.string.nav_tech),
+    project(Res.string.nav_project),
+    experience(Res.string.nav_experience),
+    contact(Res.string.nav_contact);
+
 }

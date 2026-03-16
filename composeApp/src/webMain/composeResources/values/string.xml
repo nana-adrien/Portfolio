@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="powered_by">Power ❤ by Nana Adrien</string>
+    <string name="kotlin_compose">Kotlin And Compose Web</string>
+    <string name="design_by">Design by https://jigarsable.vercel.app/</string>
+
+    <string name="page_not_found">The page you are looking for does not exist.</string>
+    <string name="back_home">Back to homepage</string>
+
+    <string name="experience">Experience</string>
+    <string name="view_all">View All</string>
+    <string name="reduce">reduce</string>
+    <string name="internship">Internship</string>
+
+    <string name="project">Project</string>
+    <string name="tech_stack">Tech Stack</string>
+
+    <string name="about_me">About Me</string>
+    <string name="download_cv">Download my CV</string>
+    <string name="download">Download</string>
+
+    <string name="contact_me">Contact Me</string>
+    <string name="get_in_touch">Get in touch</string>
+    <string name="inbox_open">My inbox is always open! 💌 Whether you've got a burning question or want to drop a friendly "hello", I'm all ears! 👂 Let's chat! 🎉</string>
+
+    <string name="hey">Hé</string>
+    <string name="nana_intro">Je suis Nana Adrien</string>
+    <string name="passion_intro">Je suis passionné par le </string>
+    <string name="dev_mobile">Dev Mobile</string>
+    <string name="dev_backend">Dev Backend</string>
+    <string name="dev_multiplatform">Dev Multiplatform</string>
+    <string name="focus_desc">🚀 I focus on developing cross-platform applications with Kotlin KMP and Compose Multiplatform (CMP), creating user-friendly experiences that meet client requirements, while paying close attention to detail ✨, scalability 📈 and performance ⚡.</string>
+    <string name="on_me">On me</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_about">About</string>
+    <string name="nav_tech">Tech stack</string>
+    <string name="nav_project">Project</string>
+    <string name="nav_experience">Experience</string>
+    <string name="nav_contact">Contact</string>
+</resources>

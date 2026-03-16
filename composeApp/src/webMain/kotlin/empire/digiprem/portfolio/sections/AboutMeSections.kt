@@ -175,10 +175,10 @@ Today, I focus on creating efficient applications that run across multiple platf
                         horizontalArrangement = Arrangement.spacedBy(20.dp),
                         verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterVertically)
                     ) {
-                        PortfolioButton(
+                        /*PortfolioButton(
                             text = "Resume",
                         ) {}
-                        PortfolioButtonDownload()
+                        PortfolioButtonDownload()*/
                         PortfolioButton(
                             type = ButtonType.SECONDARY,
                             text = "Telecharger mon CV",

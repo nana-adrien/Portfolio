@@ -1,5 +1,8 @@
 package empire.digiprem.portfolio.sections
 
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import kotlinx.browser.window
 
 actual fun openLink(url: String,openLinkTarget: OpenLinkTarget) {
@@ -10,3 +13,4 @@ actual fun getBaseUrl(): String {
     val baseUrl = "${window.location.protocol}//${window.location.host}"
     return baseUrl
 }
+

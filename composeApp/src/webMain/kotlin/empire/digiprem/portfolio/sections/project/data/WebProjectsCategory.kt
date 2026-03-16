@@ -2,18 +2,22 @@ package empire.digiprem.portfolio.sections.project.data
 
 import empire.digiprem.portfolio.core.Category
 import empire.digiprem.portfolio.core.design_system.PortfolioTabItem
-import empire.digiprem.portfolio.sections.project.presentation.MyProject
+import empire.digiprem.portfolio.sections.project.domain.MyProject
+import org.jetbrains.compose.resources.getString
+import portfolionanaadrien.composeapp.generated.resources.Res
+import portfolionanaadrien.composeapp.generated.resources.project_multiplatform_chirp_desc
+import portfolionanaadrien.composeapp.generated.resources.project_multiplatform_chirp_title
+import portfolionanaadrien.composeapp.generated.resources.project_web_portfolio_desc
+import portfolionanaadrien.composeapp.generated.resources.project_web_portfolio_title
 
 
-
-val webProjectsCategory =  Category(
+suspend fun webProjectsCategory()=  Category(
     details =  PortfolioTabItem(id = "5", title = "web"),
     groups = listOf(
         MyProject(
-            title = "My Portfolio",
-            description = "A modern developer portfolio built with Kotlin and WebAssembly using Compose Multiplatform.  \n" +
-                    "The project showcases my skills, experience, and projects through a responsive and interactive web application fully written in Kotlin.",
-            image = "https://github.com/nana-adrien/Portfolio/blob/master/composeApp/production/capture/portfolio_preview.png",
+            title = getString(Res.string.project_web_portfolio_title),
+            description = getString(Res.string.project_web_portfolio_desc),
+            image = "https://raw.githubusercontent.com/nana-adrien/Portfolio/master/composeApp/production/capture/portfolio_preview.jpg",
             githubLink = "https://github.com/nana-adrien/Portfolio",
         ),
     )

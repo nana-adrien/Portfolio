@@ -58,7 +58,14 @@ import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.core.design_system.layout.SectionLayout
 import empire.digiprem.portfolio.theme.PlusJakartaSans
 import kotlinx.coroutines.delay
+import org.jetbrains.compose.resources.stringResource
 import portfolionanaadrien.composeapp.generated.resources.Res
+import portfolionanaadrien.composeapp.generated.resources.focus_desc
+import portfolionanaadrien.composeapp.generated.resources.hey
+import portfolionanaadrien.composeapp.generated.resources.nana_intro
+import portfolionanaadrien.composeapp.generated.resources.nav_project
+import portfolionanaadrien.composeapp.generated.resources.on_me
+import portfolionanaadrien.composeapp.generated.resources.passion_intro
 
 
 @Composable
@@ -165,7 +172,7 @@ fun HomeSections(
                 }
 
                 FloatingBox(
-                  modifier =   Modifier.align(Alignment.CenterEnd)
+                    modifier = Modifier.align(Alignment.CenterEnd)
                         .padding(start = 50.dp)
                         .graphicsLayer {
                             translationY = animatedFloat
@@ -192,7 +199,8 @@ fun HomeSections(
                     Box(
                         modifier = Modifier.size(if (isMobileDevice) 50.dp else 65.dp)
 
-                            .clip(CircleShape).background(MaterialTheme.colorScheme.surface).padding(if (isMobileDevice) 7.dp else 10.dp)
+                            .clip(CircleShape).background(MaterialTheme.colorScheme.surface)
+                            .padding(if (isMobileDevice) 7.dp else 10.dp)
                     ) {
                         PortfolioIcon(
                             modifier = Modifier.fillMaxSize(),
@@ -258,19 +266,19 @@ fun HomeSections(
                                 fontFamily = PlusJakartaSans // Votre config avec NotoEmoji
                             )
                             Text(
-                                "Hé",
+                                stringResource(Res.string.hey),
                                 style = MaterialTheme.typography.labelMedium, color = Color.White,
                             )
                         }
 
 
                         Text(
-                            "Je suis Nana Adrien",
+                            stringResource(Res.string.nana_intro),
                             style = MaterialTheme.typography.headlineLarge.copy(fontWeight = FontWeight.Bold),
                             color = Color.White
                         )
                         TypeWriterText(
-                            text = "Je suis passionné par le ",
+                            text = stringResource(Res.string.passion_intro),
                             additionalTexts = listOf(
                                 "Dev Mobile",
                                 "Dev Backend",
@@ -280,13 +288,12 @@ fun HomeSections(
                             style = MaterialTheme.typography.labelMedium.copy(color = Color.White),
                         )
                         Text(
-                            "Je me concentre sur le développement d'applications web conviviales qui répondent aux exigences du client, en accordant " +
-                                    "une attention particulière aux détails, à l'évolutivité et aux performances. ",
+                            text = stringResource(Res.string.focus_desc),
                             style = MaterialTheme.typography.labelSmall,
                             textAlign = TextAlign.Justify, color = Color.White
                         )
                         PortfolioButton(
-                            text = "sur moi",
+                            text = stringResource(Res.string.on_me),
                             model = Icons.Default.KeyboardArrowRight,
                             onClick = {
                                 onAboutButtonClick()

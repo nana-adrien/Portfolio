@@ -1,4 +1,4 @@
-package empire.digiprem.portfolio.sections.project.presentation
+package empire.digiprem.portfolio.sections.project.domain
 
 data class MyProject(
     val title: String,

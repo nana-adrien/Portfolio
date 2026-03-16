@@ -54,13 +54,7 @@ fun Error404Page(
     val isMobileDevice = currentDeviceConfigure().isMobileDevice()
     val density = LocalDensity.current
     val scrollState = rememberLazyListState()
-    val menuItems = Section.entries.mapIndexed { index, section ->
-        MenuItem(
-            id = section.name,
-            title = section.name.split('_').fastJoinToString(" ").replaceFirstChar { it.uppercase() },
-            link = getBaseUrl()+"#home?section=$section",
-        )
-    }
+
     val animateHeaderContainerColor by animateColorAsState(
         targetValue = with(density) {
             if (scrollState.scrollIndicatorState?.scrollOffset?.toDp() ?: 0.dp < 750.dp) Color.Transparent else MaterialTheme.colorScheme.surface.copy(
@@ -156,7 +150,7 @@ fun Error404Page(
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = "La page que vous recherchez n'existe pas.",
+                            text = "The page you are looking for does not exist.",
                             style = MaterialTheme.typography.headlineSmall.copy(
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
                             ),
@@ -165,7 +159,7 @@ fun Error404Page(
                         Spacer(modifier = Modifier.height(24.dp))
                         PortfolioButton(
                             onClick = { openLink("/") },
-                            text = "Retour à l'accueil"
+                            text = "Back to homepage"
                         )
                     }
                 }

@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.DisableSelection
 import androidx.compose.material.icons.Icons
@@ -43,10 +45,15 @@ import androidx.compose.ui.unit.dp
 import empire.digiprem.portfolio.core.design_system.PortfolioIconButton
 import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.core.design_system.layout.AdaptativeContainerLayout
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.getString
+import org.jetbrains.compose.resources.stringResource
+import portfolionanaadrien.composeapp.generated.resources.Res
+import portfolionanaadrien.composeapp.generated.resources.nav_project
 
 data class MenuItem(
     val id: String,
-    val title: String,
+    val title: StringResource,
     val link: String,
 )
 
@@ -80,22 +87,22 @@ fun Header(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 logo()
-                Row(
+                LazyRow(
                     horizontalArrangement = Arrangement.spacedBy(5.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    if (!isMobileDevice) {
-                        menuItems.forEachIndexed { index, item ->
-                            // PlatformText {
+                    items(items=menuItems){item->
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(8.dp))
+                                .hoverable(interactionSource = MutableInteractionSource(), enabled = false)
+                                .pointerHoverIcon(PointerIcon.Hand)
+                                .clickable {
+                                    selectMenuItem(item)
+                                }.padding(7.dp),
+                        ) {
                             Text(
-                                modifier = Modifier
-                                    .clip(RoundedCornerShape(4.dp))
-                                    .hoverable(interactionSource = MutableInteractionSource(), enabled = false)
-                                    .pointerHoverIcon(PointerIcon.Hand)
-                                    .clickable {
-                                        selectMenuItem(item)
-                                    }.padding(5.dp),
-                                text = item.title,
+                                text =item.id,
                                 style = MaterialTheme
                                     .typography
                                     .labelSmall
@@ -112,6 +119,55 @@ fun Header(
                                             )
                                     },
                             )
+                        }
+                    }
+
+                    item {
+                        action?.invoke(this@Row)
+                    }
+                    item {
+                        AnimatedVisibility(isMobileDevice) {
+                            PortfolioIconButton(
+                                model = Icons.Default.Menu,
+                                onClick = {
+                                    enabledMenu = true
+                                },
+                                tint = animateContentColor,
+                            )
+                        }
+                    }
+                  /*  if (!isMobileDevice) {
+                        menuItems.forEachIndexed { index, item ->
+
+                            Box(
+                                modifier = Modifier
+                                    .clip(RoundedCornerShape(8.dp))
+                                    .hoverable(interactionSource = MutableInteractionSource(), enabled = false)
+                                    .pointerHoverIcon(PointerIcon.Hand)
+                                    .clickable {
+                                        selectMenuItem(item)
+                                    }.padding(7.dp),
+                            ) {
+                                Text(
+                                    text =title,
+                                    style = MaterialTheme
+                                        .typography
+                                        .labelSmall
+                                        .let {
+                                            it.copy(
+                                                fontWeight = FontWeight.SemiBold,
+                                                color = if (selectedMenu?.id == item.id) {
+                                                    MaterialTheme.colorScheme.primary
+                                                } else animateContentColor,
+                                                textDecoration = if (selectedMenu?.id == item.id) {
+                                                    TextDecoration.Underline
+                                                } else it.textDecoration,
+
+                                                )
+                                        },
+                                )
+                            }
+
                             // }
                         }
                     }
@@ -124,7 +180,7 @@ fun Header(
                             },
                             tint = animateContentColor,
                         )
-                    }
+                    }*/
                 }
             }
         }
@@ -160,7 +216,7 @@ fun Header(
                                         modifier = Modifier
                                             .fillMaxWidth()
                                             .padding(5.dp),
-                                        text = item.title,
+                                        text = stringResource(item.title),
                                         style = MaterialTheme
                                             .typography
                                             .labelSmall
@@ -190,7 +246,7 @@ fun Header(
                                     Icon(
                                         imageVector = Icons.Default.Close,
                                         contentDescription = "Close",
-                                        tint  = MaterialTheme.colorScheme.background
+                                        tint = MaterialTheme.colorScheme.background
                                     )
                                     Text(
                                         modifier = Modifier
@@ -219,8 +275,6 @@ fun Header(
 
             }
         }
-
-
 
 
     }
