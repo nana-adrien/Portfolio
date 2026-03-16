@@ -1,6 +1,5 @@
-package empire.digiprem.portfolio.design_system
+package empire.digiprem.portfolio.core.design_system
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -8,10 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -25,8 +21,6 @@ import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import empire.digiprem.portfolio.sections.OpenLinkTarget
-import empire.digiprem.portfolio.sections.openLink
 
 enum class  PortfolioIconButtonType{
     primary,
@@ -72,7 +66,7 @@ fun  PortfolioIconButton(
 fun PortfolioIcon(
     modifier: Modifier = Modifier,
     model: Any,
-    tint: Color=Color.White,
+    tint: Color?=Color.White,
 ){
     when (model) {
         is ImageVector->{
@@ -80,7 +74,7 @@ fun PortfolioIcon(
                 modifier = modifier,
                 imageVector = model,
                 contentDescription = null,
-                tint = tint,
+                tint = tint?:Color.White,
             )
         }
         else -> {
@@ -89,7 +83,7 @@ fun PortfolioIcon(
                 model = model,
                 contentDescription = null,
                 contentScale = ContentScale.Inside,
-                colorFilter = ColorFilter.tint(tint) ,
+                colorFilter = tint?.let {ColorFilter.tint(tint)} ,
             )
         }
     }

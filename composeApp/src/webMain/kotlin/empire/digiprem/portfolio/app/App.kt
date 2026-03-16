@@ -23,7 +23,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowUpward
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.LightMode
@@ -31,7 +30,6 @@ import androidx.compose.material.icons.filled.LinkedCamera
 import androidx.compose.material.icons.filled.Pin
 import androidx.compose.material.icons.filled.Whatsapp
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -52,21 +50,19 @@ import empire.digiprem.portfolio.app.components.Header
 import empire.digiprem.portfolio.app.components.MenuItem
 import empire.digiprem.portfolio.app.components.SocialMedia
 import empire.digiprem.portfolio.app.components.SocialMediaLink
-import empire.digiprem.portfolio.design_system.PortfolioIconButton
-import empire.digiprem.portfolio.design_system.PortfolioLogo
-import empire.digiprem.portfolio.design_system.PortfolioLogoText
-import empire.digiprem.portfolio.design_system.WebPageScaffold
-import empire.digiprem.portfolio.design_system.currentDeviceConfigure
+import empire.digiprem.portfolio.core.design_system.PortfolioIconButton
+import empire.digiprem.portfolio.core.design_system.PortfolioLogoText
+import empire.digiprem.portfolio.core.design_system.WebPageScaffold
+import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.pages.Error404Page
 import empire.digiprem.portfolio.sections.AboutMeSections
 import empire.digiprem.portfolio.sections.ContactSection
 import empire.digiprem.portfolio.sections.HomeSections
-import empire.digiprem.portfolio.sections.OpenLinkTarget
 import empire.digiprem.portfolio.sections.experience.presentation.MyExperiencesSection
 import empire.digiprem.portfolio.sections.getBaseUrl
 import empire.digiprem.portfolio.sections.openLink
 import empire.digiprem.portfolio.sections.project.presentation.MyProjectSection
-import empire.digiprem.portfolio.sections.tech_stack.TechStackSection
+import empire.digiprem.portfolio.sections.tech_stack.presentation.TechStackSection
 import empire.digiprem.portfolio.theme.PortfolioTheme
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
@@ -172,8 +168,8 @@ private fun HomePage(
     onDarkThemeChanged: () -> Unit,
 ) {
     var currentSection by rememberSaveable { mutableStateOf(targetId) }
-
-    val isMobileDevice = currentDeviceConfigure().isMobileDevice()
+    val currentDeviceConfiguration=currentDeviceConfigure()
+    val isMobileDevice = currentDeviceConfiguration.isMobileDevice() ||currentDeviceConfiguration.isTabletDevice()
     val density = LocalDensity.current
     val scrollState = rememberLazyListState()
     val menuItems = Section.entries.mapIndexed { index, section ->

@@ -48,10 +48,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
-import empire.digiprem.portfolio.design_system.ButtonType
-import empire.digiprem.portfolio.design_system.PortfolioButton
-import empire.digiprem.portfolio.design_system.currentDeviceConfigure
-import empire.digiprem.portfolio.design_system.layout.SectionLayout
+import empire.digiprem.portfolio.core.design_system.ButtonType
+import empire.digiprem.portfolio.core.design_system.PortfolioButton
+import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
+import empire.digiprem.portfolio.core.design_system.layout.SectionLayout
 import empire.digiprem.portfolio.theme.labelXSmall
 import io.ktor.client.HttpClient
 import io.ktor.client.request.forms.FormDataContent
@@ -98,7 +98,7 @@ fun AboutMeSections(
             ) {
                 AsyncImage(
                     modifier = Modifier.fillMaxSize(),
-                    model = Res.getUri("drawable/plan_de_travail_de_k_n_a.jpeg"),
+                    model =Res.getUri("drawable/plan_de_travail_de_k_n_a.jpeg"),
                     contentDescription = null,
                     contentScale = ContentScale.Crop,
                     colorFilter = ColorFilter.colorMatrix(
@@ -115,7 +115,7 @@ fun AboutMeSections(
         modifier = modifier
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth().padding(top = 30.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(30.dp, Alignment.CenterVertically)
         ) {
@@ -161,7 +161,9 @@ fun AboutMeSections(
                     Spacer(Modifier.height(10.dp))
                     Text(
                         text = """
-                            Ahoy there! 🎉 I'm a seasoned Full-Stack developer based in Pune, India, proudly waving my Information Technology undergrad cape from SPPU! 🎓 I've delved into web development since my freshman days. 💻 My focus lies in crafting websites and applications that seamlessly blend functionality. Oh, and did I mention my love for building full-stack clones and side projects?💡It's kind of my thing! 🚀
+Ahoy there! 👋 I'm a passionate Multiplatform Software Developer who started my journey building Android applications with XML. 📱 Curious by nature, I quickly expanded my interests to modern technologies and everything related to cross-platform and multiplatform development. 💻
+
+Today, I focus on creating efficient applications that run across multiple platforms using modern tools like Kotlin Multiplatform. 🚀 With a Master's degree in Information Systems and Software Engineering 🎓, I proudly work as a Software Engineer driven by technology and innovation.
                         """.trimIndent(),
                         style = MaterialTheme.typography.labelSmall,
                         textAlign = TextAlign.Justify,

@@ -1,4 +1,4 @@
-package empire.digiprem.portfolio.design_system
+package empire.digiprem.portfolio.core.design_system
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

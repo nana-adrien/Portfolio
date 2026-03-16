@@ -1,61 +1,24 @@
 package empire.digiprem.portfolio.sections.project.data
 
-import empire.digiprem.portfolio.design_system.PortfolioTabItem
-import empire.digiprem.portfolio.design_system.ProjectCategory
+import empire.digiprem.portfolio.core.Category
+import empire.digiprem.portfolio.core.design_system.PortfolioTabItem
 import empire.digiprem.portfolio.sections.project.presentation.MyProject
 
 
 
-val multiplatformProjectsCategory = ProjectCategory(
-    tab = PortfolioTabItem(id = "6", title = "Multiplatform Projects"),
-    projects = listOf(
+val multiplatformProjectsCategory =  Category(
+    details =  PortfolioTabItem(id = "6", title = "Multiplatform"),
+    groups = listOf(
         MyProject(
-            title = "NotyStack Android",
-            description = "Tech Stack: Android, Java, XML, Firebase, MVVM, RoomDB, SQLite",
-            demoLink = "github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme/blob/main/README.md",
+            title = "Native os in Compose Multiplatforme",
+            description = "Demonstrates how to embed a native iOS SwuiftUI Button inside a Compose Multiplatform UI using UIKitViewController.",
+            previewLink = "https://github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme/tree/main/capture",
             githubLink = "https://github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme"
         ),
         MyProject(
-            title = "Another Android Project",
-            description = "Kotlin, Compose, RoomDB",
-            demoLink = "",
-            githubLink = "https://github.com/example/android2"
-        ),
-        MyProject(
-            title = "NotyStack Android",
-            description = "Tech Stack: Android, Java, XML, Firebase, MVVM, RoomDB, SQLite",
-            demoLink = "github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme/blob/main/README.md",
-            githubLink = "https://github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme"
-        ),
-        MyProject(
-            title = "Another Android Project",
-            description = "Kotlin, Compose, RoomDB",
-            demoLink = "",
-            githubLink = "https://github.com/example/android2"
-        ),
-        MyProject(
-            title = "NotyStack Android",
-            description = "Tech Stack: Android, Java, XML, Firebase, MVVM, RoomDB, SQLite",
-            demoLink = "github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme/blob/main/README.md",
-            githubLink = "https://github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme"
-        ),
-        MyProject(
-            title = "Another Android Project",
-            description = "Kotlin, Compose, RoomDB",
-            demoLink = "",
-            githubLink = "https://github.com/example/android2"
-        ),
-        MyProject(
-            title = "NotyStack Android",
-            description = "Tech Stack: Android, Java, XML, Firebase, MVVM, RoomDB, SQLite",
-            demoLink = "github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme/blob/main/README.md",
-            githubLink = "https://github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme"
-        ),
-        MyProject(
-            title = "Another Android Project",
-            description = "Kotlin, Compose, RoomDB",
-            demoLink = "",
-            githubLink = "https://github.com/example/android2"
+            title = "Chirp",
+            description = "Chirp is a chat application created using Kotlin cross-platform training; it supports several platforms such as (Android and iOS) for mobile and (Windows, Mac OS and Linux) for desktop. ",
+            githubLink = "https://github.com/nana-adrien/Chirp"
         ),
     )
 )

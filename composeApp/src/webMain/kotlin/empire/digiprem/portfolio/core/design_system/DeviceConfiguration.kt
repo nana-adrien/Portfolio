@@ -1,6 +1,5 @@
-package empire.digiprem.portfolio.design_system
+package empire.digiprem.portfolio.core.design_system
 
-import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.window.core.layout.WindowSizeClass
@@ -24,6 +23,9 @@ enum class DeviceConfiguration {
 
     fun isMobileDevice():Boolean{
         return (this== MOBILE_PORTRAIT)
+    }
+    fun isTabletDevice():Boolean{
+        return (this== TABLET_PORTRAIT)
     }
     companion object {
         fun fromWindowSizeClass(windowSizeClass: WindowSizeClass): DeviceConfiguration {

@@ -1,4 +1,4 @@
-package empire.digiprem.portfolio.design_system
+package empire.digiprem.portfolio.core.design_system
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.onClick
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -23,9 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import empire.digiprem.portfolio.sections.openLink
-import empire.digiprem.portfolio.theme.PortfolioTheme
 import org.jetbrains.compose.resources.vectorResource
 import portfolionanaadrien.composeapp.generated.resources.Res
 import portfolionanaadrien.composeapp.generated.resources.logo_dark

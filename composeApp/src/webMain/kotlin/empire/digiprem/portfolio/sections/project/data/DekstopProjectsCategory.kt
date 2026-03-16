@@ -1,14 +1,14 @@
 package empire.digiprem.portfolio.sections.project.data
 
-import empire.digiprem.portfolio.design_system.PortfolioTabItem
-import empire.digiprem.portfolio.design_system.ProjectCategory
+import empire.digiprem.portfolio.core.Category
+import empire.digiprem.portfolio.core.design_system.PortfolioTabItem
 import empire.digiprem.portfolio.sections.project.presentation.MyProject
 
 
 
-val desktopProjectsCategory = ProjectCategory(
-    tab = PortfolioTabItem(id = "4", title = "Desktop"),
-    projects = listOf(
+val desktopProjectsCategory =  Category(
+    details =  PortfolioTabItem(id = "4", title = "Desktop"),
+    groups = listOf(
         MyProject(
             title = "NotyStack Android",
             description = "Tech Stack: Android, Java, XML, Firebase, MVVM, RoomDB, SQLite",
@@ -58,6 +58,7 @@ val desktopProjectsCategory = ProjectCategory(
             githubLink = "https://github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme"
         ),
         MyProject(
+            isPrivate = true,
             title = "NotyStack Android",
             description = "Tech Stack: Android, Java, XML, Firebase, MVVM, RoomDB, SQLite",
             demoLink = "github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme/blob/main/README.md",
@@ -76,6 +77,7 @@ val desktopProjectsCategory = ProjectCategory(
             githubLink = "https://github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme"
         ),
         MyProject(
+            isPrivate = true,
             title = "NotyStack Android",
             description = "Tech Stack: Android, Java, XML, Firebase, MVVM, RoomDB, SQLite",
             demoLink = "github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme/blob/main/README.md",

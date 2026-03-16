@@ -20,7 +20,6 @@ import androidx.compose.material.icons.filled.LightMode
 import androidx.compose.material.icons.filled.LinkedCamera
 import androidx.compose.material.icons.filled.Whatsapp
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -39,13 +38,12 @@ import empire.digiprem.portfolio.app.components.Header
 import empire.digiprem.portfolio.app.components.MenuItem
 import empire.digiprem.portfolio.app.components.SocialMedia
 import empire.digiprem.portfolio.app.components.SocialMediaLink
-import empire.digiprem.portfolio.design_system.PortfolioButton
-import empire.digiprem.portfolio.design_system.PortfolioIconButton
-import empire.digiprem.portfolio.design_system.PortfolioLogo
-import empire.digiprem.portfolio.design_system.PortfolioLogoText
-import empire.digiprem.portfolio.design_system.WebPageScaffold
-import empire.digiprem.portfolio.design_system.currentDeviceConfigure
-import empire.digiprem.portfolio.design_system.layout.SectionLayout
+import empire.digiprem.portfolio.core.design_system.PortfolioButton
+import empire.digiprem.portfolio.core.design_system.PortfolioIconButton
+import empire.digiprem.portfolio.core.design_system.PortfolioLogoText
+import empire.digiprem.portfolio.core.design_system.WebPageScaffold
+import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
+import empire.digiprem.portfolio.core.design_system.layout.SectionLayout
 import empire.digiprem.portfolio.sections.getBaseUrl
 import empire.digiprem.portfolio.sections.openLink
 

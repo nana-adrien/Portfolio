@@ -1,14 +1,14 @@
 package empire.digiprem.portfolio.sections.project.data
 
-import empire.digiprem.portfolio.design_system.PortfolioTabItem
-import empire.digiprem.portfolio.design_system.ProjectCategory
+import empire.digiprem.portfolio.core.Category
+import empire.digiprem.portfolio.core.design_system.PortfolioTabItem
 import empire.digiprem.portfolio.sections.project.presentation.MyProject
 
 
 
-val webProjectsCategory = ProjectCategory(
-    tab = PortfolioTabItem(id = "5", title = "web"),
-    projects = listOf(
+val webProjectsCategory =  Category(
+    details =  PortfolioTabItem(id = "5", title = "web"),
+    groups = listOf(
         MyProject(
             title = "NotyStack Android",
             description = "Tech Stack: Android, Java, XML, Firebase, MVVM, RoomDB, SQLite",

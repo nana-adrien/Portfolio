@@ -25,6 +25,7 @@ material3-adaptive = { module = "org.jetbrains.compose.material3.adaptive:adapti
 
 # Coil
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+coil-svg = { module = "io.coil-kt.coil3:coil-svg", version.ref = "coil" }
 coil-network-ktor = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil-network" }
 
 # Ktor

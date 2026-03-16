@@ -1,14 +1,14 @@
 package empire.digiprem.portfolio.sections.project.data
 
-import empire.digiprem.portfolio.design_system.PortfolioTabItem
-import empire.digiprem.portfolio.design_system.ProjectCategory
+import empire.digiprem.portfolio.core.Category
+import empire.digiprem.portfolio.core.design_system.PortfolioTabItem
 import empire.digiprem.portfolio.sections.project.presentation.MyProject
 
 
 
-val androidProjectsCategory = ProjectCategory(
-    tab = PortfolioTabItem(id = "1", title = "Android"),
-    projects = listOf(
+val androidProjectsCategory = Category(
+    details = PortfolioTabItem(id = "1", title = "Android"),
+    groups = listOf(
         MyProject(
             title = "NotyStack Android",
             description = "Tech Stack: Android, Java, XML, Firebase, MVVM, RoomDB, SQLite",
@@ -16,6 +16,7 @@ val androidProjectsCategory = ProjectCategory(
             githubLink = "https://github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme"
         ),
         MyProject(
+            isPrivate = true,
             title = "Another Android Project",
             description = "Kotlin, Compose, RoomDB",
             demoLink = "",

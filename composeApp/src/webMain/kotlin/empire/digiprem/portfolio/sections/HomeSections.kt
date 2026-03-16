@@ -7,7 +7,6 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,15 +18,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowDownward
-import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.ArrowOutward
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Facebook
-import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
@@ -51,17 +48,17 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.max
 import coil3.compose.AsyncImage
-import empire.digiprem.portfolio.design_system.PortfolioButton
-import empire.digiprem.portfolio.design_system.PortfolioLogo
-import empire.digiprem.portfolio.design_system.currentDeviceConfigure
-import empire.digiprem.portfolio.design_system.layout.SectionLayout
+import empire.digiprem.portfolio.core.design_system.PortfolioButton
+import empire.digiprem.portfolio.core.design_system.PortfolioIcon
+import empire.digiprem.portfolio.core.design_system.PortfolioLogo
+import empire.digiprem.portfolio.core.design_system.animation.FloatingBox
+import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
+import empire.digiprem.portfolio.core.design_system.layout.SectionLayout
 import empire.digiprem.portfolio.theme.PlusJakartaSans
 import kotlinx.coroutines.delay
-import org.jetbrains.compose.resources.vectorResource
 import portfolionanaadrien.composeapp.generated.resources.Res
-import portfolionanaadrien.composeapp.generated.resources.logo_light
-import portfolionanaadrien.composeapp.generated.resources.logo_dark
 
 
 @Composable
@@ -121,94 +118,100 @@ fun HomeSections(
 
         val mutableContent = @Composable {
             Box(
-                modifier = Modifier.width(if (isMobileDevice) 300.dp else 400.dp)
+                modifier = Modifier
+                    .width(if (isMobileDevice) 350.dp else 500.dp)
                     .fillMaxHeight(if (isMobileDevice) 0.5f else 0.6f),
                 contentAlignment = Alignment.Center
             )
             {
-                Box(
-                    modifier = Modifier.padding(top = 70.dp).size(if (isMobileDevice) 35.dp else 50.dp)
-                        .clip(CircleShape)
-                        .shadow(elevation = 10.dp, CircleShape).background(MaterialTheme.colorScheme.surface)
-                        .align(Alignment.TopStart).padding(5.dp)
+                FloatingBox(
+                    modifier = Modifier.align(Alignment.TopStart).padding(top = 70.dp)
                 ) {
-                    Icon(
-                        modifier = Modifier.fillMaxSize(),
-                        imageVector = Icons.Default.Facebook,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurface,
-                    )
+                    Box(
+                        modifier = Modifier.size(if (isMobileDevice) 50.dp else 65.dp)
+                            .clip(CircleShape)
+                            .shadow(elevation = 10.dp, CircleShape).background(MaterialTheme.colorScheme.surface)
+                            .padding(if (isMobileDevice) 7.dp else 10.dp)
+                    ) {
+                        PortfolioIcon(
+                            modifier = Modifier.fillMaxSize(),
+                            model = "https://cdn.simpleicons.org/jetpackcompose",
+                            tint = null
+                        )
+                    }
+
                 }
 
                 val animatedFloat by animateFloatAsState(if (isMobileDevice) 100f else 0f)
-                Box(
-                    modifier = Modifier
+
+                FloatingBox(
+                    modifier = Modifier.align(Alignment.TopEnd)
                         .graphicsLayer {
                             translationY = animatedFloat
-                        }
-                        .size(if (isMobileDevice) 45.dp else 60.dp).clip(CircleShape)
-                        .background(MaterialTheme.colorScheme.surface)
-                        .align(Alignment.TopEnd).padding(5.dp)
+                        },
                 ) {
-                    Icon(
-                        modifier = Modifier.fillMaxSize(),
-                        imageVector = Icons.Default.Facebook,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurface,
-                    )
+                    Box(
+                        modifier = Modifier
+                            .size(if (isMobileDevice) 55.dp else 75.dp).clip(CircleShape)
+                            .background(MaterialTheme.colorScheme.surface)
+                            .padding(if (isMobileDevice) 15.dp else 18.dp)
+                    ) {
+                        PortfolioIcon(
+                            modifier = Modifier.fillMaxSize(),
+                            model = "https://cdn.simpleicons.org/kotlin",
+                            tint = null
+                        )
+                    }
                 }
-                Box(
-                    modifier = Modifier
+
+                FloatingBox(
+                  modifier =   Modifier.align(Alignment.CenterEnd)
                         .padding(start = 50.dp)
                         .graphicsLayer {
                             translationY = animatedFloat
                         }
-                        .size(if (isMobileDevice) 35.dp else 50.dp)
-                        .clip(CircleShape)
-                        .background(MaterialTheme.colorScheme.surface)
-                        .align(Alignment.CenterEnd).padding(5.dp)
                 ) {
-                    Icon(
-                        modifier = Modifier.fillMaxSize(),
-                        imageVector = Icons.Default.Facebook,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurface,
-                    )
+                    Box(
+                        modifier = Modifier
+                            .size(if (isMobileDevice) 45.dp else 65.dp)
+                            .clip(CircleShape)
+                            .background(MaterialTheme.colorScheme.surface)
+                            .padding(if (isMobileDevice) 7.dp else 10.dp)
+                    ) {
+
+                        PortfolioIcon(
+                            modifier = Modifier.fillMaxSize(),
+                            model = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg",
+                            tint = null
+                        )
+                    }
                 }
-                Box(
-                    modifier = Modifier.padding(end = 70.dp, top = 20.dp).size(if (isMobileDevice) 35.dp else 40.dp)
-                        .align(Alignment.BottomEnd)
-                        .clip(CircleShape).background(MaterialTheme.colorScheme.surface).padding(3.dp)
+                FloatingBox(
+                    modifier = Modifier.align(Alignment.BottomEnd).padding(end = 70.dp, top = 20.dp)
                 ) {
-                    Icon(
-                        modifier = Modifier.fillMaxSize(),
-                        imageVector = Icons.Default.Facebook,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurface,
-                    )
+                    Box(
+                        modifier = Modifier.size(if (isMobileDevice) 50.dp else 65.dp)
+
+                            .clip(CircleShape).background(MaterialTheme.colorScheme.surface).padding(if (isMobileDevice) 7.dp else 10.dp)
+                    ) {
+                        PortfolioIcon(
+                            modifier = Modifier.fillMaxSize(),
+                            model = "https://cdn.simpleicons.org/postman",
+                            tint = null
+                        )
+                    }
                 }
+
                 PortfolioLogo(
                     isDarkTheme = isDarkTheme,
                     modifier = Modifier.padding(end = 50.dp).size(250.dp)
                 )
-                /* Box(
-                    modifier = Modifier.padding(end = 50.dp).size(250.dp).clip(CircleShape).shadow(elevation = 10.dp, CircleShape).background(MaterialTheme.colorScheme.surface)
-
-                ) {
-                    Image(
-                        modifier = Modifier.fillMaxSize(),
-                      imageVector = if (isDarkTheme) vectorResource(Res.drawable.logo_dark) else  vectorResource(Res.drawable.logo_light) ,
-                        contentDescription = null,
-                        contentScale = ContentScale.Inside
-                    )
-                }
-            }*/
             }
         }
 
-        SectionLayout (
+        SectionLayout(
 
-        ){
+        ) {
             Column(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterVertically),
@@ -224,7 +227,8 @@ fun HomeSections(
                 )
                 {
                     Column(
-                        modifier = Modifier.width(500.dp).fillMaxHeight().padding(16.dp),
+                        modifier = Modifier.fillMaxWidth(if (isMobileDevice) 1f else 0.5f).fillMaxHeight()
+                            .padding(16.dp),
                         verticalArrangement = Arrangement.spacedBy(15.dp, Alignment.CenterVertically),
                     )
                     {
@@ -242,8 +246,8 @@ fun HomeSections(
 
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(7.dp,),
-                        ){
+                            horizontalArrangement = Arrangement.spacedBy(7.dp),
+                        ) {
                             Text(
                                 text = "👋",
                                 modifier = Modifier.graphicsLayer {
@@ -283,7 +287,7 @@ fun HomeSections(
                         )
                         PortfolioButton(
                             text = "sur moi",
-                            model = Icons.Default.KeyboardArrowLeft,
+                            model = Icons.Default.KeyboardArrowRight,
                             onClick = {
                                 onAboutButtonClick()
                             }
@@ -377,5 +381,6 @@ enum class OpenLinkTarget(val target: String) {
     NEW_ONGLET("_blank"),
     SAME_ONGLET("_self")
 }
-expect fun openLink(url: String,openLinkTarget: OpenLinkTarget=OpenLinkTarget.SAME_ONGLET)
+
+expect fun openLink(url: String, openLinkTarget: OpenLinkTarget = OpenLinkTarget.SAME_ONGLET)
 expect fun getBaseUrl(): String
