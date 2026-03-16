@@ -53,6 +53,7 @@ import empire.digiprem.portfolio.core.design_system.PortfolioTabItem
 import empire.digiprem.portfolio.core.design_system.components.BouncingBox
 import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.core.design_system.layout.SectionLayout
+import empire.digiprem.portfolio.core.domain.TranslationManager
 import empire.digiprem.portfolio.sections.OpenLinkTarget
 import empire.digiprem.portfolio.sections.openLink
 import empire.digiprem.portfolio.sections.project.data.MyProjectDB
@@ -138,7 +139,7 @@ fun MyProjectSection(
     val isMobileDevice = currentDeviceConfigure().isMobileDevice()
     var selectedCategorySize by rememberSaveable { mutableStateOf(0) }
     SectionLayout(
-        title =stringResource(Res.string.project) ,
+        title = TranslationManager.getString("my_projects") ,
         modifier = modifier,
     ) {
         state.selectPortfolioTabItems?.let {
@@ -184,7 +185,7 @@ fun MyProjectSection(
             Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                 BouncingBox {
                     PortfolioButton(
-                        text = if (state.isReduceForm) stringResource(Res.string.view_all) else  stringResource(Res.string.reduce) ,
+                        text = TranslationManager.getString(if (state.isReduceForm) "view_all" else "Reduce" )  ,
                         onClick = {
                            viewModel.onAction(MyProjectSectionAction.OnReduceItemClick)
                         }

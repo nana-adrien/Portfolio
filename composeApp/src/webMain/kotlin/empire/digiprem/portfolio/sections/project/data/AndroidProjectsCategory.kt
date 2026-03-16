@@ -17,9 +17,9 @@ suspend fun androidProjectsCategory() = Category(
     ),
     groups = listOf(
         MyProject(
-            title = getString(Res.string.project_android_notifications_title),
+            title = "project_android_notifications_title",
             isPrivate = true,
-            description = getString(Res.string.project_android_notifications_desc),
+            description ="project_android_notifications_desc",
             demoLink = "github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme/blob/main/README.md",
             githubLink = "https://github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme"
         ),

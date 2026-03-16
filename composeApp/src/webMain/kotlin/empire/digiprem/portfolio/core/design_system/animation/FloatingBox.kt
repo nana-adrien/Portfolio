@@ -26,8 +26,8 @@ fun FloatingBox(
     val infiniteTransition = rememberInfiniteTransition(label = "floating")
 
     val offsetX by infiniteTransition.animateFloat(
-        initialValue = random.nextFloat() * -20f,
-        targetValue = random.nextFloat() * 20f,
+        initialValue = random.nextFloat() * -30f,
+        targetValue = random.nextFloat() * 30f,
         animationSpec = infiniteRepeatable(
             animation = tween(
                 durationMillis = random.nextInt(3000, 6000),
@@ -39,8 +39,8 @@ fun FloatingBox(
     )
 
     val offsetY by infiniteTransition.animateFloat(
-        initialValue = random.nextFloat() * -15f,
-        targetValue = random.nextFloat() * 15f,
+        initialValue = random.nextFloat() * -25f,
+        targetValue = random.nextFloat() * 25f,
         animationSpec = infiniteRepeatable(
             animation = tween(
                 durationMillis = random.nextInt(3000, 6000),
@@ -52,8 +52,8 @@ fun FloatingBox(
     )
 
     val rotation by infiniteTransition.animateFloat(
-        initialValue = random.nextFloat() * -5f,
-        targetValue = random.nextFloat() * 5f,
+        initialValue = random.nextFloat() * -15f,
+        targetValue = random.nextFloat() * 15f,
         animationSpec = infiniteRepeatable(
             animation = tween(
                 durationMillis = random.nextInt(4000, 7000),

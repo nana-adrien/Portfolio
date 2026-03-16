@@ -44,6 +44,7 @@ import empire.digiprem.portfolio.core.design_system.PortfolioLogoText
 import empire.digiprem.portfolio.core.design_system.WebPageScaffold
 import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.core.design_system.layout.SectionLayout
+import empire.digiprem.portfolio.core.domain.TranslationManager
 import empire.digiprem.portfolio.sections.getBaseUrl
 import empire.digiprem.portfolio.sections.openLink
 
@@ -150,7 +151,7 @@ fun Error404Page(
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = "The page you are looking for does not exist.",
+                            text = TranslationManager.getString("page_not_found"),
                             style = MaterialTheme.typography.headlineSmall.copy(
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
                             ),
@@ -159,7 +160,7 @@ fun Error404Page(
                         Spacer(modifier = Modifier.height(24.dp))
                         PortfolioButton(
                             onClick = { openLink("/") },
-                            text = "Back to homepage"
+                            text = TranslationManager.getString("back_home"),
                         )
                     }
                 }

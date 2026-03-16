@@ -45,6 +45,7 @@ import androidx.compose.ui.unit.dp
 import empire.digiprem.portfolio.core.design_system.PortfolioIconButton
 import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.core.design_system.layout.AdaptativeContainerLayout
+import empire.digiprem.portfolio.core.domain.TranslationManager
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource
@@ -53,7 +54,7 @@ import portfolionanaadrien.composeapp.generated.resources.nav_project
 
 data class MenuItem(
     val id: String,
-    val title: StringResource,
+    val title: String,
     val link: String,
 )
 
@@ -82,61 +83,16 @@ fun Header(
         AdaptativeContainerLayout(
         ) {
             Row(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 logo()
-                LazyRow(
-                    horizontalArrangement = Arrangement.spacedBy(5.dp),
-                    verticalAlignment = Alignment.CenterVertically,
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.End),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    items(items=menuItems){item->
-                        Box(
-                            modifier = Modifier
-                                .clip(RoundedCornerShape(8.dp))
-                                .hoverable(interactionSource = MutableInteractionSource(), enabled = false)
-                                .pointerHoverIcon(PointerIcon.Hand)
-                                .clickable {
-                                    selectMenuItem(item)
-                                }.padding(7.dp),
-                        ) {
-                            Text(
-                                text =item.id,
-                                style = MaterialTheme
-                                    .typography
-                                    .labelSmall
-                                    .let {
-                                        it.copy(
-                                            fontWeight = FontWeight.SemiBold,
-                                            color = if (selectedMenu?.id == item.id) {
-                                                MaterialTheme.colorScheme.primary
-                                            } else animateContentColor,
-                                            textDecoration = if (selectedMenu?.id == item.id) {
-                                                TextDecoration.Underline
-                                            } else it.textDecoration,
-
-                                            )
-                                    },
-                            )
-                        }
-                    }
-
-                    item {
-                        action?.invoke(this@Row)
-                    }
-                    item {
-                        AnimatedVisibility(isMobileDevice) {
-                            PortfolioIconButton(
-                                model = Icons.Default.Menu,
-                                onClick = {
-                                    enabledMenu = true
-                                },
-                                tint = animateContentColor,
-                            )
-                        }
-                    }
-                  /*  if (!isMobileDevice) {
+                    if (!isMobileDevice) {
                         menuItems.forEachIndexed { index, item ->
 
                             Box(
@@ -149,7 +105,7 @@ fun Header(
                                     }.padding(7.dp),
                             ) {
                                 Text(
-                                    text =title,
+                                    text = TranslationManager.getString(item.title),
                                     style = MaterialTheme
                                         .typography
                                         .labelSmall
@@ -180,10 +136,12 @@ fun Header(
                             },
                             tint = animateContentColor,
                         )
-                    }*/
+                    }
                 }
+
             }
         }
+
 
         AnimatedVisibility(enabledMenu && isMobileDevice) {
             DropdownMenu(
@@ -216,7 +174,7 @@ fun Header(
                                         modifier = Modifier
                                             .fillMaxWidth()
                                             .padding(5.dp),
-                                        text = stringResource(item.title),
+                                        text = TranslationManager.getString(item.title),
                                         style = MaterialTheme
                                             .typography
                                             .labelSmall

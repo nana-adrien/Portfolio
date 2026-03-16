@@ -16,13 +16,13 @@ suspend fun backendProjectsCategory() = Category(
     details = PortfolioTabItem(id = "3", title = "Backend"),
     groups = listOf(
         MyProject(
-            title = getString(Res.string.project_backend_chirpapi_title),
-            description = getString(Res.string.project_backend_chirpapi_desc),
+            title ="project_backend_chirpapi_title",
+            description = "project_backend_chirpapi_desc",
             githubLink = "https://github.com/nana-adrien/chirp-api"
         ),
         MyProject(
-            title = getString(Res.string.project_backend_immobiapi_title),
-            description = getString(Res.string.project_backend_immobiapi_desc),
+            title = "project_backend_immobiapi_title",
+            description ="project_backend_immobiapi_desc",
             githubLink = "https://github.com/nana-adrien/Immobi-Market"
         ),
     )

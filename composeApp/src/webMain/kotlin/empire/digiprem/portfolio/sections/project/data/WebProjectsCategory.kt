@@ -15,8 +15,8 @@ suspend fun webProjectsCategory()=  Category(
     details =  PortfolioTabItem(id = "5", title = "web"),
     groups = listOf(
         MyProject(
-            title = getString(Res.string.project_web_portfolio_title),
-            description = getString(Res.string.project_web_portfolio_desc),
+            title = "project_web_portfolio_title",
+            description = "project_web_portfolio_desc",
             image = "https://raw.githubusercontent.com/nana-adrien/Portfolio/master/composeApp/production/capture/portfolio_preview.jpg",
             githubLink = "https://github.com/nana-adrien/Portfolio",
         ),

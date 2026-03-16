@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -25,20 +26,18 @@ import androidx.compose.ui.unit.dp
 import empire.digiprem.portfolio.sections.openLink
 import org.jetbrains.compose.resources.vectorResource
 import portfolionanaadrien.composeapp.generated.resources.Res
-import portfolionanaadrien.composeapp.generated.resources.logo_dark
-import portfolionanaadrien.composeapp.generated.resources.logo_light
 
 @Composable
 fun PortfolioLogoText(
-    isDarkTheme:Boolean,
+    isDarkTheme: Boolean,
     modifier: Modifier = Modifier,
     color: Color = Color.Black,
-){
+) {
     Row(
-        modifier=modifier.padding(vertical = 7.dp).clickable { openLink("/") },
+        modifier = modifier.padding(vertical = 7.dp).clickable { openLink("/") },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp),
-    ){
+    ) {
         PortfolioLogo(
             isDarkTheme = !isDarkTheme,
             reverseBackground = true,
@@ -46,32 +45,39 @@ fun PortfolioLogoText(
         )
         Text(
             modifier = modifier
-                .clip(shape = RoundedCornerShape(4.dp))
-
-            ,
+                .clip(shape = RoundedCornerShape(4.dp)),
             text = "Nana Adrien",
             style = MaterialTheme
                 .typography
-                .labelMedium.copy(color = color,fontWeight = FontWeight.Bold),
+                .labelMedium.copy(color = color, fontWeight = FontWeight.Bold),
         )
     }
 
 
 }
+
 @Composable
 fun PortfolioLogo(
-    isDarkTheme:Boolean,
-    reverseBackground:Boolean=false,
+    isDarkTheme: Boolean,
+    reverseBackground: Boolean = false,
     modifier: Modifier = Modifier,
-){
+) {
     Box(
-        modifier = modifier.clip(CircleShape).shadow(elevation = 10.dp, CircleShape).background( if (reverseBackground)MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.surface)
+        modifier = modifier
+            .clip(CircleShape)
+            .shadow(elevation = 10.dp, CircleShape)
+            .background(
+                if (reverseBackground) MaterialTheme.colorScheme.onSurface
+                else MaterialTheme.colorScheme.surface
+            )
+
+
     ) {
-        Image(
+        PortfolioImage(
             modifier = Modifier.fillMaxSize(),
-            imageVector = if (isDarkTheme) vectorResource(Res.drawable.logo_dark) else  vectorResource(Res.drawable.logo_light) ,
-            contentDescription = null,
-            contentScale = ContentScale.Inside
+            image = if (isDarkTheme) Res.getUri("drawable/logo_dark_svg.svg") else Res.getUri("drawable/logo_light_svg.svg"),
+            onFailure = null,
+            contentScale = ContentScale.Fit
         )
     }
 }

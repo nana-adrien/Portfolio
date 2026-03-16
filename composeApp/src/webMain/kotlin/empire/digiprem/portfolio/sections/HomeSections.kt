@@ -11,6 +11,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -52,10 +53,12 @@ import androidx.compose.ui.unit.max
 import coil3.compose.AsyncImage
 import empire.digiprem.portfolio.core.design_system.PortfolioButton
 import empire.digiprem.portfolio.core.design_system.PortfolioIcon
+import empire.digiprem.portfolio.core.design_system.PortfolioImage
 import empire.digiprem.portfolio.core.design_system.PortfolioLogo
 import empire.digiprem.portfolio.core.design_system.animation.FloatingBox
 import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.core.design_system.layout.SectionLayout
+import empire.digiprem.portfolio.core.domain.TranslationManager
 import empire.digiprem.portfolio.theme.PlusJakartaSans
 import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.stringResource
@@ -79,12 +82,10 @@ fun HomeSections(
     Box(
         modifier = modifier.fillMaxWidth(),
     ) {
-
-        AsyncImage(
+        PortfolioImage(
             modifier = Modifier.fillMaxSize(),
-            model = Res.getUri("drawable/plan_de_travail_de_k_n_a.jpeg"),// painterResource(Res.drawable.plan_de_travail_de_k_n_a),
-            contentDescription = null,
-            contentScale = ContentScale.Crop
+            image = Res.getUri("drawable/plan_de_travail_de_k_n_a.jpeg"),
+            contentScale = ContentScale.Crop,
         )
         Box(
             modifier = Modifier.fillMaxSize()
@@ -266,34 +267,33 @@ fun HomeSections(
                                 fontFamily = PlusJakartaSans // Votre config avec NotoEmoji
                             )
                             Text(
-                                stringResource(Res.string.hey),
+                                text = TranslationManager.getString("salutation"),
                                 style = MaterialTheme.typography.labelMedium, color = Color.White,
                             )
                         }
 
 
                         Text(
-                            stringResource(Res.string.nana_intro),
+                            TranslationManager.getString("nana_intro"),
                             style = MaterialTheme.typography.headlineLarge.copy(fontWeight = FontWeight.Bold),
                             color = Color.White
                         )
                         TypeWriterText(
-                            text = stringResource(Res.string.passion_intro),
+                            text = TranslationManager.getString("passion_intro"),
                             additionalTexts = listOf(
-                                "Dev Mobile",
-                                "Dev Backend",
-                                "Dev Multiplatform"
-                            ),
+                                "dev_mobile",
+                                "dev_backend",
+                                "dev_multiplatform"
+                            ).map { TranslationManager.getString(it) },
                             textAnimateColor = MaterialTheme.colorScheme.primary,
                             style = MaterialTheme.typography.labelMedium.copy(color = Color.White),
                         )
                         Text(
-                            text = stringResource(Res.string.focus_desc),
-                            style = MaterialTheme.typography.labelSmall,
+                            text = TranslationManager.getString("focus_desc"), style = MaterialTheme.typography.labelSmall,
                             textAlign = TextAlign.Justify, color = Color.White
                         )
                         PortfolioButton(
-                            text = stringResource(Res.string.on_me),
+                            text = TranslationManager.getString("on_me"),
                             model = Icons.Default.KeyboardArrowRight,
                             onClick = {
                                 onAboutButtonClick()
@@ -316,7 +316,7 @@ fun TypeWriterText(
     textAnimateColor: Color = MaterialTheme.colorScheme.primary,
     additionalTexts: List<String> = listOf(),
 ) {
-
+    val isMobileDevice = currentDeviceConfigure().isMobileDevice()
     var textIndex by remember { mutableStateOf(0) }
     var charIndex by remember { mutableStateOf(0) }
     var deleting by remember { mutableStateOf(false) }
@@ -344,17 +344,36 @@ fun TypeWriterText(
         }
     }
 
-    Row {
-        Text(
-            text = text,
-            style = style
-        )
-        Text(
-            currentText.substring(0, charIndex),
-            style = style.copy(fontWeight = FontWeight.Bold),
-            color = textAnimateColor,
-        )
-        BlinkingCursor(style = style, cursorColor = textAnimateColor)
+    if (isMobileDevice) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(5.dp,),
+        ) {
+            Text(
+                text = text,
+                style = style
+            )
+            Row {
+                Text(
+                    currentText.substring(0, charIndex),
+                    style = style.copy(fontWeight = FontWeight.Bold),
+                    color = textAnimateColor,
+                )
+                BlinkingCursor(style = style, cursorColor = textAnimateColor)
+            }
+        }
+    }else{
+        Row {
+            Text(
+                text = text,
+                style = style
+            )
+            Text(
+                currentText.substring(0, charIndex),
+                style = style.copy(fontWeight = FontWeight.Bold),
+                color = textAnimateColor,
+            )
+            BlinkingCursor(style = style, cursorColor = textAnimateColor)
+        }
     }
 }
 

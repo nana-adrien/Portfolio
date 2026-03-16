@@ -8,7 +8,7 @@ import empire.digiprem.portfolio.sections.tech_stack.domain.TechStack
 val otherTechStackCategories = Category(
     details = PortfolioTabItem(
         id = "3",
-        title = "other",
+        title = "tech_stack_tab_other",
     ),
     groups = listOf(
 

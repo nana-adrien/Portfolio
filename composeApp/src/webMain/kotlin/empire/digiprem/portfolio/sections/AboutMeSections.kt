@@ -3,6 +3,7 @@ package empire.digiprem.portfolio.sections
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.hoverable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsHoveredAsState
@@ -50,8 +51,11 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import empire.digiprem.portfolio.core.design_system.ButtonType
 import empire.digiprem.portfolio.core.design_system.PortfolioButton
+import empire.digiprem.portfolio.core.design_system.PortfolioImage
+import empire.digiprem.portfolio.core.design_system.animation.ShimmerSkeleton
 import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.core.design_system.layout.SectionLayout
+import empire.digiprem.portfolio.core.domain.TranslationManager
 import empire.digiprem.portfolio.theme.labelXSmall
 import io.ktor.client.HttpClient
 import io.ktor.client.request.forms.FormDataContent
@@ -66,27 +70,29 @@ import portfolionanaadrien.composeapp.generated.resources.Res
 fun AboutMeSections(
     modifier: Modifier = Modifier,
 ) {
+    var email = remember { TextFieldState("") }
     var name = remember { TextFieldState("") }
-    var reason by remember { mutableStateOf("Recrutement") } // Option par défaut
-    val reasons = listOf("Recrutement", "Partenariat", "Curiosité", "Autre")
+    var reason by remember { mutableStateOf("") } // Option par défaut
+    val reasons =
+        listOf("form_reason_recruitment", "form_reason_partnership", "form_reason_curiosity", "form_reason_other")
     var showDialog by rememberSaveable { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     val isMobileDevice = currentDeviceConfigure().isMobileDevice()
     val interactionSource = remember { MutableInteractionSource() }
     val isHover by interactionSource.collectIsHoveredAsState()
-    val imageFilter by  animateFloatAsState(targetValue = if (isHover) 1f else 0f)
-    val translation by  animateFloatAsState(targetValue = if (isHover) -10f else 0f)
+    val imageFilter by animateFloatAsState(targetValue = if (isHover) 1f else 0f)
+    val translation by animateFloatAsState(targetValue = if (isHover) -10f else 0f)
     val BoxContent = @Composable {
         Column(
             Modifier
-            .graphicsLayer {
-                rotationZ = if (!isMobileDevice) -5f else 0f
-                translationY = translation
-            }
-            .widthIn(max = if (isMobileDevice) 350.dp else 280.dp)
-            .heightIn(max = 350.dp)
-            .clip(RoundedCornerShape(8.dp))
-            .background(MaterialTheme.colorScheme.background).padding(10.dp)
+                .graphicsLayer {
+                    rotationZ = if (!isMobileDevice) -5f else 0f
+                    translationY = translation
+                }
+                .widthIn(max = if (isMobileDevice) 350.dp else 280.dp)
+                .heightIn(max = 350.dp)
+                .clip(RoundedCornerShape(8.dp))
+                .background(MaterialTheme.colorScheme.background).padding(10.dp)
         ) {
             Box(
                 Modifier
@@ -96,10 +102,10 @@ fun AboutMeSections(
                     .padding(bottom = 30.dp)
                     .clip(RoundedCornerShape(8.dp))
             ) {
-                AsyncImage(
+                PortfolioImage(
                     modifier = Modifier.fillMaxSize(),
-                    model =Res.getUri("drawable/plan_de_travail_de_k_n_a.jpeg"),
-                    contentDescription = null,
+                    image = Res.getUri("drawable/plan_de_travail_de_k_n_a.jpeg"),
+                    onLoading = { ShimmerSkeleton(Modifier.fillMaxSize()) },
                     contentScale = ContentScale.Crop,
                     colorFilter = ColorFilter.colorMatrix(
                         ColorMatrix().apply { setToSaturation(imageFilter) } // 0f = grayscale
@@ -111,7 +117,7 @@ fun AboutMeSections(
     }
 
     SectionLayout(
-        title = "About Me",
+        title = TranslationManager.getString("about_me"),
         modifier = modifier
     ) {
         Column(
@@ -145,13 +151,13 @@ fun AboutMeSections(
                         modifier = Modifier.wrapContentSize().clip(RoundedCornerShape(4.dp))
                             .border(
                                 width = 1.dp,
-                                color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f),
+                                color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.7f),
                                 shape = RoundedCornerShape(4.dp)
                             )
                             .padding(horizontal = 10.dp, vertical = 5.dp), contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = "~Dev Multiplatform ~",
+                            text = TranslationManager.getString("profile_tagline"),
                             style = MaterialTheme.typography.labelXSmall,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.primary
@@ -160,11 +166,7 @@ fun AboutMeSections(
 
                     Spacer(Modifier.height(10.dp))
                     Text(
-                        text = """
-Ahoy there! 👋 I'm a passionate Multiplatform Software Developer who started my journey building Android applications with XML. 📱 Curious by nature, I quickly expanded my interests to modern technologies and everything related to cross-platform and multiplatform development. 💻
-
-Today, I focus on creating efficient applications that run across multiple platforms using modern tools like Kotlin Multiplatform. 🚀 With a Master's degree in Information Systems and Software Engineering 🎓, I proudly work as a Software Engineer driven by technology and innovation.
-                        """.trimIndent(),
+                        text = TranslationManager.getString("profile_about_desc"),
                         style = MaterialTheme.typography.labelSmall,
                         textAlign = TextAlign.Justify,
                         color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
@@ -176,14 +178,10 @@ Today, I focus on creating efficient applications that run across multiple platf
                         verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterVertically)
                     ) {
                         /*PortfolioButton(
-                            text = "Resume",
-                        ) {}
-                        PortfolioButtonDownload()*/
-                        PortfolioButton(
                             type = ButtonType.SECONDARY,
-                            text = "Telecharger mon CV",
+                            text = TranslationManager.getString("download_cv"),
                             model = Icons.Default.Download,
-                        ) { showDialog = true }
+                        ) { showDialog = true }*/
                     }
                     if (showDialog) {
                         DisableSelection {
@@ -192,8 +190,8 @@ Today, I focus on creating efficient applications that run across multiple platf
                                 confirmButton = {
 
                                     PortfolioButton(
-                                        text = "Télécharger",
-                                        enabled = name.text.isNotBlank(),
+                                        text = TranslationManager.getString("download"),
+                                        enabled = name.text.isNotBlank() && reason.isNotBlank() && if(reason!="form_reason_other") email.text.isNotBlank() else true,
                                         onClick = {
                                             scope.launch {
                                                 sendDataToService(
@@ -206,30 +204,52 @@ Today, I focus on creating efficient applications that run across multiple platf
                                                         showDialog = true
                                                     })
                                             }
-                                            // Envoi des infos
-                                            // downloadCV()                   // Lancement du téléchargement
-
                                         }
                                     )
                                 },
-                                title = { Text("Télécharger mon CV", style = MaterialTheme.typography.titleMedium) },
+                                title = {
+                                    Text(
+                                        TranslationManager.getString("download_cv"),
+                                        style = MaterialTheme.typography.titleMedium
+                                    )
+                                },
                                 text = {
-                                    Column {
+                                    Column (
+                                        verticalArrangement = Arrangement.spacedBy(20.dp),
+                                    ){
                                         PortfolioTextField(
-                                            placeholder = "Votre nom / Entreprise",
+                                            placeholder = TranslationManager.getString("form_name"),
                                             state = name,
-                                            modifier = Modifier.fillMaxWidth().height(40.dp),
+                                            modifier = Modifier.fillMaxWidth().height(50.dp),
                                         )
-                                        Spacer(Modifier.height(16.dp))
-                                        Text("Motif :", fontWeight = FontWeight.Bold)
-                                        reasons.forEach { option ->
-                                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                                RadioButton(
-                                                    selected = (reason == option),
-                                                    onClick = { reason = option })
-                                                Text(option)
+                                        if (reason!="form_reason_other" && reason.isNotBlank()) {
+                                            Text(TranslationManager.getString("abaout_form_email_desc"), style = MaterialTheme.typography.labelMedium,color = MaterialTheme.colorScheme.onBackground)
+                                            PortfolioTextField(
+                                                placeholder = TranslationManager.getString("contact_form_email_placeholder"),
+                                                state = email,
+                                                modifier = Modifier.fillMaxWidth().height(50.dp),
+                                            )
+                                        }
+                                        Text(TranslationManager.getString("form_reason"), fontWeight = FontWeight.Bold,color = MaterialTheme.colorScheme.onBackground)
+                                        Column  (
+                                            verticalArrangement = Arrangement.spacedBy(7.dp),
+                                        ){
+                                            reasons.forEach { option ->
+                                                Row(
+                                                    modifier = Modifier.fillMaxWidth().clickable { reason = option },
+                                                    verticalAlignment = Alignment.CenterVertically
+                                                ) {
+                                                    RadioButton(
+                                                        selected = (reason == option),
+                                                        onClick = { reason = option })
+                                                    Text(
+                                                        TranslationManager.getString(option),
+                                                        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
+                                                    )
+                                                }
                                             }
                                         }
+
                                     }
                                 }
                             )
@@ -244,10 +264,10 @@ Today, I focus on creating efficient applications that run across multiple platf
     }
 }
 
-suspend fun sendDataToService(name: String, reason: String,onSuccusses: () -> Unit,onFailure: () -> Unit) {
+suspend fun sendDataToService(name: String, reason: String, onSuccusses: () -> Unit, onFailure: () -> Unit) {
     val client = HttpClient()
     try {
-     val result=   client.post("https://formspree.io/f/xjgaodye") {
+        val result = client.post("https://formspree.io/f/xjgaodye") {
             setBody(FormDataContent(Parameters.build {
                 append("name", name)
                 append("reason", reason)
@@ -256,7 +276,7 @@ suspend fun sendDataToService(name: String, reason: String,onSuccusses: () -> Un
 
         if (result.status.isSuccess()) {
             onSuccusses()
-        }else{
+        } else {
             onFailure()
         }
     } catch (e: Exception) {

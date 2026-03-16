@@ -9,32 +9,26 @@ import empire.digiprem.portfolio.sections.experience.domain.TimelineItem
  val  professionalExperienceCategory = Category<TimelineItem>(
     details = PortfolioTabItem(
         id = "2",
-        title = "Professional",
+        title = "professional_title",
     ),
     groups = listOf(
         ProfessionalExperience(
-            title = "Digi-Prem Solutions",
+            title = "professional_digiprem_title",
             location = "Douala, Cameroon",
             type = ExperienceType.INTERNSHIP,
             position = null,
             startYear = 2022,
             endYear = 2022,
-            description = """
-            * Assisted in mobile app development with Kotlin & Jetpack Compose
-            * Integrated REST APIs
-        """.trimIndent()
+            description = "professional_digiprem_desc"
         ),
         ProfessionalExperience(
-            title = "Netfx Solutions",
+            title = "professional_netfx_title",
             location = "Douala, Cameroon",
             type = ExperienceType.JOB,
-            position = "Android Developer",
+            position = "professional_netfx_position",
             startYear = 2023,
             endYear = 2025,
-            description = """
-            * Developed Kotlin Multiplatform apps
-            * Integrated Firebase, WebSocket, REST APIs
-        """.trimIndent()
+            description = "professional_netfx_desc"
         )
     )
 )

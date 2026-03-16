@@ -1,0 +1,104 @@
+{
+  "language_fr_value": "French",
+  "language_en_value": "English",
+
+  "nav_home": "Home",
+  "nav_about": "About",
+  "nav_tech_stack": "Tech Stack",
+  "nav_project": "Projects",
+  "nav_experience": "Experience",
+  "nav_contact": "Contact",
+
+  "powered_by": "Powered ❤ by Nana Adrien",
+  "kotlin_compose": "Kotlin and Compose Web",
+  "design_by": "Design by https://jigarsable.vercel.app/",
+
+  "page_not_found": "The page you are looking for does not exist.",
+  "back_home": "Back to homepage",
+
+  "salutation": "Hey",
+  "nana_intro": "I am Nana Adrien",
+  "passion_intro": "I am passionate about ",
+  "dev_mobile": "Mobile Development",
+  "dev_backend": "Backend Development",
+  "dev_multiplatform": "Multiplatform Development",
+  "focus_desc": "🚀 I focus on developing cross-platform applications with Kotlin KMP and Compose Multiplatform (CMP), creating user-friendly experiences that meet client requirements, while paying close attention to detail ✨, scalability 📈 and performance ⚡.",
+  "on_me": "About Me",
+
+
+
+  "about_me": "About Me",
+  "profile_tagline": "~Multiplatform Developer~",
+  "profile_about_desc": "Ahoy there! 👋 I'm a passionate Multiplatform Software Developer who started my journey building Android applications with XML. 📱 Curious by nature, I quickly expanded my interests to modern technologies and everything related to cross-platform and multiplatform development. 💻 Today, I focus on creating efficient applications that run across multiple platforms using modern tools like Kotlin Multiplatform. 🚀 With a Master's degree in Information Systems and Software Engineering 🎓, I proudly work as a Software Engineer driven by technology and innovation.",
+  "download_cv": "Download my CV",
+  "download": "Download",
+  "form_name": "Your name / Company",
+  "abaout_form_email_desc": "What email address can I use to contact you again?",
+  "form_reason": "Why do you want to view my CV ? :",
+  "form_reason_recruitment": "I am interested in discussing a potential job opportunity",
+  "form_reason_partnership": "I would like to explore a potential partnership or collaboration.",
+  "form_reason_curiosity": "I would like to learn more about your work and exchange ideas.",
+  "form_reason_other": "Just out of curiosity.",
+
+
+  "contact_me": "Contact Me",
+  "get_in_touch": "Get in touch",
+  "inbox_open": "My inbox is always open! 💌 Whether you've got a burning question or want to drop a friendly \"hello\", I'm all ears! 👂 Let's chat! 🎉",
+  "contact_form_name_placeholder":"Enter your name",
+  "contact_form_email_placeholder":"Enter your email",
+  "contact_form_message_placeholder":"Enter your message",
+  "contact_form_send_button":"Say Hello \uD83D\uDC4B",
+
+
+
+  "experience": "My background",
+  "view_all": "View All",
+  "reduce": "Reduce",
+  "internship": "Internship",
+
+  "my_projects": "My Projects",
+
+  "tech_stack": "Tech Stack",
+  "tech_stack_tab_other": "Other",
+
+
+  "project_android_notifications_title": "Android Notifications",
+  "project_android_notifications_desc": "Tech Stack: Android, Java, XML, Firebase, MVVM, RoomDB",
+
+  "project_ios_barcode_title": "Barcode Scanner",
+  "project_ios_barcode_desc": "Training project on SwiftUI fundamentals",
+
+  "project_backend_chirpapi_title": "chirp-api",
+  "project_backend_chirpapi_desc": "Server applications with Spring Boot and KMP",
+  "project_backend_immobiapi_title": "Immobi-Market-api",
+  "project_backend_immobiapi_desc": "Cross-platform property management backend",
+
+  "project_multiplatform_nativeios_title": "Native iOS in Compose",
+  "project_multiplatform_nativeios_desc": "Embed native SwiftUI button inside Compose Multiplatform UI",
+
+  "project_multiplatform_chirp_title": "Chirp",
+  "project_multiplatform_chirp_desc": "Chat application available on Android, iOS, Windows, macOS, and Linux",
+
+  "project_multiplatform_immobi_title": "Immobi-Market",
+  "project_multiplatform_immobi_desc": "Platform connecting property owners with tenants",
+
+
+  "tab_web_title": "Web",
+
+  "project_web_portfolio_title": "My Portfolio",
+  "project_web_portfolio_desc": "Modern portfolio built with Kotlin and WebAssembly",
+
+  "education_title": "Education",
+  "education_zeal_title": "Zeal College Of Engineering And Research | SPPU",
+  "education_zeal_desc": "Pursuing B.E. in Information Technology at Savitribai Phule Pune University (SPPU). Worked on web application development using HTML, CSS, and JavaScript, and designed database systems using SQL. Familiar with software development methodologies and project management practices including Agile and Waterfall.",
+  "education_zeal_degree": "B.E. Information Technology",
+
+
+  "professional_title": "Professional",
+  "professional_digiprem_title": "Digi-Prem Solutions",
+  "professional_digiprem_desc": "Assisted in mobile application development using Kotlin and Jetpack Compose. Integrated REST APIs and contributed to Android development tasks.",
+
+  "professional_netfx_title": "Netfx Solutions",
+  "professional_netfx_desc": "Developed Kotlin Multiplatform applications and integrated Firebase, WebSocket, and REST APIs for cross-platform systems.",
+  "professional_netfx_position": "Android Developer"
+}

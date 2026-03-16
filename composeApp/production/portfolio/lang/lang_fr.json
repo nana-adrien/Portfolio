@@ -1,0 +1,97 @@
+{
+  "language_fr_value": "Français",
+  "language_en_value": "Anglais",
+
+
+  "nav_home": "Accueil",
+  "nav_about": "À propos",
+  "nav_tech_stack": "Technologies",
+  "nav_project": "Projets",
+  "nav_experience": "Expérience",
+  "nav_contact": "Contact",
+
+  "powered_by": "Propulsé avec ❤ par Nana Adrien",
+  "kotlin_compose": "Kotlin et Compose Web",
+  "design_by": "Design par https://jigarsable.vercel.app/",
+
+  "page_not_found": "La page que vous recherchez n'existe pas.",
+  "back_home": "Retour à l'accueil",
+
+  "salutation": "Salut",
+  "nana_intro": "Je suis Nana Adrien",
+  "passion_intro": "Je suis passionné par le ",
+  "dev_mobile": "Développement Mobile",
+  "dev_backend": "Développement Backend",
+  "dev_multiplatform": "Développement Multiplateforme",
+  "focus_desc": "🚀 Je me concentre sur le développement d'applications multiplateformes avec Kotlin KMP et Compose Multiplatform (CMP), en créant des expériences intuitives qui répondent aux besoins des clients, tout en portant une attention particulière aux détails ✨, à l'évolutivité 📈 et à la performance ⚡.",
+  "on_me": "Sur moi",
+
+  "about_me": "À propos de moi",
+  "profile_tagline": "~Développeur Multiplateforme~",
+  "profile_about_desc": "Salut à tous ! 👋 Je suis un développeur logiciel multiplateforme passionné qui a commencé son parcours en créant des applications Android avec XML. 📱 Curieux de nature, j'ai rapidement élargi mes intérêts aux technologies modernes et à tout ce qui touche au développement cross-platform. 💻 Aujourd'hui, je me concentre sur la création d'applications efficaces qui fonctionnent sur plusieurs plateformes à l'aide d'outils modernes comme Kotlin Multiplatform. 🚀 Titulaire d'un Master en Systèmes d'Information et Génie Logiciel 🎓, je travaille fièrement en tant qu'ingénieur logiciel, porté par la technologie et l'innovation.",
+  "download_cv": "Télécharger mon CV",
+  "download": "Télécharger",
+  "form_name": "Votre nom / Entreprise",
+  "abaout_form_email_desc": "Par quel adresse email je peut vous recontacter?",
+  "form_reason": "Pourquoi souhaitez-vous consulter mon CV ? :",
+  "form_reason_recruitment": "Je souhaite discuter d'une opportunité d'emploi potentielle.",
+  "form_reason_partnership": "J'aimerais explorer un partenariat ou une collaboration potentielle.",
+  "form_reason_curiosity": "Je souhaite en savoir plus sur votre travail et échanger des idées.",
+  "form_reason_other": "Juste par curiosité.",
+
+  "contact_me": "Me contacter",
+  "get_in_touch": "Entrer en contact",
+  "inbox_open": "Ma boîte de réception est toujours ouverte ! 💌 Que vous ayez une question urgente ou que vous vouliez simplement dire \"salut\", je suis à votre écoute ! 👂 Discutons ensemble ! 🎉",
+  "contact_form_name_placeholder": "Entrez votre nom",
+  "contact_form_email_placeholder": "Entrez votre email",
+  "contact_form_message_placeholder": "Entrez votre message",
+  "contact_form_send_button": "Dire Bonjour 👋",
+
+  "experience": "Mon parcours",
+  "view_all": "Voir tout",
+  "reduce": "Réduire",
+  "internship": "Stage",
+
+  "my_projects": "Mes Projets",
+
+  "tech_stack": "Technologies",
+  "tech_stack_tab_other": "Autre",
+
+  "project_android_notifications_title": "Android Notifications",
+  "project_android_notifications_desc": "Stack : Android, Java, XML, Firebase, MVVM, RoomDB",
+
+  "project_ios_barcode_title": "Scanner de Code-barres",
+  "project_ios_barcode_desc": "Projet d'entraînement sur les fondamentaux de SwiftUI",
+
+  "project_backend_chirpapi_title": "chirp-api",
+  "project_backend_chirpapi_desc": "Applications serveur avec Spring Boot et KMP",
+  "project_backend_immobiapi_title": "Immobi-Market-api",
+  "project_backend_immobiapi_desc": "Backend multiplateforme de gestion immobilière",
+
+  "project_multiplatform_nativeios_title": "iOS Natif dans Compose",
+  "project_multiplatform_nativeios_desc": "Intégration d'un bouton SwiftUI natif dans une interface Compose Multiplatform",
+
+  "project_multiplatform_chirp_title": "Chirp",
+  "project_multiplatform_chirp_desc": "Application de chat disponible sur Android, iOS, Windows, macOS et Linux",
+
+  "project_multiplatform_immobi_title": "Immobi-Market",
+  "project_multiplatform_immobi_desc": "Plateforme de mise en relation entre propriétaires et locataires",
+
+  "tab_web_title": "Web",
+
+  "project_web_portfolio_title": "Mon Portfolio",
+  "project_web_portfolio_desc": "Portfolio moderne construit avec Kotlin et WebAssembly",
+
+  "education_title": "Éducation",
+  "education_zeal_title": "Zeal College Of Engineering And Research | SPPU",
+  "education_zeal_desc": "Préparation d'un B.E. en Informatique à l'Université Savitribai Phule Pune (SPPU). Travail sur le développement d'applications web via HTML, CSS et JavaScript, et conception de systèmes de bases de données avec SQL. Familier avec les méthodologies de développement logiciel et les pratiques de gestion de projet, notamment Agile et Waterfall.",
+  "education_zeal_degree": "B.E. en Informatique",
+
+  "professional_title": "Professionnelle",
+  "professional_digiprem_title": "Digi-Prem Solutions",
+  "professional_digiprem_desc": "Assistance au développement d'applications mobiles avec Kotlin et Jetpack Compose. Intégration d'API REST et contribution aux tâches de développement Android.",
+
+  "professional_netfx_title": "Netfx Solutions",
+  "professional_netfx_desc": "Développement d'applications Kotlin Multiplatform et intégration de Firebase, WebSockets et d'API REST pour des systèmes multiplateformes.",
+  "professional_netfx_position": "Développeur Android"
+}

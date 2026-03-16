@@ -8,19 +8,15 @@ import empire.digiprem.portfolio.sections.experience.domain.TimelineItem
 val educationExperienceCategory = Category<TimelineItem>(
     details = PortfolioTabItem(
         id = "1",
-        title = "Education",
+        title = "education_title",
     ),
     groups = listOf(
         Education(
-            title = "Zeal College Of Engineering And Research | SPPU",
-            degree = "B.E. Information Technology",
+            title = "education_zeal_title",
+            degree = "education_zeal_degree",
             startYear = 2020,
             endYear = 2024,
-            description = """
-            * Pursuing IT Engineering course from Savitribai Phule Pune University (SPPU)
-            * Worked on web application development using HTML, CSS, and JavaScript, designing a database system using SQL 
-            * Familiar with software development methodologies and project management practices, including Agile and Waterfall methodologies.
-        """.trimIndent()
+            description ="education_zeal_desc"
         )
     )
 )

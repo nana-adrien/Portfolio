@@ -29,7 +29,7 @@ internal fun TechStackItem(
     Column(
         modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(7.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Box(
             modifier = Modifier

@@ -18,21 +18,21 @@ suspend fun multiplatformProjectsCategory() = Category(
     details = PortfolioTabItem(id = "6", title = "Multiplatform"),
     groups = listOf(
         MyProject(
-            title = getString(Res.string.project_multiplatform_nativeios_title),
-            description = getString(Res.string.project_multiplatform_nativeios_desc),
+            title = "project_multiplatform_nativeios_title",
+            description = "project_multiplatform_nativeios_desc",
             previewLink = "https://github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme/tree/main/capture",
             githubLink = "https://github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme"
         ),
 
         MyProject(
-            title = getString(Res.string.project_multiplatform_chirp_title),
-            description = getString(Res.string.project_multiplatform_chirp_desc),
+            title = "project_multiplatform_chirp_title",
+            description = "project_multiplatform_chirp_desc",
             githubLink = "https://github.com/nana-adrien/Chirp"
         ),
 
         MyProject(
-            title = getString(Res.string.project_multiplatform_immobi_title),
-            description = getString(Res.string.project_multiplatform_immobi_desc),
+            title = "project_multiplatform_immobi_title",
+            description = "project_multiplatform_immobi_desc",
             githubLink = "https://github.com/nana-adrien/Immobi-Market"
         ),
     )

@@ -14,8 +14,8 @@ suspend fun iosProjectsCategory() =  Category(
     details =  PortfolioTabItem(id = "2", title = "iOS"),
     groups = listOf(
         MyProject(
-            title = getString(Res.string.project_ios_barcode_title),
-            description = getString(Res.string.project_ios_barcode_desc),
+            title = "project_ios_barcode_title",
+            description = "project_ios_barcode_desc",
             githubLink = "https://github.com/nana-adrien/BarcodeScanner"
         )
     )

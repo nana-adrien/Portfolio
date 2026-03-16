@@ -46,6 +46,7 @@ import empire.digiprem.portfolio.core.design_system.PortfolioIcon
 import empire.digiprem.portfolio.core.design_system.PortfolioTabBar
 import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.core.design_system.layout.SectionLayout
+import empire.digiprem.portfolio.core.domain.TranslationManager
 import empire.digiprem.portfolio.sections.experience.data.categories.professionalExperienceCategory
 import empire.digiprem.portfolio.sections.experience.data.experiences
 import empire.digiprem.portfolio.sections.experience.domain.Education
@@ -67,7 +68,7 @@ fun MyExperiencesSection(
     var isReduceForm by rememberSaveable { mutableStateOf(true) }
 
     SectionLayout(
-        title = "Experience",
+        title = TranslationManager.getString("experience"),
         modifier = modifier,
     ) {
         PortfolioTabBar(
@@ -94,7 +95,7 @@ fun MyExperiencesSection(
         AnimatedVisibility(selectedCategoryExperiences.size > 3) {
             Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                 PortfolioButton(
-                    text = if (isReduceForm) "View All" else "reduce",
+                    text = TranslationManager.getString(if (isReduceForm) "view_all" else "Reduce" )  ,
                     onClick = {
                         isReduceForm = !isReduceForm
                     }
@@ -121,26 +122,26 @@ fun MyExperiencesSection(
             verticalArrangement = Arrangement.spacedBy(7.dp),
         ) {
             Text(
-                text = item.title + (if (item is ProfessionalExperience) " | ${item.location}" else ""),
+                text = TranslationManager.getString( item.title) + (if (item is ProfessionalExperience) " | ${item.location}" else ""),
                 style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
                 color = MaterialTheme.colorScheme.onBackground
             )
             if (item is Education) {
                 Text(
-                    text = "${item.degree} | ${item.startYear} - ${item.endYear}",
+                    text = "${TranslationManager.getString( item.degree)} | ${item.startYear} - ${item.endYear}",
                     style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.SemiBold),
                     color = MaterialTheme.colorScheme.onBackground
                 )
             } else if (item is ProfessionalExperience) {
                 Text(
-                    text = "${item.position ?: "Internship"} | ${item.startYear} - ${item.endYear}",
+                    text = "${item.position?.let { TranslationManager.getString(it ) } ?:TranslationManager.getString( "Internship")} | ${item.startYear} - ${item.endYear}",
                     style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.SemiBold),
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
             item.description?.let {description->
                 Text(
-                    text = description,
+                    text = TranslationManager.getString( description) ,
                     style = MaterialTheme.typography.labelSmall.copy(
                         color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)
                     ),
