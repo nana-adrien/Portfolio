@@ -128,7 +128,7 @@ fun HomeSections(
             Box(
                 modifier = Modifier
                     .width(if (isMobileDevice) 350.dp else 500.dp)
-                    .fillMaxHeight(if (isMobileDevice) 0.5f else 0.6f),
+                    .fillMaxHeight(if (isMobileDevice) 0.4f else 0.6f),
                 contentAlignment = Alignment.Center
             )
             {
@@ -289,7 +289,8 @@ fun HomeSections(
                             style = MaterialTheme.typography.labelMedium.copy(color = Color.White),
                         )
                         Text(
-                            text = TranslationManager.getString("focus_desc"), style = MaterialTheme.typography.labelSmall,
+                            text = TranslationManager.getString("focus_desc"),
+                            style = MaterialTheme.typography.labelSmall,
                             textAlign = TextAlign.Justify, color = Color.White
                         )
                         PortfolioButton(

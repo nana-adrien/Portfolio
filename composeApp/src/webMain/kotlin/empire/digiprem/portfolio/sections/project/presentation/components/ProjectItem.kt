@@ -85,7 +85,7 @@ fun ProjectItem(
     Column(
         modifier = modifier
             .widthIn(min = if (isMobileDevice) 300.dp else 200.dp, max = if (isMobileDevice) 350.dp else 300.dp)
-            .height(if (isMobileDevice) 270.dp else 310.dp)
+            .height(if (isMobileDevice) 300.dp else 310.dp)
             .clip(RoundedCornerShape(8.dp))
             .border(1.dp, MaterialTheme.colorScheme.background.copy(alpha = 0.3f), RoundedCornerShape(8.dp))
             .background(MaterialTheme.colorScheme.background)
@@ -95,7 +95,7 @@ fun ProjectItem(
     {
         Box(
             modifier = Modifier
-                .fillMaxHeight(0.7f)
+                .fillMaxHeight(0.65f)
                 .fillMaxWidth()
                 .hoverable(
                     interactionSource = interactionSource,

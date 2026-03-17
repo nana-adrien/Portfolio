@@ -57,6 +57,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.Navigator
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -104,20 +105,17 @@ fun App(
 ) {
     var enabledDarkTheme by rememberSaveable { mutableStateOf(darkTheme) }
 
-
-    SelectionContainer {
-        PortfolioTheme(
-            darkTheme = enabledDarkTheme
+    PortfolioTheme(
+        darkTheme = enabledDarkTheme
+    ) {
+        Navigator(
+            enabledDarkTheme = enabledDarkTheme,
+            onNavHostReady = onNavHostReady
         ) {
-            Navigator(
-                enabledDarkTheme = enabledDarkTheme,
-                onNavHostReady = onNavHostReady
-            ) {
-                enabledDarkTheme = !enabledDarkTheme
-            }
+            enabledDarkTheme = !enabledDarkTheme
         }
-
     }
+
 }
 
 @Composable
@@ -251,7 +249,7 @@ private fun HomePage(
                         onClick = { onDarkThemeChanged() },
                         tint = animateContentColor
                     )
-                    Box{
+                    Box {
                         PortfolioIconButton(
                             model = Icons.Default.Language,
                             onClick = { showLanguageDialog = !showLanguageDialog },

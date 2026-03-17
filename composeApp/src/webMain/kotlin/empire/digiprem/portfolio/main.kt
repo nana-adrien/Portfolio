@@ -14,6 +14,7 @@ import empire.digiprem.portfolio.app.App
 import empire.digiprem.portfolio.app.NavigationGraph
 import empire.digiprem.portfolio.core.domain.Language
 import empire.digiprem.portfolio.core.domain.TranslationManager
+import empire.digiprem.portfolio.core.domain.TranslationManager.translationsLoaded
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.builtins.serializer
 
@@ -25,12 +26,17 @@ import kotlinx.serialization.builtins.serializer
 fun main() {
     PlatformComposeViewport {
         LaunchedEffect(Unit) {
-            TranslationManager.load(Language.EN)
-            TranslationManager.load(Language.FR)
+            Language.entries.forEach { language ->
+                TranslationManager.load(language)
+            }
+            translationsLoaded=true
         }
-        App(
-            onNavHostReady = { onNavHostReady(it) }
-        )
+        if (translationsLoaded){
+            App(
+                onNavHostReady = { onNavHostReady(it) }
+            )
+        }
+
     }
 }
 
