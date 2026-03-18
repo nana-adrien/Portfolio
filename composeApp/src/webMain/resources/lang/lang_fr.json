@@ -23,12 +23,12 @@
   "dev_mobile": "Développement Mobile",
   "dev_backend": "Développement Backend",
   "dev_multiplatform": "Développement Multiplateforme",
-  "focus_desc": "🚀 Je me concentre sur le développement d'applications multiplateformes avec Kotlin KMP et Compose Multiplatform (CMP), en créant des expériences intuitives qui répondent aux besoins des clients, tout en portant une attention particulière aux détails ✨, à l'évolutivité 📈 et à la performance ⚡.",
+  "focus_desc": "%1$s Je me concentre sur le développement d'applications multiplateformes avec Kotlin KMP et Compose Multiplatform (CMP), en créant des expériences intuitives qui répondent aux besoins des clients, tout en portant une attention particulière aux détails %2$s, à l'évolutivité %3$s et à la performance %4$s.",
   "on_me": "Sur moi",
 
   "about_me": "À propos de moi",
   "profile_tagline": "~Développeur Multiplateforme~",
-  "profile_about_desc": "Salut à tous ! 👋 Je suis un développeur logiciel multiplateforme passionné qui a commencé son parcours en créant des applications Android avec XML. 📱 Curieux de nature, j'ai rapidement élargi mes intérêts aux technologies modernes et à tout ce qui touche au développement cross-platform. 💻 Aujourd'hui, je me concentre sur la création d'applications efficaces qui fonctionnent sur plusieurs plateformes à l'aide d'outils modernes comme Kotlin Multiplatform. 🚀 Titulaire d'un Master en Systèmes d'Information et Génie Logiciel 🎓, je travaille fièrement en tant qu'ingénieur logiciel, porté par la technologie et l'innovation.",
+  "profile_about_desc": "Salut à tous ! %1$s Je suis un développeur logiciel multiplateforme passionné qui a commencé son parcours en créant des applications Android avec XML. %2$s Curieux de nature, j'ai rapidement élargi mes intérêts aux technologies modernes et à tout ce qui touche au développement cross-platform. %3$s Aujourd'hui, je me concentre sur la création d'applications efficaces qui fonctionnent sur plusieurs plateformes à l'aide d'outils modernes comme Kotlin Multiplatform. %4$s Titulaire d'un Master en Systèmes d'Information et Génie Logiciel %5$s, je travaille fièrement en tant qu'ingénieur logiciel, porté par la technologie et l'innovation.",
   "download_cv": "Télécharger mon CV",
   "download": "Télécharger",
   "form_name": "Votre nom / Entreprise",
@@ -41,11 +41,11 @@
 
   "contact_me": "Me contacter",
   "get_in_touch": "Entrer en contact",
-  "inbox_open": "Ma boîte de réception est toujours ouverte ! 💌 Que vous ayez une question urgente ou que vous vouliez simplement dire \"salut\", je suis à votre écoute ! 👂 Discutons ensemble ! 🎉",
+  "inbox_open": "Ma boîte de réception est toujours ouverte ! %1$s Que vous ayez une question urgente ou que vous vouliez simplement dire \"salut\", je suis à votre écoute ! %2$s Discutons ensemble ! %3$s",
   "contact_form_name_placeholder": "Entrez votre nom",
   "contact_form_email_placeholder": "Entrez votre email",
   "contact_form_message_placeholder": "Entrez votre message",
-  "contact_form_send_button": "Dire Bonjour 👋",
+  "contact_form_send_button": "Dire Bonjour %1$s",
 
   "experience": "Mon parcours",
   "view_all": "Voir tout",

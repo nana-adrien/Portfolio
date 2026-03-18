@@ -166,7 +166,7 @@ fun AboutMeSections(
 
                     Spacer(Modifier.height(10.dp))
                     Text(
-                        text = TranslationManager.getString("profile_about_desc"),
+                        text = TranslationManager.getString("profile_about_desc",listOf("\uD83D\uDC4B","📱","\uD83D\uDCBB","\uD83D\uDE80","\uD83C\uDF93")),
                         style = MaterialTheme.typography.labelSmall,
                         textAlign = TextAlign.Justify,
                         color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),

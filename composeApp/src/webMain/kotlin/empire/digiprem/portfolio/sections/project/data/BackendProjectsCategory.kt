@@ -17,11 +17,13 @@ suspend fun backendProjectsCategory() = Category(
     groups = listOf(
         MyProject(
             title ="project_backend_chirpapi_title",
+            image = "https://raw.githubusercontent.com/nana-adrien/Immobi-Market/refs/heads/master/captures/immobi_market_api.png",
             description = "project_backend_chirpapi_desc",
             githubLink = "https://github.com/nana-adrien/chirp-api"
         ),
         MyProject(
             title = "project_backend_immobiapi_title",
+            image = "https://raw.githubusercontent.com/nana-adrien/Immobi-Market/refs/heads/master/captures/immobi_market_api.png",
             description ="project_backend_immobiapi_desc",
             githubLink = "https://github.com/nana-adrien/Immobi-Market"
         ),

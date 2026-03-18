@@ -1,3 +1,4 @@
+import groovyjarjarantlr4.v4.automata.ATNOptimizer.optimize
 import org.gradle.internal.impldep.org.apache.commons.lang.StringUtils.overlay
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
@@ -11,8 +12,15 @@ plugins {
 
 kotlin {
     js {
-        browser()
+        browser{
+            webpackTask {
+                mode = org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig.Mode.PRODUCTION
+               // sourceMap = false
+              //  optimize(  true)
+            }
+        }
         binaries.executable()
+
     }
     
     @OptIn(ExperimentalWasmDsl::class)
@@ -66,6 +74,7 @@ kotlin {
 }
 tasks.register<Copy>("wasmJsBrowserDistributionAndCopyToProduction") {
 
+   // dependsOn("wasmJsBrowserDistribution")
     dependsOn("wasmJsBrowserDistribution")
     from("$buildDir/dist/wasmJs/productionExecutable/")
     into("$projectDir/production/portfolio/")

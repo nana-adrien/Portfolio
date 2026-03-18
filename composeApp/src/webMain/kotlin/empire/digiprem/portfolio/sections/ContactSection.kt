@@ -67,7 +67,7 @@ fun ContactSection(
                     style = MaterialTheme.typography.titleLarge,
                 )
                 Text(
-                    text =TranslationManager.getString("inbox_open"),
+                    text =TranslationManager.getString("inbox_open",listOf("\uD83D\uDC8C","\uD83D\uDC42","\uD83C\uDF89")),
                     style = MaterialTheme.typography.bodySmall,
                 )
             }
@@ -101,7 +101,7 @@ fun ContactSection(
                 Spacer(modifier = Modifier.height(20.dp))
                 Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterEnd) {
                     PortfolioButton(
-                        text = TranslationManager.getString("contact_form_send_button"),
+                        text = TranslationManager.getString("contact_form_send_button",listOf("\uD83D\uDC4B")),
                         onClick = {}
                     )
                 }

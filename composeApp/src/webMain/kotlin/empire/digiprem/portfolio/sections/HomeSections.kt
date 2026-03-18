@@ -289,7 +289,7 @@ fun HomeSections(
                             style = MaterialTheme.typography.labelMedium.copy(color = Color.White),
                         )
                         Text(
-                            text = TranslationManager.getString("focus_desc"),
+                            text = TranslationManager.getString("focus_desc", arg = listOf("\uD83D\uDE80","✨","\uD83D\uDCC8","⚡",)),
                             style = MaterialTheme.typography.labelSmall,
                             textAlign = TextAlign.Justify, color = Color.White
                         )
@@ -324,6 +324,9 @@ fun TypeWriterText(
 
     val currentText = additionalTexts[textIndex]
 
+    if (charIndex > currentText.length) {
+        charIndex = currentText.length
+    }
     LaunchedEffect(charIndex, deleting, textIndex) {
 
         delay(if (deleting) 40 else 80)
@@ -355,7 +358,7 @@ fun TypeWriterText(
             )
             Row {
                 Text(
-                    currentText.substring(0, charIndex),
+                    currentText.take(charIndex),// currentText.substring(0, charIndex),
                     style = style.copy(fontWeight = FontWeight.Bold),
                     color = textAnimateColor,
                 )

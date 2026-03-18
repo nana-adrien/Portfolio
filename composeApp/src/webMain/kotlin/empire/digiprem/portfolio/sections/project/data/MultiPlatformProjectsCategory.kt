@@ -33,6 +33,8 @@ suspend fun multiplatformProjectsCategory() = Category(
         MyProject(
             title = "project_multiplatform_immobi_title",
             description = "project_multiplatform_immobi_desc",
+            image = "https://raw.githubusercontent.com/nana-adrien/Immobi-Market/refs/heads/master/captures/immobi_market_preview.png",
+            previewLink = "https://github.com/nana-adrien/Immobi-Market/blob/master/captures/immobi_market_preview.png?raw=true",
             githubLink = "https://github.com/nana-adrien/Immobi-Market"
         ),
     )

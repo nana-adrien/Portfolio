@@ -50,12 +50,20 @@ object TranslationManager {
         }
     }
 
-    fun getString(key: String): String {
-        return translations[currentLanguage]?.get(key) ?: key.split('_').joinToString(" ") { it.capitalize() }
+    fun getString(key: String, arg: List<String> =emptyList()): String {
+        val string=translations[currentLanguage]?.get(key)
+            ?: key.split('_').joinToString(" ") { it.capitalize() }
+
+        return  string.formatArgs(arg)
     }
 }
 
-
+fun String.formatArgs(args:List<String> =emptyList()): String {
+    var result = this
+    args.forEachIndexed { index, arg ->
+        result = result.replace("%${index+1}\$s", arg) }
+    return result
+}
 expect fun getLocaleLanguage(): String
 expect fun saveLanguage(languageTag: String)
 expect suspend fun loadTranslations(lang: String): Map<String, String>

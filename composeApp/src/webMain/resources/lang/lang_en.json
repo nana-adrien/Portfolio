@@ -22,14 +22,14 @@
   "dev_mobile": "Mobile Development",
   "dev_backend": "Backend Development",
   "dev_multiplatform": "Multiplatform Development",
-  "focus_desc": "🚀 I focus on developing cross-platform applications with Kotlin KMP and Compose Multiplatform (CMP), creating user-friendly experiences that meet client requirements, while paying close attention to detail ✨, scalability 📈 and performance ⚡.",
+  "focus_desc": "%1$s I focus on developing cross-platform applications with Kotlin KMP and Compose Multiplatform (CMP), creating user-friendly experiences that meet client requirements, while paying close attention to detail %2$s , scalability %3$s and performance %4$s .",
   "on_me": "About Me",
 
 
 
   "about_me": "About Me",
   "profile_tagline": "~Multiplatform Developer~",
-  "profile_about_desc": "Ahoy there! 👋 I'm a passionate Multiplatform Software Developer who started my journey building Android applications with XML. 📱 Curious by nature, I quickly expanded my interests to modern technologies and everything related to cross-platform and multiplatform development. 💻 Today, I focus on creating efficient applications that run across multiple platforms using modern tools like Kotlin Multiplatform. 🚀 With a Master's degree in Information Systems and Software Engineering 🎓, I proudly work as a Software Engineer driven by technology and innovation.",
+  "profile_about_desc": "Ahoy there! %1$s I'm a passionate Multiplatform Software Developer who started my journey building Android applications with XML. %2$s Curious by nature, I quickly expanded my interests to modern technologies and everything related to cross-platform and multiplatform development. %3$s Today, I focus on creating efficient applications that run across multiple platforms using modern tools like Kotlin Multiplatform. %4$s With a Master's degree in Information Systems and Software Engineering %5$s, I proudly work as a Software Engineer driven by technology and innovation.",
   "download_cv": "Download my CV",
   "download": "Download",
   "form_name": "Your name / Company",
@@ -43,11 +43,11 @@
 
   "contact_me": "Contact Me",
   "get_in_touch": "Get in touch",
-  "inbox_open": "My inbox is always open! 💌 Whether you've got a burning question or want to drop a friendly \"hello\", I'm all ears! 👂 Let's chat! 🎉",
+  "inbox_open": "My inbox is always open! %1$s Whether you've got a burning question or want to drop a friendly \"hello\", I'm all ears! %2$s Let's chat! %3$s",
   "contact_form_name_placeholder":"Enter your name",
   "contact_form_email_placeholder":"Enter your email",
   "contact_form_message_placeholder":"Enter your message",
-  "contact_form_send_button":"Say Hello \uD83D\uDC4B",
+  "contact_form_send_button":"Say Hello %1$s",
 
 
 
