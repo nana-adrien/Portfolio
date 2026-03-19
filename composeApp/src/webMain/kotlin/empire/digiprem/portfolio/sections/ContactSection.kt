@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import empire.digiprem.portfolio.core.design_system.PortfolioButton
 import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.core.design_system.layout.SectionLayout
-import empire.digiprem.portfolio.core.domain.TranslationManager
+import empire.digiprem.portfolio.core.domain.services.TranslationService
 
 @Composable
 fun ContactSection(
@@ -39,7 +39,7 @@ fun ContactSection(
     val isMobileDevice=currentDeviceConfigure().isMobileDevice()
 
     SectionLayout(
-        title = TranslationManager.getString("contact_me"),
+        title = TranslationService.getString("contact_me"),
         modifier = modifier,
     ) {
         Spacer(modifier = Modifier.height(10.dp))
@@ -63,11 +63,11 @@ fun ContactSection(
                 verticalArrangement = Arrangement.spacedBy(7.dp, alignment = Alignment.CenterVertically),
             ) {
                 Text(
-                    text =TranslationManager.getString("get_in_touch"),
+                    text =TranslationService.getString("get_in_touch"),
                     style = MaterialTheme.typography.titleLarge,
                 )
                 Text(
-                    text =TranslationManager.getString("inbox_open",listOf("\uD83D\uDC8C","\uD83D\uDC42","\uD83C\uDF89")),
+                    text =TranslationService.getString("inbox_open",listOf("\uD83D\uDC8C","\uD83D\uDC42","\uD83C\uDF89")),
                     style = MaterialTheme.typography.bodySmall,
                 )
             }
@@ -84,24 +84,24 @@ fun ContactSection(
                 val messageState = remember { TextFieldState("") }
                 PortfolioTextField(
                     state = nameState,
-                    placeholder = TranslationManager.getString("contact_form_name_placeholder"),
+                    placeholder = TranslationService.getString("contact_form_name_placeholder"),
                     modifier = Modifier.fillMaxWidth().height(40.dp),
                 )
                 PortfolioTextField(
                     state =emailState,
-                    placeholder = TranslationManager.getString("contact_form_email_placeholder"),
+                    placeholder = TranslationService.getString("contact_form_email_placeholder"),
                     modifier = Modifier.fillMaxWidth().height(40.dp),
                 )
                 PortfolioTextField(
                     state = messageState,
-                    placeholder = TranslationManager.getString("contact_form_message_placeholder"),
+                    placeholder = TranslationService.getString("contact_form_message_placeholder"),
                     lineLimits = TextFieldLineLimits.Default,
                     modifier = Modifier.fillMaxWidth().height(100.dp),
                 )
                 Spacer(modifier = Modifier.height(20.dp))
                 Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterEnd) {
                     PortfolioButton(
-                        text = TranslationManager.getString("contact_form_send_button",listOf("\uD83D\uDC4B")),
+                        text = TranslationService.getString("contact_form_send_button",listOf("\uD83D\uDC4B")),
                         onClick = {}
                     )
                 }

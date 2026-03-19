@@ -1,12 +1,10 @@
 package empire.digiprem.portfolio.core.design_system
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -23,8 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import empire.digiprem.portfolio.sections.openLink
-import org.jetbrains.compose.resources.vectorResource
+import empire.digiprem.portfolio.core.domain.util.WindowsPlatform
 import portfolionanaadrien.composeapp.generated.resources.Res
 
 @Composable
@@ -34,7 +31,7 @@ fun PortfolioLogoText(
     color: Color = Color.Black,
 ) {
     Row(
-        modifier = modifier.padding(vertical = 7.dp).clickable { openLink("/") },
+        modifier = modifier.padding(vertical = 7.dp).clickable { WindowsPlatform.openLink("/") },
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(10.dp),
     ) {

@@ -14,8 +14,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.DisableSelection
 import androidx.compose.material.icons.Icons
@@ -45,12 +43,7 @@ import androidx.compose.ui.unit.dp
 import empire.digiprem.portfolio.core.design_system.PortfolioIconButton
 import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.core.design_system.layout.AdaptativeContainerLayout
-import empire.digiprem.portfolio.core.domain.TranslationManager
-import org.jetbrains.compose.resources.StringResource
-import org.jetbrains.compose.resources.getString
-import org.jetbrains.compose.resources.stringResource
-import portfolionanaadrien.composeapp.generated.resources.Res
-import portfolionanaadrien.composeapp.generated.resources.nav_project
+import empire.digiprem.portfolio.core.domain.services.TranslationService
 
 data class MenuItem(
     val id: String,
@@ -105,7 +98,7 @@ fun Header(
                                     }.padding(7.dp),
                             ) {
                                 Text(
-                                    text = TranslationManager.getString(item.title),
+                                    text = TranslationService.getString(item.title),
                                     style = MaterialTheme
                                         .typography
                                         .labelSmall
@@ -174,7 +167,7 @@ fun Header(
                                         modifier = Modifier
                                             .fillMaxWidth()
                                             .padding(5.dp),
-                                        text = TranslationManager.getString(item.title),
+                                        text = TranslationService.getString(item.title),
                                         style = MaterialTheme
                                             .typography
                                             .labelSmall

@@ -31,11 +31,8 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.util.fastJoinToString
-import empire.digiprem.portfolio.app.Section
 import empire.digiprem.portfolio.app.components.Footer
 import empire.digiprem.portfolio.app.components.Header
-import empire.digiprem.portfolio.app.components.MenuItem
 import empire.digiprem.portfolio.app.components.SocialMedia
 import empire.digiprem.portfolio.app.components.SocialMediaLink
 import empire.digiprem.portfolio.core.design_system.PortfolioButton
@@ -44,9 +41,8 @@ import empire.digiprem.portfolio.core.design_system.PortfolioLogoText
 import empire.digiprem.portfolio.core.design_system.WebPageScaffold
 import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.core.design_system.layout.SectionLayout
-import empire.digiprem.portfolio.core.domain.TranslationManager
-import empire.digiprem.portfolio.sections.getBaseUrl
-import empire.digiprem.portfolio.sections.openLink
+import empire.digiprem.portfolio.core.domain.services.TranslationService
+import empire.digiprem.portfolio.core.domain.util.WindowsPlatform
 
 @Composable
 fun Error404Page(
@@ -93,7 +89,7 @@ fun Error404Page(
                 selectedMenu = null,
                 menuItems = emptyList()
             ) {
-                openLink(it.link)
+                WindowsPlatform.openLink(it.link)
             }
             HorizontalDivider(color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f))
         },
@@ -151,7 +147,7 @@ fun Error404Page(
                         )
                         Spacer(modifier = Modifier.height(16.dp))
                         Text(
-                            text = TranslationManager.getString("page_not_found"),
+                            text = TranslationService.getString("page_not_found"),
                             style = MaterialTheme.typography.headlineSmall.copy(
                                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
                             ),
@@ -159,8 +155,8 @@ fun Error404Page(
                         )
                         Spacer(modifier = Modifier.height(24.dp))
                         PortfolioButton(
-                            onClick = { openLink("/") },
-                            text = TranslationManager.getString("back_home"),
+                            onClick = { WindowsPlatform.openLink("/") },
+                            text = TranslationService.getString("back_home"),
                         )
                     }
                 }

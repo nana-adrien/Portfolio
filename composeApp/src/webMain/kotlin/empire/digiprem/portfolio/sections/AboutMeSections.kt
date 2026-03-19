@@ -25,8 +25,6 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.selection.DisableSelection
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Download
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
@@ -48,14 +46,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import coil3.compose.AsyncImage
-import empire.digiprem.portfolio.core.design_system.ButtonType
 import empire.digiprem.portfolio.core.design_system.PortfolioButton
 import empire.digiprem.portfolio.core.design_system.PortfolioImage
 import empire.digiprem.portfolio.core.design_system.animation.ShimmerSkeleton
 import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.core.design_system.layout.SectionLayout
-import empire.digiprem.portfolio.core.domain.TranslationManager
+import empire.digiprem.portfolio.core.domain.services.TranslationService
 import empire.digiprem.portfolio.theme.labelXSmall
 import io.ktor.client.HttpClient
 import io.ktor.client.request.forms.FormDataContent
@@ -117,7 +113,7 @@ fun AboutMeSections(
     }
 
     SectionLayout(
-        title = TranslationManager.getString("about_me"),
+        title = TranslationService.getString("about_me"),
         modifier = modifier
     ) {
         Column(
@@ -157,7 +153,7 @@ fun AboutMeSections(
                             .padding(horizontal = 10.dp, vertical = 5.dp), contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = TranslationManager.getString("profile_tagline"),
+                            text = TranslationService.getString("profile_tagline"),
                             style = MaterialTheme.typography.labelXSmall,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.primary
@@ -166,7 +162,7 @@ fun AboutMeSections(
 
                     Spacer(Modifier.height(10.dp))
                     Text(
-                        text = TranslationManager.getString("profile_about_desc",listOf("\uD83D\uDC4B","📱","\uD83D\uDCBB","\uD83D\uDE80","\uD83C\uDF93")),
+                        text = TranslationService.getString("profile_about_desc",listOf("\uD83D\uDC4B","📱","\uD83D\uDCBB","\uD83D\uDE80","\uD83C\uDF93")),
                         style = MaterialTheme.typography.labelSmall,
                         textAlign = TextAlign.Justify,
                         color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
@@ -190,7 +186,7 @@ fun AboutMeSections(
                                 confirmButton = {
 
                                     PortfolioButton(
-                                        text = TranslationManager.getString("download"),
+                                        text = TranslationService.getString("download"),
                                         enabled = name.text.isNotBlank() && reason.isNotBlank() && if(reason!="form_reason_other") email.text.isNotBlank() else true,
                                         onClick = {
                                             scope.launch {
@@ -209,7 +205,7 @@ fun AboutMeSections(
                                 },
                                 title = {
                                     Text(
-                                        TranslationManager.getString("download_cv"),
+                                        TranslationService.getString("download_cv"),
                                         style = MaterialTheme.typography.titleMedium
                                     )
                                 },
@@ -218,19 +214,19 @@ fun AboutMeSections(
                                         verticalArrangement = Arrangement.spacedBy(20.dp),
                                     ){
                                         PortfolioTextField(
-                                            placeholder = TranslationManager.getString("form_name"),
+                                            placeholder = TranslationService.getString("form_name"),
                                             state = name,
                                             modifier = Modifier.fillMaxWidth().height(50.dp),
                                         )
                                         if (reason!="form_reason_other" && reason.isNotBlank()) {
-                                            Text(TranslationManager.getString("abaout_form_email_desc"), style = MaterialTheme.typography.labelMedium,color = MaterialTheme.colorScheme.onBackground)
+                                            Text(TranslationService.getString("abaout_form_email_desc"), style = MaterialTheme.typography.labelMedium,color = MaterialTheme.colorScheme.onBackground)
                                             PortfolioTextField(
-                                                placeholder = TranslationManager.getString("contact_form_email_placeholder"),
+                                                placeholder = TranslationService.getString("contact_form_email_placeholder"),
                                                 state = email,
                                                 modifier = Modifier.fillMaxWidth().height(50.dp),
                                             )
                                         }
-                                        Text(TranslationManager.getString("form_reason"), fontWeight = FontWeight.Bold,color = MaterialTheme.colorScheme.onBackground)
+                                        Text(TranslationService.getString("form_reason"), fontWeight = FontWeight.Bold,color = MaterialTheme.colorScheme.onBackground)
                                         Column  (
                                             verticalArrangement = Arrangement.spacedBy(7.dp),
                                         ){
@@ -243,7 +239,7 @@ fun AboutMeSections(
                                                         selected = (reason == option),
                                                         onClick = { reason = option })
                                                     Text(
-                                                        TranslationManager.getString(option),
+                                                        TranslationService.getString(option),
                                                         color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
                                                     )
                                                 }

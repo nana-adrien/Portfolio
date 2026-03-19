@@ -15,18 +15,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.ColorMatrix
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import empire.digiprem.portfolio.core.design_system.PortfolioIcon
-import empire.digiprem.portfolio.core.design_system.PortfolioImage
 import empire.digiprem.portfolio.core.design_system.PortfolioTabBar
 import empire.digiprem.portfolio.core.design_system.layout.SectionLayout
-import empire.digiprem.portfolio.core.domain.TranslationManager
+import empire.digiprem.portfolio.core.domain.services.TranslationService
 import empire.digiprem.portfolio.sections.tech_stack.data.techStackCategories
 import empire.digiprem.portfolio.sections.tech_stack.presentation.components.TechStackItem
-import portfolionanaadrien.composeapp.generated.resources.Res
 
 
 @Composable
@@ -40,7 +35,7 @@ fun TechStackSection(
         ?: emptyList()
 
     SectionLayout(
-        title = TranslationManager.getString("tech_stack"),
+        title = TranslationService.getString("tech_stack"),
         modifier = modifier,
     ) {
         PortfolioTabBar(

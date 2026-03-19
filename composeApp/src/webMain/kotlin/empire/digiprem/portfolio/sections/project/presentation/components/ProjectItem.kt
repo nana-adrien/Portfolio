@@ -1,17 +1,10 @@
 package empire.digiprem.portfolio.sections.project.presentation.components
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkHorizontally
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.hoverable
@@ -26,18 +19,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Preview
 import androidx.compose.material.icons.filled.Security
 import androidx.compose.material.icons.filled.Videocam
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -45,25 +35,15 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import coil3.compose.AsyncImage
-import coil3.compose.AsyncImagePainter
-import coil3.compose.rememberAsyncImagePainter
-import empire.digiprem.portfolio.core.design_system.PortfolioIcon
 import empire.digiprem.portfolio.core.design_system.PortfolioImage
 import empire.digiprem.portfolio.core.design_system.animation.ShimmerSkeleton
 import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
-import empire.digiprem.portfolio.core.domain.TranslationManager
-import org.jetbrains.compose.resources.painterResource
+import empire.digiprem.portfolio.core.domain.services.TranslationService
 import portfolionanaadrien.composeapp.generated.resources.Res
-import portfolionanaadrien.composeapp.generated.resources.capture
-import portfolionanaadrien.composeapp.generated.resources.logo
-import portfolionanaadrien.composeapp.generated.resources.logo_dark
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -159,7 +139,7 @@ fun ProjectItem(
         }
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = TranslationManager.getString(title),
+            text = TranslationService.getString(title),
             style = MaterialTheme.typography.titleSmall.let { it.copy(fontWeight = FontWeight.Bold) },
             color = MaterialTheme.colorScheme.onBackground,
             overflow = TextOverflow.Ellipsis,
@@ -167,7 +147,7 @@ fun ProjectItem(
         )
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = TranslationManager.getString(description),
+            text = TranslationService.getString(description),
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onBackground.copy(0.7f),
             maxLines = 2,

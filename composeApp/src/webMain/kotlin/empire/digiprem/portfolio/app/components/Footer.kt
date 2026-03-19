@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import empire.digiprem.portfolio.core.domain.TranslationManager
+import empire.digiprem.portfolio.core.domain.services.TranslationService
 
 @Composable
 fun Footer(
@@ -27,7 +27,7 @@ fun Footer(
 
         Box(modifier = Modifier.wrapContentWidth().fillMaxHeight().padding(horizontal = 10.dp), contentAlignment = Alignment.Center) {
             Text(
-                text = TranslationManager.getString("powered_by"),
+                text = TranslationService.getString("powered_by"),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f),
 
@@ -36,14 +36,14 @@ fun Footer(
         Box(modifier = Modifier.wrapContentWidth().fillMaxHeight().padding(horizontal = 10.dp), contentAlignment = Alignment.Center) {
 
             Text(
-                text =TranslationManager.getString("kotlin_compose"),
+                text =TranslationService.getString("kotlin_compose"),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f),
             )
         }
         Box(modifier = Modifier.wrapContentWidth().fillMaxHeight().padding(horizontal = 10.dp), contentAlignment = Alignment.Center) {
             Text(
-                text = TranslationManager.getString("design_by"),
+                text = TranslationService.getString("design_by"),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f),
             )

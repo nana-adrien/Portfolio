@@ -19,9 +19,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.School
-import androidx.compose.material.icons.filled.ShoppingBag
 import androidx.compose.material.icons.filled.Work
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
@@ -46,14 +44,12 @@ import empire.digiprem.portfolio.core.design_system.PortfolioIcon
 import empire.digiprem.portfolio.core.design_system.PortfolioTabBar
 import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.core.design_system.layout.SectionLayout
-import empire.digiprem.portfolio.core.domain.TranslationManager
+import empire.digiprem.portfolio.core.domain.services.TranslationService
 import empire.digiprem.portfolio.sections.experience.data.categories.professionalExperienceCategory
 import empire.digiprem.portfolio.sections.experience.data.experiences
 import empire.digiprem.portfolio.sections.experience.domain.Education
 import empire.digiprem.portfolio.sections.experience.domain.ProfessionalExperience
 import empire.digiprem.portfolio.sections.experience.domain.TimelineItem
-import empire.digiprem.portfolio.theme.labelXSmall
-
 
 
 @Composable
@@ -68,7 +64,7 @@ fun MyExperiencesSection(
     var isReduceForm by rememberSaveable { mutableStateOf(true) }
 
     SectionLayout(
-        title = TranslationManager.getString("experience"),
+        title = TranslationService.getString("experience"),
         modifier = modifier,
     ) {
         PortfolioTabBar(
@@ -95,7 +91,7 @@ fun MyExperiencesSection(
         AnimatedVisibility(selectedCategoryExperiences.size > 3) {
             Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                 PortfolioButton(
-                    text = TranslationManager.getString(if (isReduceForm) "view_all" else "Reduce" )  ,
+                    text = TranslationService.getString(if (isReduceForm) "view_all" else "Reduce" )  ,
                     onClick = {
                         isReduceForm = !isReduceForm
                     }
@@ -122,26 +118,26 @@ fun MyExperiencesSection(
             verticalArrangement = Arrangement.spacedBy(7.dp),
         ) {
             Text(
-                text = TranslationManager.getString( item.title) + (if (item is ProfessionalExperience) " | ${item.location}" else ""),
+                text = TranslationService.getString( item.title) + (if (item is ProfessionalExperience) " | ${item.location}" else ""),
                 style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
                 color = MaterialTheme.colorScheme.onBackground
             )
             if (item is Education) {
                 Text(
-                    text = "${TranslationManager.getString( item.degree)} | ${item.startYear} - ${item.endYear}",
+                    text = "${TranslationService.getString( item.degree)} | ${item.startYear} - ${item.endYear}",
                     style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.SemiBold),
                     color = MaterialTheme.colorScheme.onBackground
                 )
             } else if (item is ProfessionalExperience) {
                 Text(
-                    text = "${item.position?.let { TranslationManager.getString(it ) } ?:TranslationManager.getString( "Internship")} | ${item.startYear} - ${item.endYear}",
+                    text = "${item.position?.let { TranslationService.getString(it ) } ?:TranslationService.getString( "Internship")} | ${item.startYear} - ${item.endYear}",
                     style = MaterialTheme.typography.labelSmall.copy(fontWeight = FontWeight.SemiBold),
                     color = MaterialTheme.colorScheme.onBackground
                 )
             }
             item.description?.let {description->
                 Text(
-                    text = TranslationManager.getString( description) ,
+                    text = TranslationService.getString( description) ,
                     style = MaterialTheme.typography.labelSmall.copy(
                         color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f)
                     ),

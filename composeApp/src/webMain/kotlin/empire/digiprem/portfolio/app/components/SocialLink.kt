@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import empire.digiprem.portfolio.core.design_system.PortfolioIconButton
-import empire.digiprem.portfolio.sections.OpenLinkTarget
-import empire.digiprem.portfolio.sections.openLink
+import empire.digiprem.portfolio.core.domain.enums.OpenLinkTarget
+import empire.digiprem.portfolio.core.domain.util.WindowsPlatform
 
 data class SocialMedia(
     val icon: ImageVector,
@@ -32,36 +32,9 @@ fun SocialMediaLink(
     ) {
         socialMedias.forEach {
             PortfolioIconButton(
-                model =  it.url?: it.icon,
-                onClick = { openLink(url = it.link, openLinkTarget = OpenLinkTarget.NEW_ONGLET) },
+                model = it.url ?: it.icon,
+                onClick = { WindowsPlatform.openLink(url = it.link, openLinkTarget = OpenLinkTarget.NEW_ONGLET) },
             )
-           /* Box(
-                modifier = Modifier.size(35.dp)
-                .clip(CircleShape)
-                .background(MaterialTheme.colorScheme.primary)
-                .clickable {
-                    openLink(url = it.link, openLinkTarget = OpenLinkTarget.NEW_ONGLET)
-                }
-                .padding(8.dp),
-                contentAlignment = Alignment.Center) {
-                if (it.url != null) {
-                    AsyncImage(
-                        modifier = Modifier.fillMaxSize(),
-                        model = it.url,
-                        contentDescription = null,
-                        contentScale = ContentScale.Inside,
-                        colorFilter = ColorFilter.tint(Color.White) ,
-                    )
-                } else {
-                    Icon(
-                        modifier = Modifier.fillMaxSize(),
-                        imageVector = it.icon,
-                        contentDescription = null,
-                        tint = Color.White,
-                    )
-                }
-
-            }*/
         }
     }
 }

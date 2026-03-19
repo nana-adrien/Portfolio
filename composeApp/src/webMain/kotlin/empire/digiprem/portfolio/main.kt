@@ -1,22 +1,18 @@
 package empire.digiprem.portfolio
 
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.window.ComposeViewport
 import androidx.compose.ui.window.ComposeViewportConfiguration
 import androidx.navigation.ExperimentalBrowserHistoryApi
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
-import androidx.navigation.bindToBrowserNavigation
-import androidx.navigation.toRoute
 import empire.digiprem.portfolio.app.App
-import empire.digiprem.portfolio.app.NavigationGraph
 import empire.digiprem.portfolio.core.domain.Language
-import empire.digiprem.portfolio.core.domain.TranslationManager
-import empire.digiprem.portfolio.core.domain.TranslationManager.translationsLoaded
+import empire.digiprem.portfolio.core.domain.services.TranslationService
+import empire.digiprem.portfolio.core.domain.services.TranslationService.translationsLoaded
+import empire.digiprem.portfolio.core.domain.services.UserSettingService
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.builtins.serializer
 
 @OptIn(
     ExperimentalComposeUiApi::class,
@@ -25,13 +21,13 @@ import kotlinx.serialization.builtins.serializer
 )
 suspend fun main() {
     Language.entries.forEach { language ->
-        TranslationManager.load(language)
+        TranslationService.load(language)
     }
     translationsLoaded=true
 
+
     PlatformComposeViewport {
-        LaunchedEffect(Unit) {
-        }
+        UserSettingService.initTheme(isSystemInDarkTheme())
         if (translationsLoaded){
             App(
                 onNavHostReady = { onNavHostReady(it) }

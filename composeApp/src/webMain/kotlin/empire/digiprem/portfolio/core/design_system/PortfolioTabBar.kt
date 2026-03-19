@@ -16,7 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.unit.dp
-import empire.digiprem.portfolio.core.domain.TranslationManager
+import empire.digiprem.portfolio.core.domain.services.TranslationService
 
 @Composable
 fun PortfolioTabBar(
@@ -47,7 +47,7 @@ fun PortfolioTabBar(
                     .padding(horizontal = 20.dp,vertical = 7.dp)
             ){
                 Text(
-                    text = TranslationManager.getString(item.title) ,
+                    text = TranslationService.getString(item.title) ,
                     style=MaterialTheme
                         .typography
                         .labelSmall

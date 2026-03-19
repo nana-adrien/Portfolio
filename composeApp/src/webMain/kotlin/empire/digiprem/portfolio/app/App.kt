@@ -10,12 +10,8 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -26,7 +22,6 @@ import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.selection.DisableSelection
-import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowUpward
 import androidx.compose.material.icons.filled.DarkMode
@@ -35,19 +30,17 @@ import androidx.compose.material.icons.filled.LightMode
 import androidx.compose.material.icons.filled.LinkedCamera
 import androidx.compose.material.icons.filled.Pin
 import androidx.compose.material.icons.filled.Whatsapp
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MenuDefaults
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
@@ -57,7 +50,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.Navigator
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -67,43 +59,33 @@ import empire.digiprem.portfolio.app.components.Header
 import empire.digiprem.portfolio.app.components.MenuItem
 import empire.digiprem.portfolio.app.components.SocialMedia
 import empire.digiprem.portfolio.app.components.SocialMediaLink
-import empire.digiprem.portfolio.core.design_system.PortfolioButton
 import empire.digiprem.portfolio.core.design_system.PortfolioIconButton
 import empire.digiprem.portfolio.core.design_system.PortfolioLogoText
 import empire.digiprem.portfolio.core.design_system.WebPageScaffold
 import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.core.domain.Language
-import empire.digiprem.portfolio.core.domain.TranslationManager
-import empire.digiprem.portfolio.core.domain.TranslationManager.currentLanguage
+import empire.digiprem.portfolio.core.domain.services.TranslationService
+import empire.digiprem.portfolio.core.domain.services.TranslationService.currentLanguage
+import empire.digiprem.portfolio.core.domain.services.UserSettingService
+import empire.digiprem.portfolio.core.domain.util.WindowsPlatform
 import empire.digiprem.portfolio.pages.Error404Page
 import empire.digiprem.portfolio.sections.AboutMeSections
 import empire.digiprem.portfolio.sections.ContactSection
-import empire.digiprem.portfolio.sections.HomeSections
-import empire.digiprem.portfolio.sections.PortfolioTextField
+import empire.digiprem.portfolio.sections.home.HomeSections
 import empire.digiprem.portfolio.sections.experience.presentation.MyExperiencesSection
-import empire.digiprem.portfolio.sections.getBaseUrl
-import empire.digiprem.portfolio.sections.openLink
 import empire.digiprem.portfolio.sections.project.presentation.MyProjectSection
-import empire.digiprem.portfolio.sections.sendDataToService
 import empire.digiprem.portfolio.sections.tech_stack.presentation.TechStackSection
 import empire.digiprem.portfolio.theme.PortfolioTheme
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
-import org.jetbrains.compose.resources.StringResource
 import portfolionanaadrien.composeapp.generated.resources.Res
-import portfolionanaadrien.composeapp.generated.resources.nav_about
-import portfolionanaadrien.composeapp.generated.resources.nav_contact
-import portfolionanaadrien.composeapp.generated.resources.nav_experience
-import portfolionanaadrien.composeapp.generated.resources.nav_home
-import portfolionanaadrien.composeapp.generated.resources.nav_project
-import portfolionanaadrien.composeapp.generated.resources.nav_tech
 
 @Composable
 fun App(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    isSystemInDarkTheme: Boolean=isSystemInDarkTheme(),
     onNavHostReady: suspend (NavController) -> Unit = {}
 ) {
-    var enabledDarkTheme by rememberSaveable { mutableStateOf(darkTheme) }
+    var enabledDarkTheme by rememberSaveable { mutableStateOf(UserSettingService.isDarkTheme()) }
 
     PortfolioTheme(
         darkTheme = enabledDarkTheme
@@ -113,6 +95,7 @@ fun App(
             onNavHostReady = onNavHostReady
         ) {
             enabledDarkTheme = !enabledDarkTheme
+            UserSettingService.onThemeChanged(!enabledDarkTheme)
         }
     }
 
@@ -156,7 +139,7 @@ sealed interface NavigationGraph {
     data class HomeScreen(val section: String = Section.home.name) : NavigationGraph
 
     @Serializable
-    data object Error404 : NavigationGraph
+    data class Error404(val path: String) : NavigationGraph
 
 }
 
@@ -205,7 +188,7 @@ private fun HomePage(
         MenuItem(
             id = section.name,
             title = section.getTitle(),
-            link = getBaseUrl() + "#home?section=$section",
+            link = WindowsPlatform.getBaseUrl() + "#home?section=$section",
         )
     }
 
@@ -283,7 +266,7 @@ private fun HomePage(
                                                 modifier = Modifier
                                                     .fillMaxWidth()
                                                     .padding(5.dp),
-                                                text = TranslationManager.getString(language.value),
+                                                text = TranslationService.getString(language.value),
                                                 style = MaterialTheme
                                                     .typography
                                                     .labelSmall
@@ -296,7 +279,7 @@ private fun HomePage(
                                             )
                                         },
                                         onClick = {
-                                            TranslationManager.setLanguage(language)
+                                            TranslationService.setLanguage(language)
                                             showLanguageDialog = false
                                         })
                                 }
@@ -310,7 +293,7 @@ private fun HomePage(
             ) {
                 currentSection = it.id
                 selectedMenu = it
-                openLink(it.link)
+                WindowsPlatform.openLink(it.link)
             }
             HorizontalDivider(color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f))
         },
@@ -378,7 +361,7 @@ private fun HomePage(
                 HomeSections(
                     isDarkTheme = isDarkTheme,
                     modifier = Modifier
-                        .height(800.dp)
+                        .height(900.dp)
                         .fillMaxWidth()
                         .padding(bottom = 30.dp),
                     onAboutButtonClick = {
@@ -458,7 +441,7 @@ private fun HomePage(
                     currentItem?.let {
                         val index = if (it.index>menuItems.lastIndex) menuItems.lastIndex else  it.index
                         selectedMenu = menuItems[index]
-                        openLink(selectedMenu.link)
+                        WindowsPlatform.openLink(selectedMenu.link)
                     }
                 }
         }

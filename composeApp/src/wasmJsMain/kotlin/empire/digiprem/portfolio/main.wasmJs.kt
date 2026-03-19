@@ -56,11 +56,15 @@ actual suspend fun onNavHostReady(navController: NavController) {
     when {
         initRoute.isEmpty() /*|| initRoute == "/"*/ || initRoute.startsWith("#home") -> {
             val section = initRoute.substringAfter("?section=")
-            val normalSection= Section.entries.firstOrNull{it.name==section}?.name?:Section.home.name
-            navController.navigate(NavigationGraph.HomeScreen(normalSection))
+            val normalSection= Section.entries.firstOrNull{it.name==section}?.name
+            if (normalSection == null && initRoute.isNotEmpty()) {
+                navController.navigate(NavigationGraph.Error404(path = initRoute.removePrefix("#")))
+            }else{
+                navController.navigate(NavigationGraph.HomeScreen(normalSection?:Section.home.name))
+            }
         }
         else -> {
-            navController.navigate(NavigationGraph.Error404)
+            navController.navigate(NavigationGraph.Error404(path = initRoute.removePrefix("#")))
         }
     }
 
@@ -77,7 +81,13 @@ actual suspend fun onNavHostReady(navController: NavController) {
                 val section= entry.toRoute<NavigationGraph.HomeScreen>().section
                 "#home?section=$section"
             }
-            else -> "#not-found"
+            // Route 404 (Si vous avez une classe dédiée)
+            route.contains(NavigationGraph.Error404.serializer().descriptor.serialName) -> {
+                // Ici, on récupère l'URL erronée qui a été stockée dans la route 404
+                val invalidPath = entry.toRoute<NavigationGraph.Error404>().path
+                "#$invalidPath"
+            }
+            else -> "#not-found" // Fallback par défaut
         }
     }
 }
