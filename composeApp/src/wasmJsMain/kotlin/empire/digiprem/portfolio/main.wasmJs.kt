@@ -10,6 +10,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.bindToBrowserNavigation
 import androidx.navigation.toRoute
+import coil3.util.Logger
 import empire.digiprem.portfolio.app.App
 import empire.digiprem.portfolio.app.NavigationGraph
 import empire.digiprem.portfolio.app.Section
@@ -42,6 +43,10 @@ actual fun PlatformComposeViewport(
     )
 }
 
+
+fun setupGlobalErrorHandler() {
+
+}
 @OptIn(ExperimentalBrowserHistoryApi::class)
 actual suspend fun onNavHostReady(navController: NavController) {
 
@@ -76,3 +81,4 @@ actual suspend fun onNavHostReady(navController: NavController) {
         }
     }
 }
+

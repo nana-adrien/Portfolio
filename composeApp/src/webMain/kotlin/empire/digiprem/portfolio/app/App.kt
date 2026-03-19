@@ -450,13 +450,13 @@ private fun HomePage(
                         layout.visibleItemsInfo.minByOrNull { item ->
 
                             val itemCenter =
-                                item.offset + item.size / 2
+                                item.offset + (item.size) / 2
 
                             kotlin.math.abs(itemCenter - viewportCenter)
                         }
 
                     currentItem?.let {
-                        val index = it.index
+                        val index = if (it.index>menuItems.lastIndex) menuItems.lastIndex else  it.index
                         selectedMenu = menuItems[index]
                         openLink(selectedMenu.link)
                     }

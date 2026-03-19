@@ -104,7 +104,7 @@ fun AboutMeSections(
             ) {
                 PortfolioImage(
                     modifier = Modifier.fillMaxSize(),
-                    image = Res.getUri("drawable/plan_de_travail_de_k_n_a.jpeg"),
+                    image = Res.getUri("drawable/nana_adrien.jpg"),
                     onLoading = { ShimmerSkeleton(Modifier.fillMaxSize()) },
                     contentScale = ContentScale.Crop,
                     colorFilter = ColorFilter.colorMatrix(

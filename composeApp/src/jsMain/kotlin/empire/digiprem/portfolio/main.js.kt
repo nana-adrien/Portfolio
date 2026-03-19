@@ -21,6 +21,7 @@ actual fun PlatformComposeViewport(
     configure: ComposeViewportConfiguration.() -> Unit,
     content: @Composable (() -> Unit)
 ){
+    setupGlobalErrorHandler()
     val body=document.body?:return
     // On cherche l'élément où Compose s'affiche (souvent d'ID "root")
     val root = document.getElementById("root")
@@ -39,6 +40,16 @@ actual fun PlatformComposeViewport(
     )
 }
 
+fun setupGlobalErrorHandler() {
+    window.onerror = { message, _, _, _, error ->
+        console.error("Unhandled promise: $message ; $error")
+        false
+    }
+
+    window.onunhandledrejection = { event ->
+        console.error("Unhandled promise: ${event.reason}")
+    }
+}
 @OptIn(ExperimentalBrowserHistoryApi::class)
 actual suspend fun onNavHostReady(navController: NavController) {
 

@@ -23,13 +23,14 @@ import kotlinx.serialization.builtins.serializer
     ExperimentalBrowserHistoryApi::class,
     ExperimentalSerializationApi::class
 )
-fun main() {
+suspend fun main() {
+    Language.entries.forEach { language ->
+        TranslationManager.load(language)
+    }
+    translationsLoaded=true
+
     PlatformComposeViewport {
         LaunchedEffect(Unit) {
-            Language.entries.forEach { language ->
-                TranslationManager.load(language)
-            }
-            translationsLoaded=true
         }
         if (translationsLoaded){
             App(

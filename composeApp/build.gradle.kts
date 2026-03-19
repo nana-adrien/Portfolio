@@ -12,42 +12,46 @@ plugins {
 
 kotlin {
     js {
-        browser{
+        browser {
             webpackTask {
                 mode = org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig.Mode.PRODUCTION
-               // sourceMap = false
-              //  optimize(  true)
+                // sourceMap = false
+                //  optimize(  true)
             }
         }
         binaries.executable()
 
     }
-    
+
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
-        browser{
+        browser {
             commonWebpackConfig {
-                cssSupport{
-                    enabled=true
+                cssSupport {
+                    enabled = true
                 }
 
-               /* devServer = devServer?.apply {
-                    hot = false          // Désactive HMR qui casse le WASM
-                    liveReload = true
-                    overlay = true       // Affiche les erreurs directement dans le navigateur
-                }*/
+                /* devServer = devServer?.apply {
+                     hot = false          // Désactive HMR qui casse le WASM
+                     liveReload = true
+                     overlay = true       // Affiche les erreurs directement dans le navigateur
+                 }*/
             }
         }
         binaries.executable()
 
     }
-    
+
     sourceSets {
         jsMain.dependencies {
             implementation(compose.html.core)
         }
+        wasmJsMain.dependencies {
+            implementation("org.jetbrains.kotlinx:kotlinx-browser:0.3")
+        }
 
         commonMain.dependencies {
+          //  implementation("org.jetbrains.kotlinx:kotlinx-browser:0.3")
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
             implementation(libs.compose.material3)
@@ -56,7 +60,7 @@ kotlin {
             implementation(libs.compose.ui)
             implementation(libs.navigation.compose)
             implementation(libs.compose.components.resources)
-            implementation(libs.material3.adaptive )
+            implementation(libs.material3.adaptive)
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
@@ -74,7 +78,7 @@ kotlin {
 }
 tasks.register<Copy>("wasmJsBrowserDistributionAndCopyToProduction") {
 
-   // dependsOn("wasmJsBrowserDistribution")
+    // dependsOn("wasmJsBrowserDistribution")
     dependsOn("wasmJsBrowserDistribution")
     from("$buildDir/dist/wasmJs/productionExecutable/")
     into("$projectDir/production/portfolio/")
