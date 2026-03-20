@@ -30,10 +30,13 @@ suspend fun main() {
         UserSettingService.initTheme(isSystemInDarkTheme())
         if (translationsLoaded){
             App(
+                isSystemInDarkTheme=UserSettingService.isDarkTheme,
+                onDarkThemeChanged = {
+                    UserSettingService.onThemeChanged(!UserSettingService.isDarkTheme)
+                },
                 onNavHostReady = { onNavHostReady(it) }
             )
         }
-
     }
 }
 

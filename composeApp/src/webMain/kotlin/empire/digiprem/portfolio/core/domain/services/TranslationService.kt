@@ -28,7 +28,7 @@ object TranslationService {
 
     fun setLanguage(language: Language) {
         currentLanguage = language
-        languageRepository.saveValue(LANGUAGE_KEY,language.name)
+        languageRepository.saveValue(LANGUAGE_KEY,language.name.lowercase())
     }
 
 

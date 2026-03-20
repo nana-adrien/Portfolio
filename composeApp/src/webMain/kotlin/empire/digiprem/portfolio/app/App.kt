@@ -1,101 +1,59 @@
 package empire.digiprem.portfolio.app
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.*
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.expandHorizontally
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeContentPadding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.text.selection.DisableSelection
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowUpward
-import androidx.compose.material.icons.filled.DarkMode
-import androidx.compose.material.icons.filled.Language
-import androidx.compose.material.icons.filled.LightMode
-import androidx.compose.material.icons.filled.LinkedCamera
-import androidx.compose.material.icons.filled.Pin
-import androidx.compose.material.icons.filled.Whatsapp
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.MenuDefaults
-import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.input.pointer.PointerIcon
-import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.layout.onPlaced
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import empire.digiprem.portfolio.app.components.Footer
-import empire.digiprem.portfolio.app.components.Header
-import empire.digiprem.portfolio.app.components.MenuItem
-import empire.digiprem.portfolio.app.components.SocialMedia
-import empire.digiprem.portfolio.app.components.SocialMediaLink
+import empire.digiprem.portfolio.app.components.footer.CommonFooter
+import empire.digiprem.portfolio.app.components.header.CommonHeader
+import empire.digiprem.portfolio.app.components.header.MenuItem
+import empire.digiprem.portfolio.app.components.social_media.CommonSocialMedia
 import empire.digiprem.portfolio.core.design_system.PortfolioIconButton
-import empire.digiprem.portfolio.core.design_system.PortfolioLogoText
 import empire.digiprem.portfolio.core.design_system.WebPageScaffold
 import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
-import empire.digiprem.portfolio.core.domain.Language
-import empire.digiprem.portfolio.core.domain.services.TranslationService
-import empire.digiprem.portfolio.core.domain.services.TranslationService.currentLanguage
-import empire.digiprem.portfolio.core.domain.services.UserSettingService
 import empire.digiprem.portfolio.core.domain.util.WindowsPlatform
 import empire.digiprem.portfolio.pages.Error404Page
-import empire.digiprem.portfolio.sections.AboutMeSections
-import empire.digiprem.portfolio.sections.ContactSection
-import empire.digiprem.portfolio.sections.home.HomeSections
+import empire.digiprem.portfolio.sections.about.presentation.AboutMeSections
+import empire.digiprem.portfolio.sections.contact.presentation.ContactSection
 import empire.digiprem.portfolio.sections.experience.presentation.MyExperiencesSection
+import empire.digiprem.portfolio.sections.home.HomeSections
 import empire.digiprem.portfolio.sections.project.presentation.MyProjectSection
 import empire.digiprem.portfolio.sections.tech_stack.presentation.TechStackSection
 import empire.digiprem.portfolio.theme.PortfolioTheme
 import kotlinx.coroutines.launch
 import kotlinx.serialization.Serializable
-import portfolionanaadrien.composeapp.generated.resources.Res
 
 @Composable
 fun App(
-    isSystemInDarkTheme: Boolean=isSystemInDarkTheme(),
-    onNavHostReady: suspend (NavController) -> Unit = {}
+    isSystemInDarkTheme: Boolean,
+    onDarkThemeChanged: () -> Unit,
+    onNavHostReady: suspend (NavController) -> Unit = {},
 ) {
-    var enabledDarkTheme by rememberSaveable { mutableStateOf(UserSettingService.isDarkTheme()) }
-
     PortfolioTheme(
-        darkTheme = enabledDarkTheme
+        darkTheme = isSystemInDarkTheme
     ) {
         Navigator(
-            enabledDarkTheme = enabledDarkTheme,
+            enabledDarkTheme = isSystemInDarkTheme,
             onNavHostReady = onNavHostReady
         ) {
-            enabledDarkTheme = !enabledDarkTheme
-            UserSettingService.onThemeChanged(!enabledDarkTheme)
+            onDarkThemeChanged()
         }
     }
 
@@ -111,8 +69,14 @@ fun Navigator(
 
     NavHost(
         navController = navController,
-        startDestination = NavigationGraph.HomeScreen()
+        modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.surface),
+        startDestination = NavigationGraph.InitScreen
     ) {
+        composable<NavigationGraph.InitScreen> {
+            Box(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.surface)) {
+
+            }
+        }
         composable<NavigationGraph.HomeScreen> {
             HomePage(
                 targetId = it.toRoute<NavigationGraph.HomeScreen>().section,
@@ -134,6 +98,10 @@ fun Navigator(
 }
 
 sealed interface NavigationGraph {
+
+    @Serializable
+    data object InitScreen : NavigationGraph
+
     @Serializable
     //@SerialName("/")
     data class HomeScreen(val section: String = Section.home.name) : NavigationGraph
@@ -182,7 +150,6 @@ private fun HomePage(
     var currentSection by rememberSaveable { mutableStateOf(targetId) }
     val currentDeviceConfiguration = currentDeviceConfigure()
     val isMobileDevice = currentDeviceConfiguration.isMobileDevice() || currentDeviceConfiguration.isTabletDevice()
-    val density = LocalDensity.current
     val scrollState = rememberLazyListState()
     val menuItems = Section.entries.map { section ->
         MenuItem(
@@ -194,17 +161,7 @@ private fun HomePage(
 
     var selectedMenu by remember { mutableStateOf(menuItems.first { it.id == currentSection }) }
     val scope = rememberCoroutineScope()
-    val animateHeaderContainerColor by animateColorAsState(
-        targetValue = with(density) {
-            if (scrollState.scrollIndicatorState?.scrollOffset?.toDp() ?: 0.dp < 750.dp) Color.Transparent else MaterialTheme.colorScheme.surface.copy(
-                alpha = 0.7f
-            )
-        }
-    )
-    var showLanguageDialog by rememberSaveable { mutableStateOf(false) }
-    val animateContentColor by animateColorAsState(
-        targetValue = with(density) { if (scrollState.scrollIndicatorState?.scrollOffset?.toDp() ?: 0.dp < 750.dp) Color.White else MaterialTheme.colorScheme.onBackground }
-    )
+
     // Scroll automatique vers le hash au chargement
 
     WebPageScaffold(
@@ -213,132 +170,31 @@ private fun HomePage(
             .fillMaxSize(),
         scrollState = scrollState,
         header = {
-            Header(
-                modifier = Modifier
-                    .height(55.dp)
-                    .fillMaxWidth()
-                    .background(animateHeaderContainerColor)
-                    .padding(horizontal = if (isMobileDevice) 16.dp else 0.dp),
-                animateContentColor = animateContentColor,
-                logo = {
-                    PortfolioLogoText(
-                        isDarkTheme = isDarkTheme,
-                        color = animateContentColor
-                    )
-                },
-                action = {
-                    PortfolioIconButton(
-                        model = if (isDarkTheme) Icons.Default.DarkMode else Icons.Default.LightMode,
-                        onClick = { onDarkThemeChanged() },
-                        tint = animateContentColor
-                    )
-                    Box {
-                        PortfolioIconButton(
-                            model = Icons.Default.Language,
-                            onClick = { showLanguageDialog = !showLanguageDialog },
-                            tint = animateContentColor
-                        )
-                        DropdownMenu(
-                            expanded = showLanguageDialog,
-
-                            onDismissRequest = { showLanguageDialog = false },
-                        ) {
-                            Language.entries.forEach { language ->
-                                val isSelectedLanguage = currentLanguage == language
-                                DisableSelection {
-                                    DropdownMenuItem(
-                                        modifier = Modifier
-                                            .pointerHoverIcon(PointerIcon.Hand)
-                                            .background(
-                                                color = if (isSelectedLanguage) {
-                                                    MaterialTheme.colorScheme.primary
-                                                } else Color.Transparent,
-                                            ),
-                                        colors = MenuDefaults.itemColors().let {
-                                            it.copy(
-                                                textColor = if (isSelectedLanguage) {
-                                                    MaterialTheme.colorScheme.background
-                                                } else MaterialTheme.colorScheme.onBackground,
-                                            )
-                                        },
-                                        text = {
-                                            Text(
-                                                modifier = Modifier
-                                                    .fillMaxWidth()
-                                                    .padding(5.dp),
-                                                text = TranslationService.getString(language.value),
-                                                style = MaterialTheme
-                                                    .typography
-                                                    .labelSmall
-                                                    .let {
-                                                        it.copy(
-                                                            fontWeight = FontWeight.SemiBold,
-                                                            textAlign = TextAlign.Center,
-                                                        )
-                                                    },
-                                            )
-                                        },
-                                        onClick = {
-                                            TranslationService.setLanguage(language)
-                                            showLanguageDialog = false
-                                        })
-                                }
-                            }
-                        }
-                    }
-
-                },
+            CommonHeader(
+                isDarkTheme = isDarkTheme,
+                scrollState = scrollState,
                 selectedMenu = selectedMenu,
-                menuItems = menuItems
-            ) {
-                currentSection = it.id
-                selectedMenu = it
-                WindowsPlatform.openLink(it.link)
-            }
-            HorizontalDivider(color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f))
-        },
-        footer = {
-            Footer(
-                modifier = Modifier
-                    .heightIn(min = 60.dp)
-                    .fillMaxWidth()
-                    .background(MaterialTheme.colorScheme.background)
-                    .padding(horizontal = if (!isMobileDevice) 16.dp else 5.dp, vertical = 10.dp)
+                menuItems = menuItems,
+                selectMenuItem = {
+                    currentSection = it.id
+                    selectedMenu = it
+                    WindowsPlatform.openLink(it.link)
+                },
+                onDarkThemeChanged = onDarkThemeChanged,
             )
 
         },
+        footer = {
+            CommonFooter()
+        },
         socialMedia = {
-            AnimatedVisibility(
+            CommonSocialMedia(
                 visible = scrollState.firstVisibleItemIndex > 0,
-                enter = fadeIn() + expandHorizontally(),
-                exit = fadeOut() + shrinkHorizontally(),
-            ) {
-                SocialMediaLink(
-                    modifier = Modifier,
-                    socialMedias = listOf(
-                        SocialMedia(
-                            icon = Icons.Default.Whatsapp,
-                            link = "https://wa.me/237655011738",
-                        ),
-                        SocialMedia(
-                            icon = Icons.Default.Pin,
-                            url = Res.getUri("drawable/github.png"),
-                            link = "https://github.com/nana-adrien",
-                        ),
-                        SocialMedia(
-                            icon = Icons.Default.LinkedCamera,
-                            url = Res.getUri("drawable/linked_in.png"),
-                            link = "https://www.linkedin.com/in/adrien-nana-5b04aa262/",
-                        ),
-                    )
-                )
-            }
-
-
+            )
         },
         floatingButtonButton = {
             AnimatedVisibility(
-                modifier = Modifier.padding(end = 50.dp, bottom = 70.dp),
+                modifier = Modifier.padding(end = 50.dp, bottom = 150.dp),
                 visible = scrollState.firstVisibleItemIndex > 0,
                 enter = fadeIn() + expandHorizontally(),
                 exit = fadeOut() + shrinkHorizontally(),
@@ -439,7 +295,7 @@ private fun HomePage(
                         }
 
                     currentItem?.let {
-                        val index = if (it.index>menuItems.lastIndex) menuItems.lastIndex else  it.index
+                        val index = if (it.index > menuItems.lastIndex) menuItems.lastIndex else it.index
                         selectedMenu = menuItems[index]
                         WindowsPlatform.openLink(selectedMenu.link)
                     }

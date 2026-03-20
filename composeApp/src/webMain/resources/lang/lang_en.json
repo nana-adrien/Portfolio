@@ -1,4 +1,7 @@
 {
+
+
+
   "language_fr_value": "French",
   "language_en_value": "English",
 
@@ -8,6 +11,8 @@
   "nav_project": "Projects",
   "nav_experience": "Experience",
   "nav_contact": "Contact",
+
+  "close": "Close",
 
   "powered_by": "Powered ❤ by Nana Adrien",
   "kotlin_compose": "Kotlin and Compose Web",
@@ -32,14 +37,18 @@
   "profile_about_desc": "Ahoy there! %1$s I'm a passionate Multiplatform Software Developer who started my journey building Android applications with XML. %2$s Curious by nature, I quickly expanded my interests to modern technologies and everything related to cross-platform and multiplatform development. %3$s Today, I focus on creating efficient applications that run across multiple platforms using modern tools like Kotlin Multiplatform. %4$s With a Master's degree in Information Systems and Software Engineering %5$s, I proudly work as a Software Engineer driven by technology and innovation.",
   "download_cv": "Download my CV",
   "download": "Download",
+  "cancel": "Cancel",
   "form_name": "Your name / Company",
   "abaout_form_email_desc": "What email address can I use to contact you again?",
   "form_reason": "Why do you want to view my CV ? :",
+  "form_email_placeholder": "Please provide a valid email address.",
+  "form_name_error": "Please use between %1$s and %2$s characters to validate this field",
   "form_reason_recruitment": "I am interested in discussing a potential job opportunity",
   "form_reason_partnership": "I would like to explore a potential partnership or collaboration.",
   "form_reason_curiosity": "I would like to learn more about your work and exchange ideas.",
   "form_reason_other": "Just out of curiosity.",
-
+  "alert_success_download_title": "Download successful",
+  "alert_success_download_message": "Your information has been saved.",
 
   "contact_me": "Contact Me",
   "get_in_touch": "Get in touch",
@@ -48,8 +57,8 @@
   "contact_form_email_placeholder":"Enter your email",
   "contact_form_message_placeholder":"Enter your message",
   "contact_form_send_button":"Say Hello %1$s",
-
-
+  "alert_success_send_form_title": "Success",
+  "alert_success_send_form_desc": "The form has been sent successfully.",
 
   "experience": "My background",
   "view_all": "View All",
@@ -100,5 +109,21 @@
 
   "professional_netfx_title": "Netfx Solutions",
   "professional_netfx_desc": "Developed Kotlin Multiplatform applications and integrated Firebase, WebSocket, and REST APIs for cross-platform systems.",
-  "professional_netfx_position": "Android Developer"
+  "professional_netfx_position": "Android Developer",
+
+
+
+  "BAD_REQUEST": "Bad request",
+  "REQUEST_TIMEOUT": "Request timeout",
+  "UNAUTHORIZED": "Unauthorized",
+  "FORBIDDEN": "Forbidden",
+  "NOT_FOUND": "Not found",
+  "CONFLICT": "Conflict",
+  "TOO_MANY_REQUEST": "Too many requests",
+  "NOT_INTERNET": "No Internet connection",
+  "PAYLOAD_TOO_LARGE": "Payload too large",
+  "SERVER_ERROR": "Server error",
+  "SERVER_UNAVAILABLE": "Server unavailable",
+  "SERIALIZATION": "Serialization error",
+  "UNKNOWN": "Unknown error"
 }

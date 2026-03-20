@@ -1,30 +1,17 @@
-package empire.digiprem.portfolio.app.components
+package empire.digiprem.portfolio.app.components.header
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.hoverable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.DisableSelection
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.MenuDefaults
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -52,12 +39,6 @@ data class MenuItem(
 )
 
 @Composable
-expect fun BlurComponent()
-
-@Composable
-expect fun PlatformText()
-
-@Composable
 fun Header(
     modifier: Modifier = Modifier,
     logo: @Composable () -> Unit,
@@ -73,8 +54,7 @@ fun Header(
         modifier = modifier,
         contentAlignment = Alignment.Center,
     ) {
-        AdaptativeContainerLayout(
-        ) {
+        AdaptativeContainerLayout() {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -203,7 +183,7 @@ fun Header(
                                         modifier = Modifier
                                             .clip(RoundedCornerShape(4.dp))
                                             .padding(5.dp),
-                                        text = "Close",
+                                        text = TranslationService.getString("close"),
                                         style = MaterialTheme
                                             .typography
                                             .labelSmall

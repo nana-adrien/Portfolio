@@ -1,116 +1,57 @@
-package empire.digiprem.portfolio.sections
+package empire.digiprem.portfolio.sections.about.presentation
 
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.hoverable
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsHoveredAsState
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.selection.DisableSelection
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Download
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.ColorMatrix
-import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
+import empire.digiprem.portfolio.core.design_system.ButtonType
 import empire.digiprem.portfolio.core.design_system.PortfolioButton
-import empire.digiprem.portfolio.core.design_system.PortfolioImage
-import empire.digiprem.portfolio.core.design_system.animation.ShimmerSkeleton
+import empire.digiprem.portfolio.core.design_system.components.form.FormErrorContainer
+import empire.digiprem.portfolio.core.design_system.components.form.PortfolioTextField
 import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
 import empire.digiprem.portfolio.core.design_system.layout.SectionLayout
 import empire.digiprem.portfolio.core.domain.services.TranslationService
+import empire.digiprem.portfolio.sections.about.presentation.components.ProfilePictureUrl
 import empire.digiprem.portfolio.theme.labelXSmall
-import io.ktor.client.HttpClient
-import io.ktor.client.request.forms.FormDataContent
-import io.ktor.client.request.post
-import io.ktor.client.request.setBody
-import io.ktor.http.Parameters
-import io.ktor.http.isSuccess
-import kotlinx.coroutines.launch
-import portfolionanaadrien.composeapp.generated.resources.Res
+import io.ktor.client.*
+import io.ktor.client.request.*
+import io.ktor.client.request.forms.*
+import io.ktor.http.*
 
+
+enum class AboutFormReason(val value: String) {
+    RECRUITMENT("form_reason_recruitment"),
+    PARTNERSHIP("form_reason_partnership"),
+    CURIOSITY("form_reason_curiosity"),
+    OTHER("form_reason_other")
+}
 @Composable
 fun AboutMeSections(
+    viewModel: AboutMeViewModel= viewModel { AboutMeViewModel() },
     modifier: Modifier = Modifier,
 ) {
-    var email = remember { TextFieldState("") }
-    var name = remember { TextFieldState("") }
-    var reason by remember { mutableStateOf("") } // Option par défaut
-    val reasons =
-        listOf("form_reason_recruitment", "form_reason_partnership", "form_reason_curiosity", "form_reason_other")
-    var showDialog by rememberSaveable { mutableStateOf(false) }
-    val scope = rememberCoroutineScope()
+    val state by viewModel.state.collectAsStateWithLifecycle()
     val isMobileDevice = currentDeviceConfigure().isMobileDevice()
-    val interactionSource = remember { MutableInteractionSource() }
-    val isHover by interactionSource.collectIsHoveredAsState()
-    val imageFilter by animateFloatAsState(targetValue = if (isHover) 1f else 0f)
-    val translation by animateFloatAsState(targetValue = if (isHover) -10f else 0f)
-    val BoxContent = @Composable {
-        Column(
-            Modifier
-                .graphicsLayer {
-                    rotationZ = if (!isMobileDevice) -5f else 0f
-                    translationY = translation
-                }
-                .widthIn(max = if (isMobileDevice) 350.dp else 280.dp)
-                .heightIn(max = 350.dp)
-                .clip(RoundedCornerShape(8.dp))
-                .background(MaterialTheme.colorScheme.background).padding(10.dp)
-        ) {
-            Box(
-                Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
-                    .hoverable(interactionSource = interactionSource)
-                    .padding(bottom = 30.dp)
-                    .clip(RoundedCornerShape(8.dp))
-            ) {
-                PortfolioImage(
-                    modifier = Modifier.fillMaxSize(),
-                    image = Res.getUri("drawable/nana_adrien.jpg"),
-                    onLoading = { ShimmerSkeleton(Modifier.fillMaxSize()) },
-                    contentScale = ContentScale.Crop,
-                    colorFilter = ColorFilter.colorMatrix(
-                        ColorMatrix().apply { setToSaturation(imageFilter) } // 0f = grayscale
-                    )
-                )
-            }
-
-        }
-    }
 
     SectionLayout(
         title = TranslationService.getString("about_me"),
@@ -122,7 +63,7 @@ fun AboutMeSections(
             verticalArrangement = Arrangement.spacedBy(30.dp, Alignment.CenterVertically)
         ) {
             if (isMobileDevice) {
-                BoxContent()
+                ProfilePictureUrl()
             }
 
             Row(
@@ -131,7 +72,7 @@ fun AboutMeSections(
                 horizontalArrangement = Arrangement.spacedBy(60.dp)
             ) {
                 if (!isMobileDevice) {
-                    BoxContent()
+                    ProfilePictureUrl()
                 }
                 Column(
                     modifier = Modifier.widthIn(min = 400.dp).padding(horizontal = 20.dp),
@@ -173,56 +114,70 @@ fun AboutMeSections(
                         horizontalArrangement = Arrangement.spacedBy(20.dp),
                         verticalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterVertically)
                     ) {
-                        /*PortfolioButton(
+                        PortfolioButton(
                             type = ButtonType.SECONDARY,
-                            text = TranslationManager.getString("download_cv"),
+                            text = TranslationService.getString("download_cv"),
                             model = Icons.Default.Download,
-                        ) { showDialog = true }*/
+                        ) { viewModel.onAction(AboutMeAction.OnShowDialog)  }
                     }
-                    if (showDialog) {
+                    if (state.showDialog) {
                         DisableSelection {
                             AlertDialog(
-                                onDismissRequest = { showDialog = false },
+                                onDismissRequest = { viewModel.onAction(AboutMeAction.OnShowDialog) },
+                                dismissButton = {
+                                    PortfolioButton(
+                                        text = TranslationService.getString("cancel"),
+                                        type = ButtonType.SECONDARY,
+                                        onClick = {
+                                            viewModel.onAction(AboutMeAction.OnCleanForm)
+                                            viewModel.onAction(AboutMeAction.OnShowDialog)
+                                        }
+                                    )
+                                },
                                 confirmButton = {
-
                                     PortfolioButton(
                                         text = TranslationService.getString("download"),
-                                        enabled = name.text.isNotBlank() && reason.isNotBlank() && if(reason!="form_reason_other") email.text.isNotBlank() else true,
+                                        isLoading = state.isLoading,
+                                        enabled =  state.canDownload && !state.isLoading ,
                                         onClick = {
-                                            scope.launch {
-                                                sendDataToService(
-                                                    name.text.toString(),
-                                                    reason,
-                                                    onSuccusses = {
-                                                        showDialog = false
-                                                    },
-                                                    onFailure = {
-                                                        showDialog = true
-                                                    })
-                                            }
+                                           viewModel.onAction(AboutMeAction.OnDownloadButonClick)
                                         }
                                     )
                                 },
                                 title = {
-                                    Text(
-                                        TranslationService.getString("download_cv"),
-                                        style = MaterialTheme.typography.titleMedium
-                                    )
+                                    Column(
+                                        verticalArrangement = Arrangement.spacedBy(10.dp),
+                                    ) {
+                                        if (state.errorMessage!=null) {
+                                            FormErrorContainer(state.errorMessage)
+                                        }
+                                        Text(
+                                            TranslationService.getString("download_cv"),
+                                            style = MaterialTheme.typography.titleMedium
+                                        )
+                                    }
+
                                 },
                                 text = {
                                     Column (
+                                        modifier = Modifier.verticalScroll(rememberScrollState()),
                                         verticalArrangement = Arrangement.spacedBy(20.dp),
                                     ){
                                         PortfolioTextField(
                                             placeholder = TranslationService.getString("form_name"),
-                                            state = name,
+                                            state = state.nameTextFieldState,
+                                            isError =  !state.isNameValid,
+                                            errorMessage = TranslationService.getString("form_name_error",listOf("3","20")),
                                             modifier = Modifier.fillMaxWidth().height(50.dp),
                                         )
-                                        if (reason!="form_reason_other" && reason.isNotBlank()) {
+                                        if (state.reason!=AboutFormReason.OTHER && state.reason!=null) {
                                             Text(TranslationService.getString("abaout_form_email_desc"), style = MaterialTheme.typography.labelMedium,color = MaterialTheme.colorScheme.onBackground)
                                             PortfolioTextField(
                                                 placeholder = TranslationService.getString("contact_form_email_placeholder"),
-                                                state = email,
+                                                state = state.emailTextFieldState,
+                                                isError = !state.isEmailValid,
+                                                keyboardType = KeyboardType.Email,
+                                                errorMessage = TranslationService.getString("form_email_placeholder"),
                                                 modifier = Modifier.fillMaxWidth().height(50.dp),
                                             )
                                         }
@@ -230,16 +185,19 @@ fun AboutMeSections(
                                         Column  (
                                             verticalArrangement = Arrangement.spacedBy(7.dp),
                                         ){
-                                            reasons.forEach { option ->
+                                            AboutFormReason.entries.forEach { option ->
                                                 Row(
-                                                    modifier = Modifier.fillMaxWidth().clickable { reason = option },
+                                                    modifier = Modifier.fillMaxWidth().clickable {
+                                                        viewModel.onAction(AboutMeAction.OnSelectReason(option))
+                                                    },
                                                     verticalAlignment = Alignment.CenterVertically
                                                 ) {
                                                     RadioButton(
-                                                        selected = (reason == option),
-                                                        onClick = { reason = option })
+                                                        selected = (state.reason == option),
+                                                        onClick = { viewModel.onAction(AboutMeAction.OnSelectReason(option)) })
                                                     Text(
-                                                        TranslationService.getString(option),
+                                                        TranslationService.getString(option.value),
+                                                        style = MaterialTheme.typography.labelMedium,
                                                         color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
                                                     )
                                                 }
@@ -251,6 +209,34 @@ fun AboutMeSections(
                             )
                         }
                     }
+                    if (state.showSuccessDialog) {
+                        AlertDialog(
+                            onDismissRequest = {
+                                viewModel.onAction(AboutMeAction.OnCleanForm)
+                                viewModel.onAction(AboutMeAction.OnDismissSuccessDialog) },
+                            title = {
+                                Text(
+                                    TranslationService.getString("alert_success_download_title"),
+                                    style = MaterialTheme.typography.titleMedium
+                                )
+                            },
+                            text = {
+                                Text(
+                                    TranslationService.getString("alert_success_download_message"),
+                                    style = MaterialTheme.typography.labelMedium,
+                                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.7f),
+                                )
+                            },
+                            confirmButton = {
+                                PortfolioButton(
+                                    text =TranslationService.getString("close"),
+                                ){
+                                    viewModel.onAction(AboutMeAction.OnCleanForm)
+                                    viewModel.onAction(AboutMeAction.OnDismissSuccessDialog)
+                                }
+                            }
+                        )
+                    }
                 }
 
             }
@@ -259,6 +245,7 @@ fun AboutMeSections(
 
     }
 }
+
 
 suspend fun sendDataToService(name: String, reason: String, onSuccusses: () -> Unit, onFailure: () -> Unit) {
     val client = HttpClient()
@@ -282,5 +269,6 @@ suspend fun sendDataToService(name: String, reason: String, onSuccusses: () -> U
 }
 
 
+/*
 @Composable
-expect fun PortfolioButtonDownload()
+expect fun PortfolioButtonDownload()*/

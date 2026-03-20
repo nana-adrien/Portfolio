@@ -6,4 +6,5 @@ expect object WindowsPlatform {
      fun openLink(url: String, openLinkTarget: OpenLinkTarget = OpenLinkTarget.SAME_ONGLET)
      fun getBaseUrl(): String
      fun getNavigatorLanguage():String
+     fun downloadField(fileFinallyName: String, fileUrl: String="drawable/capture.png")
 }

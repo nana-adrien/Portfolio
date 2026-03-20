@@ -1,6 +1,4 @@
-import groovyjarjarantlr4.v4.automata.ATNOptimizer.optimize
-import org.gradle.internal.impldep.org.apache.commons.lang.StringUtils.overlay
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
+
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
@@ -44,9 +42,11 @@ kotlin {
 
     sourceSets {
         jsMain.dependencies {
+            implementation(libs.ktor.client.js)
             implementation(compose.html.core)
         }
         wasmJsMain.dependencies {
+            implementation(libs.ktor.client.js)
             implementation("org.jetbrains.kotlinx:kotlinx-browser:0.3")
         }
 
@@ -68,7 +68,7 @@ kotlin {
             implementation(libs.coil.compose)
             implementation(libs.coil.svg)
             implementation(libs.coil.network.ktor)
-            implementation(libs.ktor.client.core)
+            implementation(libs.bundles.ktor.common)
 
         }
         commonTest.dependencies {

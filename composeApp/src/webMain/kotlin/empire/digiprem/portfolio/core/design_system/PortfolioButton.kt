@@ -1,10 +1,13 @@
 package empire.digiprem.portfolio.core.design_system
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,6 +27,7 @@ enum class ButtonType {
 fun PortfolioButton(
     text: String,
     model: Any? = null,
+    isLoading: Boolean = false,
     enabled: Boolean = true,
     type: ButtonType = ButtonType.PRIMARY,
     modifier: Modifier = Modifier,
@@ -34,22 +38,39 @@ fun PortfolioButton(
         enabled = enabled,
         contentPadding = PaddingValues(horizontal = 10.dp, vertical = 5.dp),
         shape = RoundedCornerShape(4.dp),
+
         elevation = ButtonDefaults.buttonElevation(
-            defaultElevation = if (type == ButtonType.PRIMARY) {
-                4.dp
-            } else 0.dp,
+            defaultElevation = when (type) {
+                ButtonType.PRIMARY -> 8.dp
+                ButtonType.SECONDARY -> 4.dp
+            }
         ),
+
         colors = ButtonDefaults.buttonColors(
-            containerColor = if (type == ButtonType.PRIMARY) {
-                MaterialTheme.colorScheme.primary
-            } else MaterialTheme.colorScheme.background,
-            contentColor = if (type == ButtonType.PRIMARY) {
-                Color.White
-            } else MaterialTheme.colorScheme.primary,
+            containerColor = when {
+                isLoading -> MaterialTheme.colorScheme.primaryContainer
+                !enabled -> MaterialTheme.colorScheme.surfaceVariant
+                type == ButtonType.PRIMARY -> MaterialTheme.colorScheme.primary
+                else -> MaterialTheme.colorScheme.background
+            },
+
+            contentColor = when {
+                isLoading -> MaterialTheme.colorScheme.onPrimaryContainer
+                !enabled -> MaterialTheme.colorScheme.onSurfaceVariant
+                type == ButtonType.PRIMARY -> Color.White
+                else -> MaterialTheme.colorScheme.primary
+            }
         ),
         onClick = onClick,
         modifier = modifier.pointerHoverIcon(PointerIcon.Hand),
     ) {
+        if (isLoading) {
+            CircularProgressIndicator(
+                modifier = Modifier.size(25.dp),
+                color = MaterialTheme.colorScheme.primary,
+            )
+        }
+        Spacer(Modifier.width(8.dp))
         Text(
             text = text,
             maxLines = 1,
