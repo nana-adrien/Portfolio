@@ -9,6 +9,8 @@
   "nav_project": "Projets",
   "nav_experience": "Expérience",
   "nav_contact": "Contact",
+  "close": "Fermer",
+
 
   "powered_by": "Propulsé avec ❤ par Nana Adrien",
   "kotlin_compose": "Kotlin et Compose Web",
@@ -31,13 +33,20 @@
   "profile_about_desc": "Salut à tous ! %1$s Je suis un développeur logiciel multiplateforme passionné qui a commencé son parcours en créant des applications Android avec XML. %2$s Curieux de nature, j'ai rapidement élargi mes intérêts aux technologies modernes et à tout ce qui touche au développement cross-platform. %3$s Aujourd'hui, je me concentre sur la création d'applications efficaces qui fonctionnent sur plusieurs plateformes à l'aide d'outils modernes comme Kotlin Multiplatform. %4$s Titulaire d'un Master en Systèmes d'Information et Génie Logiciel %5$s, je travaille fièrement en tant qu'ingénieur logiciel, porté par la technologie et l'innovation.",
   "download_cv": "Télécharger mon CV",
   "download": "Télécharger",
+  "cancel": "Annuler",
   "form_name": "Votre nom / Entreprise",
   "abaout_form_email_desc": "Par quel adresse email je peut vous recontacter?",
+  "form_email_placeholder": "Veuillez entrer une adresse email valide.",
+  "form_name_error": "Veuillez utiliser entre %1$s et %2$s caractères pour valider ce champ",
   "form_reason": "Pourquoi souhaitez-vous consulter mon CV ? :",
   "form_reason_recruitment": "Je souhaite discuter d'une opportunité d'emploi potentielle.",
   "form_reason_partnership": "J'aimerais explorer un partenariat ou une collaboration potentielle.",
   "form_reason_curiosity": "Je souhaite en savoir plus sur votre travail et échanger des idées.",
   "form_reason_other": "Juste par curiosité.",
+  "alert_success_download_title": "Download successful",
+  "alert_success_download_message": "Vos informations ont été enregistrées.",
+
+
 
   "contact_me": "Me contacter",
   "get_in_touch": "Entrer en contact",
@@ -46,6 +55,10 @@
   "contact_form_email_placeholder": "Entrez votre email",
   "contact_form_message_placeholder": "Entrez votre message",
   "contact_form_send_button": "Dire Bonjour %1$s",
+  "alert_success_send_form_title": "Succès",
+  "alert_success_send_form_desc": "Le formulaire a été envoyé avec succès.",
+
+
 
   "experience": "Mon parcours",
   "view_all": "Voir tout",
@@ -93,5 +106,20 @@
 
   "professional_netfx_title": "Netfx Solutions",
   "professional_netfx_desc": "Développement d'applications Kotlin Multiplatform et intégration de Firebase, WebSockets et d'API REST pour des systèmes multiplateformes.",
-  "professional_netfx_position": "Développeur Android"
+  "professional_netfx_position": "Développeur Android",
+
+
+  "BAD_REQUEST": "Requête invalide",
+  "REQUEST_TIMEOUT": "Délai de requête dépassé",
+  "UNAUTHORIZED": "Non autorisé",
+  "FORBIDDEN": "Accès interdit",
+  "NOT_FOUND": "Ressource introuvable",
+  "CONFLICT": "Conflit détecté",
+  "TOO_MANY_REQUEST": "Trop de requêtes",
+  "NOT_INTERNET": "Pas de connexion Internet",
+  "PAYLOAD_TOO_LARGE": "Taille de fichier trop grande",
+  "SERVER_ERROR": "Erreur serveur",
+  "SERVER_UNAVAILABLE": "Serveur indisponible",
+  "SERIALIZATION": "Erreur de traitement des données",
+  "UNKNOWN": "Erreur inconnue"
 }
