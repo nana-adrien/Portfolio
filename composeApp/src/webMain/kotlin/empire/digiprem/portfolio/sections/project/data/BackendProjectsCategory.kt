@@ -3,13 +3,6 @@ package empire.digiprem.portfolio.sections.project.data
 import empire.digiprem.portfolio.core.Category
 import empire.digiprem.portfolio.core.design_system.PortfolioTabItem
 import empire.digiprem.portfolio.sections.project.domain.MyProject
-import org.jetbrains.compose.resources.getString
-import portfolionanaadrien.composeapp.generated.resources.Res
-import portfolionanaadrien.composeapp.generated.resources.project_android_notifications_title
-import portfolionanaadrien.composeapp.generated.resources.project_backend_chirpapi_desc
-import portfolionanaadrien.composeapp.generated.resources.project_backend_chirpapi_title
-import portfolionanaadrien.composeapp.generated.resources.project_backend_immobiapi_desc
-import portfolionanaadrien.composeapp.generated.resources.project_backend_immobiapi_title
 
 
 suspend fun backendProjectsCategory() = Category(
@@ -17,13 +10,13 @@ suspend fun backendProjectsCategory() = Category(
     groups = listOf(
         MyProject(
             title ="project_backend_chirpapi_title",
-            image = "https://raw.githubusercontent.com/nana-adrien/Immobi-Market/refs/heads/master/captures/immobi_market_api.png",
+            image = "https://cdn.jsdelivr.net/gh/nana-adrien/Immobi-Market@master/captures/immobi_market_api.png",
             description = "project_backend_chirpapi_desc",
             githubLink = "https://github.com/nana-adrien/chirp-api"
         ),
         MyProject(
             title = "project_backend_immobiapi_title",
-            image = "https://raw.githubusercontent.com/nana-adrien/Immobi-Market/refs/heads/master/captures/immobi_market_api.png",
+            image = "https://cdn.jsdelivr.net/gh/nana-adrien/Immobi-Market@master/captures/immobi_market_api.png",
             description ="project_backend_immobiapi_desc",
             githubLink = "https://github.com/nana-adrien/Immobi-Market"
         ),

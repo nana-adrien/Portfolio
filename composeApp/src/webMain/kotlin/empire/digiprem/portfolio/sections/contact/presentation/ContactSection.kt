@@ -117,6 +117,7 @@ fun ContactSection(
         }
         if (state.showSuccessDialog) {
             AlertDialog(
+                modifier = Modifier.clip(RoundedCornerShape(8.dp)),
                 onDismissRequest = {
                     viewModel.onAction(ContactAction.OnCleanForm)
                     viewModel.onAction(ContactAction.OnDismissSuccessDialog)
