@@ -12,12 +12,14 @@ suspend fun backendProjectsCategory() = Category(
             title ="project_backend_chirpapi_title",
             image = "https://cdn.jsdelivr.net/gh/nana-adrien/Immobi-Market@master/captures/immobi_market_api.png",
             description = "project_backend_chirpapi_desc",
+            tags = listOf("Kotlin", "Spring Boot", "KMP", "WebSockets"),
             githubLink = "https://github.com/nana-adrien/chirp-api"
         ),
         MyProject(
             title = "project_backend_immobiapi_title",
             image = "https://cdn.jsdelivr.net/gh/nana-adrien/Immobi-Market@master/captures/immobi_market_api.png",
             description ="project_backend_immobiapi_desc",
+            tags = listOf("Kotlin Multiplatform", "Spring Boot", "PostgreSQL"),
             githubLink = "https://github.com/nana-adrien/Immobi-Market"
         ),
     )

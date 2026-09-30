@@ -7,12 +7,14 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.hoverable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsHoveredAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -51,12 +53,14 @@ fun ProjectItem(
     isPrivate: Boolean = false,
     title: String,
     description: String,
+    tags: List<String> = emptyList(),
     image: String?,
     demoLink: String? = null,
     githubLink: String? = null,
     previewLink: String? = null,
     modifier: Modifier = Modifier,
     onLinkClick: (String) -> Unit,
+    onClick: () -> Unit = {},
 ) {
     val isMobileDevice = currentDeviceConfigure().isMobileDevice()
     val interactionSource = remember { MutableInteractionSource() }
@@ -65,10 +69,11 @@ fun ProjectItem(
     Column(
         modifier = modifier
             .widthIn(min = if (isMobileDevice) 300.dp else 200.dp, max = if (isMobileDevice) 350.dp else 300.dp)
-            .height(if (isMobileDevice) 300.dp else 310.dp)
+            .height(if (isMobileDevice) 335.dp else 345.dp)
             .clip(RoundedCornerShape(8.dp))
             .border(1.dp, MaterialTheme.colorScheme.background.copy(alpha = 0.3f), RoundedCornerShape(8.dp))
             .background(MaterialTheme.colorScheme.background)
+            .clickable { onClick() }
             .padding(15.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp),
     )
@@ -152,7 +157,38 @@ fun ProjectItem(
             color = MaterialTheme.colorScheme.onBackground.copy(0.7f),
             maxLines = 2,
         )
+        if (tags.isNotEmpty()) {
+            FlowRow(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(6.dp),
+                verticalArrangement = Arrangement.spacedBy(6.dp),
+            ) {
+                tags.take(4).forEach { tag ->
+                    ProjectTagChip(text = tag)
+                }
+            }
+        }
 
     }
 
+}
+
+@Composable
+private fun ProjectTagChip(text: String) {
+    Box(
+        modifier = Modifier
+            .clip(RoundedCornerShape(4.dp))
+            .border(
+                width = 1.dp,
+                color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f),
+                shape = RoundedCornerShape(4.dp)
+            )
+            .padding(horizontal = 8.dp, vertical = 3.dp),
+    ) {
+        Text(
+            text = text,
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.primary,
+        )
+    }
 }

@@ -63,6 +63,12 @@ val backEndTechStackCategories = Category(
             name = "WAMP",
             iconLink = "https://cdn.simpleicons.org/apache",
             backgroundColor = Color(0xFFD22128)
+        ),
+
+        TechStack(
+            name = "RabbitMQ",
+            iconLink = "https://cdn.simpleicons.org/rabbitmq",
+            backgroundColor = Color(0xFFFF6600)
         )
 
     )

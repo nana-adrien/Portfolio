@@ -17,6 +17,7 @@ suspend fun webProjectsCategory()=  Category(
         MyProject(
             title = "project_web_portfolio_title",
             description = "project_web_portfolio_desc",
+            tags = listOf("Kotlin", "WebAssembly", "Compose Multiplatform"),
             image = "https://raw.githubusercontent.com/nana-adrien/Portfolio/master/composeApp/production/capture/portfolio_preview.jpg",
             githubLink = "https://github.com/nana-adrien/Portfolio",
         ),

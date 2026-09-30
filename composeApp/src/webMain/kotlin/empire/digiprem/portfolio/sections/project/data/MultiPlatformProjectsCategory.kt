@@ -13,6 +13,7 @@ suspend fun multiplatformProjectsCategory() = Category(
             title = "project_multiplatform_nativeios_title",
             image = Res.getUri("drawable/img_1.png"),
             description = "project_multiplatform_nativeios_desc",
+            tags = listOf("Compose Multiplatform", "SwiftUI", "Kotlin/Native"),
             previewLink = "https://github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme/tree/main/capture",
             githubLink = "https://github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme"
         ),
@@ -20,13 +21,24 @@ suspend fun multiplatformProjectsCategory() = Category(
         MyProject(
             title = "project_multiplatform_chirp_title",
             description = "project_multiplatform_chirp_desc",
+            fullDescription = "project_multiplatform_chirp_full_desc",
+            tags = listOf("Compose Multiplatform", "Spring Boot", "WebSockets", "Firebase", "RabbitMQ"),
             image = Res.getUri("drawable/img.png"),
             githubLink = "https://github.com/nana-adrien/Chirp"
         ),
 
         MyProject(
+            title = "project_multiplatform_socialnetwork_title",
+            description = "project_multiplatform_socialnetwork_desc",
+            fullDescription = "project_multiplatform_socialnetwork_full_desc",
+            tags = listOf("Kotlin Multiplatform", "Supabase", "PostgreSQL", "RLS"),
+            githubLink = null, // [lien GitHub]
+        ),
+
+        MyProject(
             title = "project_multiplatform_immobi_title",
             description = "project_multiplatform_immobi_desc",
+            tags = listOf("Kotlin Multiplatform", "Compose Multiplatform"),
             image = "https://cdn.jsdelivr.net/gh/nana-adrien/Immobi-Market@master/captures/immobi_market_preview.png",
             previewLink = "https://github.com/nana-adrien/Immobi-Market/blob/master/captures/immobi_market_preview.png?raw=true",
             githubLink = "https://github.com/nana-adrien/Immobi-Market"

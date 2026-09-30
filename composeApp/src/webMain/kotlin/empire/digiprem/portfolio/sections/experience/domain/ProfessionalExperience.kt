@@ -7,7 +7,8 @@ data class ProfessionalExperience(
     override val location: String,
     val type: ExperienceType,        // Stage ou Travail
     val position: String?,           // Poste occupé
-    override val startYear: Int,
-    override val endYear: Int,
+    override val startYear: Int?,
+    override val endYear: Int?,
+    val isCurrent: Boolean = false,  // Poste en cours ("à aujourd'hui")
     override val description: String
 ) : TimelineItem(title, location, startYear, endYear, description)

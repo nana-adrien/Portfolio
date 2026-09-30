@@ -108,6 +108,24 @@ val otherTechStackCategories = Category(
             name = "Vercel",
             iconLink = "https://cdn.simpleicons.org/vercel",
             backgroundColor = Color(0xFF000000)
+        ),
+
+        TechStack(
+            name = "Figma",
+            iconLink = "https://cdn.simpleicons.org/figma",
+            backgroundColor = Color(0xFFF24E1E)
+        ),
+
+        TechStack(
+            name = "GitHub Actions",
+            iconLink = "https://cdn.simpleicons.org/githubactions",
+            backgroundColor = Color(0xFF2088FF)
+        ),
+
+        TechStack(
+            name = "Claude Code",
+            iconLink = "https://cdn.simpleicons.org/claude",
+            backgroundColor = Color(0xFFD97757)
         )
     )
 )

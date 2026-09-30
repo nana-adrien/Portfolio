@@ -12,11 +12,16 @@ val educationExperienceCategory = Category<TimelineItem>(
     ),
     groups = listOf(
         Education(
-            title = "education_zeal_title",
-            degree = "education_zeal_degree",
-            startYear = 2020,
-            endYear = 2024,
-            description ="education_zeal_desc"
+            title = "education_master_title",
+            degree = "education_master_degree",
+        ),
+        Education(
+            title = "education_licence_title",
+            degree = "education_licence_degree",
+        ),
+        Education(
+            title = "education_bts_title",
+            degree = "education_bts_degree",
         )
     )
 )

@@ -22,19 +22,19 @@
   "back_home": "Back to homepage",
 
   "salutation": "Hey",
-  "nana_intro": "I am Nana Adrien",
+  "nana_intro": "Nana Adrien — Full-Stack Mobile Developer (Freelance)",
   "passion_intro": "I am passionate about ",
-  "dev_mobile": "Mobile Development",
-  "dev_backend": "Backend Development",
-  "dev_multiplatform": "Multiplatform Development",
-  "focus_desc": "%1$s I focus on developing cross-platform applications with Kotlin KMP and Compose Multiplatform (CMP), creating user-friendly experiences that meet client requirements, while paying close attention to detail %2$s , scalability %3$s and performance %4$s .",
+  "dev_mobile": "Reliable Mobile Applications",
+  "dev_backend": "Secure Backends with Spring Boot",
+  "dev_multiplatform": "Tailored Kotlin Multiplatform Solutions",
+  "focus_desc": "%1$s I build reliable, secure iOS, Android, and desktop applications from a single codebase, guiding you clearly from requirements to production %2$s. Attentive to your needs, thorough and detail-oriented, I combine technical expertise — Kotlin Multiplatform, Compose Multiplatform, Spring Boot — with genuine client care to deliver projects that truly meet your goals %3$s, with close attention to quality and performance %4$s.",
   "on_me": "About Me",
 
 
 
   "about_me": "About Me",
-  "profile_tagline": "~Multiplatform Developer~",
-  "profile_about_desc": "Ahoy there! %1$s I'm a passionate Multiplatform Software Developer who started my journey building Android applications with XML. %2$s Curious by nature, I quickly expanded my interests to modern technologies and everything related to cross-platform and multiplatform development. %3$s Today, I focus on creating efficient applications that run across multiple platforms using modern tools like Kotlin Multiplatform. %4$s With a Master's degree in Information Systems and Software Engineering %5$s, I proudly work as a Software Engineer driven by technology and innovation.",
+  "profile_tagline": "~Full-Stack Mobile Developer (Freelance)~",
+  "profile_about_desc": "Hey there! %1$s I design multilayer, multi-module architectures in Kotlin Multiplatform, from the Compose client (Android, iOS, Desktop) %2$s to the Spring Boot backend — REST APIs, WebSockets, Supabase, PostgreSQL %3$s. Thorough, curious, and attentive, I care as much about code quality as about clear communication with clients and reliable delivery %4$s. Certified Kotlin Full-Stack Developer (PL Coding × JetBrains), I'm a Full-Stack Mobile developer based in Douala, available for remote freelance engagements %5$s.",
   "download_cv": "Download my CV",
   "download": "Download",
   "cancel": "Cancel",
@@ -74,6 +74,10 @@
   "project_android_notifications_title": "Android Notifications",
   "project_android_notifications_desc": "Tech Stack: Android, Java, XML, Firebase, MVVM, RoomDB",
 
+  "project_android_boxoffice_title": "Octopusfx Box Office",
+  "project_android_boxoffice_desc": "Android parcel-tracking app for a transport company (NextGet Consulting): role-based flows (driver, warehouse agent, administrator), QR / barcode scanning, geolocation and guided navigation, secure handover with identity verification and electronic signature, multilingual interface. Stack: Jetpack Compose, Kotlin Flow.",
+  "project_android_boxoffice_full_desc": "Octopusfx Box Office is an Android app built for NextGet Consulting to track parcels for a transport company. It provides role-based flows for drivers, warehouse agents, and administrators, each with their own screens and permissions.\n\nKey features include QR/barcode scanning for parcel tracking, geolocation and guided navigation for deliveries, and a secure handover process with identity verification and electronic signature. The interface is multilingual to support field teams. Built with Jetpack Compose and Kotlin Flow.",
+
   "project_ios_barcode_title": "Barcode Scanner",
   "project_ios_barcode_desc": "Training project on SwiftUI fundamentals",
 
@@ -86,7 +90,12 @@
   "project_multiplatform_nativeios_desc": "Embed native SwiftUI button inside Compose Multiplatform UI",
 
   "project_multiplatform_chirp_title": "Chirp",
-  "project_multiplatform_chirp_desc": "Chat application available on Android, iOS, Windows, macOS, and Linux",
+  "project_multiplatform_chirp_desc": "Cross-platform messaging app (Android, iOS, Windows, macOS, Linux) connected to a Kotlin Spring Boot backend. Stack: Compose Multiplatform, WebSockets, Firebase, RabbitMQ — real-time messaging, push notifications, photo upload, pagination, offline mode, sign-up with email verification and deep links.",
+  "project_multiplatform_chirp_full_desc": "Chirp is a cross-platform messaging app built during a Full-Stack Kotlin training program (PL Coding × JetBrains). The Compose Multiplatform client runs on Android, iOS, Windows, macOS, and Linux from a single codebase, connected to a Kotlin Spring Boot backend that handles real-time messaging over WebSockets, push notifications via Firebase, photo uploads, and conversation pagination.\n\nThe app includes offline support, sign-up with email verification and deep links, and server-side security measures such as password hashing and rate limiting. Backend deployment is automated through a CI/CD pipeline.",
+
+  "project_multiplatform_socialnetwork_title": "Cross-Platform Social Network",
+  "project_multiplatform_socialnetwork_desc": "iOS & Android app from a single codebase with Kotlin Multiplatform and Supabase: sign-up, sessions, profile completion (photo, bio), role management, access restricted to completed profiles. Stack: KMP, Supabase, PostgreSQL, Row Level Security.",
+  "project_multiplatform_socialnetwork_full_desc": "This cross-platform social network, built with Kotlin Multiplatform for iOS and Android from a single codebase, relies on Supabase for authentication, session management, and data storage.\n\nThe user journey includes sign-up, profile completion (photo, bio), and app access restricted to completed profiles. Data is hosted in a PostgreSQL database protected by Row Level Security (RLS) rules, ensuring each user only accesses their own data and whatever their role permits.",
 
   "project_multiplatform_immobi_title": "Immobi-Market",
   "project_multiplatform_immobi_desc": "Platform connecting property owners with tenants",
@@ -110,6 +119,28 @@
   "professional_netfx_title": "Netfx Solutions",
   "professional_netfx_desc": "Developed Kotlin Multiplatform applications and integrated Firebase, WebSocket, and REST APIs for cross-platform systems.",
   "professional_netfx_position": "Android Developer",
+
+  "professional_nextget_title": "NextGet Consulting",
+  "professional_nextget_position": "Mobile Developer",
+  "professional_nextget_desc": "Built Android applications for client engagements: multilayer architecture, REST API integration, geolocation features, QR / barcode scanning, and electronic signature.",
+
+  "present_label": "Present",
+
+  "education_master_title": "[Institution]",
+  "education_master_degree": "Master's in Software Engineering (Bac+5)",
+  "education_licence_title": "[Institution]",
+  "education_licence_degree": "Bachelor's in [Specialization] (Bac+3)",
+  "education_bts_title": "[Institution]",
+  "education_bts_degree": "BTS in [Specialization] (Bac+2)",
+
+  "certifications_title": "Certifications",
+  "certification_program_note": "Training: Kotlin Full-Stack Developer Bundle — PL Coding (Philipp Lackner), in partnership with JetBrains (56h, 300+ lessons).",
+  "certification_issuer": "PL Coding × JetBrains",
+  "certification_cmp_mobile_title": "Compose Multiplatform Mobile App (Android & iOS)",
+  "certification_cmp_desktop_title": "Compose Multiplatform Desktop App",
+  "certification_spring_backend_title": "Kotlin Backend with Spring Boot",
+  "view_certificate": "View certificate",
+  "view_details": "View project",
 
 
 

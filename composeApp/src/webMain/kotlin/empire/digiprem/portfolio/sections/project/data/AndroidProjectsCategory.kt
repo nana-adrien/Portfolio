@@ -20,8 +20,16 @@ suspend fun androidProjectsCategory() = Category(
             title = "project_android_notifications_title",
             isPrivate = true,
             description ="project_android_notifications_desc",
+            tags = listOf("Android", "Java", "XML", "Firebase", "MVVM", "RoomDB"),
             demoLink = "github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme/blob/main/README.md",
             githubLink = "https://github.com/nana-adrien/Native-Ios-in-Compose-Multiplatforme"
+        ),
+        MyProject(
+            title = "project_android_boxoffice_title",
+            isPrivate = true,
+            description = "project_android_boxoffice_desc",
+            fullDescription = "project_android_boxoffice_full_desc",
+            tags = listOf("Jetpack Compose", "Kotlin", "Flow", "Geolocation", "QR Code"),
         ),
     )
 )

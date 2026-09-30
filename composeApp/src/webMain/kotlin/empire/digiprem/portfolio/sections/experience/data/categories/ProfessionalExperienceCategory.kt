@@ -13,22 +13,14 @@ import empire.digiprem.portfolio.sections.experience.domain.TimelineItem
     ),
     groups = listOf(
         ProfessionalExperience(
-            title = "professional_digiprem_title",
-            location = "Douala, Cameroon",
-            type = ExperienceType.INTERNSHIP,
-            position = null,
-            startYear = 2022,
-            endYear = 2022,
-            description = "professional_digiprem_desc"
-        ),
-        ProfessionalExperience(
-            title = "professional_netfx_title",
-            location = "Douala, Cameroon",
+            title = "professional_nextget_title",
+            location = "Douala, Cameroun",
             type = ExperienceType.JOB,
-            position = "professional_netfx_position",
-            startYear = 2023,
-            endYear = 2025,
-            description = "professional_netfx_desc"
+            position = "professional_nextget_position",
+            startYear = null,
+            endYear = null,
+            isCurrent = true,
+            description = "professional_nextget_desc"
         )
     )
 )

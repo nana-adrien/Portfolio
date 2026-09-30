@@ -31,6 +31,12 @@ val frontEndTechStackCategories = Category(
         ),
 
         TechStack(
+            name = "Compose Multiplatform",
+            iconLink = "https://cdn.simpleicons.org/jetpackcompose",
+            backgroundColor = Color(0xFF4285F4)
+        ),
+
+        TechStack(
             name = "SwiftUI",
             iconLink = "https://cdn.simpleicons.org/swift",
             backgroundColor = Color(0xFFFF6B35)
