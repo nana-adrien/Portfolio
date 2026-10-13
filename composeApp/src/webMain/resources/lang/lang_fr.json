@@ -20,7 +20,7 @@
   "back_home": "Retour à l'accueil",
 
   "salutation": "Salut",
-  "nana_intro": "Nana Adrien — Développeur Full-Stack Mobile (Freelance)",
+  "nana_intro": "Nana Adrien — Développeur Full-Stack Mobile  ",
   "passion_intro": "Je suis passionné par le ",
   "dev_mobile": "Applications Mobiles Fiables",
   "dev_backend": "Backends Sécurisés avec Spring Boot",
@@ -29,7 +29,7 @@
   "on_me": "Sur moi",
 
   "about_me": "À propos de moi",
-  "profile_tagline": "~Développeur Full-Stack Mobile (Freelance)~",
+  "profile_tagline": "~Développeur Full-Stack Mobile  ~",
   "profile_about_desc": "Salut ! %1$s Je conçois des architectures multicouches et multi-modules en Kotlin Multiplatform, du client Compose (Android, iOS, Desktop) %2$s au backend Spring Boot — API REST, WebSockets, Supabase, PostgreSQL %3$s. Rigoureux, curieux et à l'écoute, j'accorde autant d'importance à la qualité du code qu'à la clarté de la communication avec mes clients et à la fiabilité des livraisons %4$s. Certifié Kotlin Full-Stack Developer (PL Coding × JetBrains), je suis développeur Full-Stack Mobile basé à Douala, disponible pour des missions freelance à distance %5$s.",
   "download_cv": "Télécharger mon CV",
   "download": "Télécharger",
@@ -123,12 +123,12 @@
 
   "present_label": "Aujourd'hui",
 
-  "education_master_title": "[Établissement]",
+  "education_master_title": "[Institut universitaire du Golfe de guinée (IUG) - 2025]",
   "education_master_degree": "Master en Génie Logiciel (Bac+5)",
-  "education_licence_title": "[Établissement]",
-  "education_licence_degree": "Licence en [Spécialité] (Bac+3)",
-  "education_bts_title": "[Établissement]",
-  "education_bts_degree": "BTS en [Spécialité] (Bac+2)",
+  "education_licence_title": "[Institut universitaire du Golfe de guinée (IUG) - 2023]",
+  "education_licence_degree": "Licence en Génie Logiciel (Bac+3)",
+  "education_bts_title": "[Institut supérieur de l’émergence(ISE) - 2021]",
+  "education_bts_degree": "BTS en Génie Logiciel (Bac+2)",
 
   "certifications_title": "Certifications",
   "certification_program_note": "Formation : Kotlin Full-Stack Developer Bundle — PL Coding (Philipp Lackner), en collaboration avec JetBrains (56 h, plus de 300 leçons).",

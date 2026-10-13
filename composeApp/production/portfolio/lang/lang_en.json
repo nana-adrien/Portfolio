@@ -22,7 +22,7 @@
   "back_home": "Back to homepage",
 
   "salutation": "Hey",
-  "nana_intro": "Nana Adrien — Full-Stack Mobile Developer (Freelance)",
+  "nana_intro": "Nana Adrien — Full-Stack Mobile Developer  ",
   "passion_intro": "I am passionate about ",
   "dev_mobile": "Reliable Mobile Applications",
   "dev_backend": "Secure Backends with Spring Boot",
@@ -33,7 +33,7 @@
 
 
   "about_me": "About Me",
-  "profile_tagline": "~Full-Stack Mobile Developer (Freelance)~",
+  "profile_tagline": "~Full-Stack Mobile Developer  ~",
   "profile_about_desc": "Hey there! %1$s I design multilayer, multi-module architectures in Kotlin Multiplatform, from the Compose client (Android, iOS, Desktop) %2$s to the Spring Boot backend — REST APIs, WebSockets, Supabase, PostgreSQL %3$s. Thorough, curious, and attentive, I care as much about code quality as about clear communication with clients and reliable delivery %4$s. Certified Kotlin Full-Stack Developer (PL Coding × JetBrains), I'm a Full-Stack Mobile developer based in Douala, available for remote freelance engagements %5$s.",
   "download_cv": "Download my CV",
   "download": "Download",
@@ -126,12 +126,12 @@
 
   "present_label": "Present",
 
-  "education_master_title": "[Institution]",
+  "education_master_title": "[Institut universitaire du Golfe de guinée (IUG) - 2025]",
   "education_master_degree": "Master's in Software Engineering (Bac+5)",
-  "education_licence_title": "[Institution]",
-  "education_licence_degree": "Bachelor's in [Specialization] (Bac+3)",
-  "education_bts_title": "[Institution]",
-  "education_bts_degree": "BTS in [Specialization] (Bac+2)",
+  "education_licence_title": "[Institut universitaire du Golfe de guinée (IUG) - 2023]",
+  "education_licence_degree": "Bachelor's in Software Engineering (Bac+3)",
+  "education_bts_title": "[Institut universitaire du Golfe de guinée (IUG) - 2021]",
+  "education_bts_degree": "BTS in Software Engineering (Bac+2)",
 
   "certifications_title": "Certifications",
   "certification_program_note": "Training: Kotlin Full-Stack Developer Bundle — PL Coding (Philipp Lackner), in partnership with JetBrains (56h, 300+ lessons).",

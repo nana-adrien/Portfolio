@@ -1,27 +1,13 @@
 package empire.digiprem.portfolio.sections.project.presentation.components
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.expandHorizontally
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkHorizontally
+import androidx.compose.animation.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.hoverable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsHoveredAsState
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Preview
@@ -41,6 +27,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import empire.digiprem.portfolio.core.design_system.PortfolioImage
 import empire.digiprem.portfolio.core.design_system.animation.ShimmerSkeleton
 import empire.digiprem.portfolio.core.design_system.currentDeviceConfigure
@@ -69,7 +56,7 @@ fun ProjectItem(
     Column(
         modifier = modifier
             .widthIn(min = if (isMobileDevice) 300.dp else 200.dp, max = if (isMobileDevice) 350.dp else 300.dp)
-            .height(if (isMobileDevice) 335.dp else 345.dp)
+            .height(if (isMobileDevice) 345.dp else 355.dp)
             .clip(RoundedCornerShape(8.dp))
             .border(1.dp, MaterialTheme.colorScheme.background.copy(alpha = 0.3f), RoundedCornerShape(8.dp))
             .background(MaterialTheme.colorScheme.background)
@@ -132,7 +119,6 @@ fun ProjectItem(
                                     model = Icons.Default.Videocam,
                                 ) {
                                     onLinkClick(it)
-
                                 }
                             }
                         }
@@ -153,7 +139,7 @@ fun ProjectItem(
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = TranslationService.getString(description),
-            style = MaterialTheme.typography.labelSmall,
+            style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onBackground.copy(0.7f),
             maxLines = 2,
         )
@@ -187,7 +173,7 @@ private fun ProjectTagChip(text: String) {
     ) {
         Text(
             text = text,
-            style = MaterialTheme.typography.labelSmall,
+            style = MaterialTheme.typography.bodySmall.copy(fontSize = 12.sp   ),
             color = MaterialTheme.colorScheme.primary,
         )
     }

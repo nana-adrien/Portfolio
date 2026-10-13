@@ -21,7 +21,7 @@ class DownloadCVRepositoryImpl(private val client: HttpClient = HttpClientFactor
                 reason=userInformationDto.reason,
             ),
         ).onSuccess {
-            WindowsPlatform.downloadField("nana-adrien", "drawable/c1.pdf")
+            WindowsPlatform.downloadField("cv_nana_adrien", "drawable/cv_nana_adrien.pdf")
         }
     }
 }
