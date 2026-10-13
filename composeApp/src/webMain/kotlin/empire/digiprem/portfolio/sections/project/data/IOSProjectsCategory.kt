@@ -18,6 +18,12 @@ suspend fun iosProjectsCategory() =  Category(
             description = "project_ios_barcode_desc",
             tags = listOf("SwiftUI", "Swift", "iOS"),
             githubLink = "https://github.com/nana-adrien/BarcodeScanner"
+        ),
+        MyProject(
+            title = "project_ios_barcode_title",
+            description = "project_ios_barcode_desc",
+            tags = listOf("SwiftUI", "Swift", "iOS"),
+            githubLink = "https://github.com/nana-adrien/BarcodeScanner"
         )
     )
 )
